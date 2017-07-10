@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /nfs/2016/o/opodolia/projects/GitHub/21sh
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug

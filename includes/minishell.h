@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/10 21:19:17 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/12 20:30:33 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void				expand_buffer(int position, int *bufsize, char **buffer);
 int					split_line(char *line, t_env **env_info, int status,
 					char ***args);
 char				**split_command(char *line);
-void				parse_quotes(char **line, int *i, char quote);
+char				*parser(char *line);
 void				error_exit(int index);
 int					error_return(int index, char *arg);
 char				*parse_dollar(char *line, int i, t_env *env_info);

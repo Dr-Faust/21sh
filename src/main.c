@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:10:03 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/12 20:30:43 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/13 22:08:14 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ static void	minishell(t_env **env_info)
 {
 	char	*line;
 	int		status;
-	int		i;
 	char	***args;
 
 	status = 1;
 	while (status)
 	{
-		i = 0;
 		write_prompt();
 		line = read_line();
 		line = parser(line);

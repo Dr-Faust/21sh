@@ -6,13 +6,13 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 12:02:16 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/12 20:40:07 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/13 22:08:13 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void print_quotes(char **line, int *flag, int quote)
+static void	print_quotes(char **line, int *flag, int quote)
 {
 	char	*str;
 	int		j;
@@ -39,12 +39,11 @@ char		*parser(char *line)
 	int		flag;
 	int		i;
 
-	flag = 0;
 	i = 0;
 	while (line[i])
 	{
 		if ((line[i] == 39 || line[i] == 34) &&
-				valid_quote(line, i + 1, line[i]) == -1)
+			valid_quote(line, i + 1, line[i]) == -1)
 		{
 			line = ft_strjoin_free_first(line, "\n");
 			flag = 1;
@@ -59,5 +58,7 @@ char		*parser(char *line)
 		else
 			i++;
 	}
+	if (line[ft_strlen(line) - 1] == '\n')
+		line[ft_strlen(line) - 1] = '\0';
 	return (line);
 }

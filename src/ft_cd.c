@@ -22,7 +22,6 @@ static int	check_access(char *arg)
 		return (error_return(cd_no_s_f_or_dir, arg));
 	else
 		return (error_return(cd_perm_denied, arg));
-	return (1);
 }
 
 static int	treat_args(char **args, t_env **env_info, int *ret)

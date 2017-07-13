@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 20:33:41 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/10 21:19:15 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/13 22:08:11 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@ static void	clean_up(char **args, char *cmd)
 	int		i;
 
 	i = -1;
-	while (args[++i])
-		ft_memdel((void **)&(args[i]));
+	if (args && *args)
+		while (args[++i])
+		{
+		//	ft_printf("args = %s\n", args[i]);
+			ft_memdel((void **)&(args[i]));
+		}
 	ft_memdel((void **)&(args));
 	ft_memdel((void **)&cmd);
 }

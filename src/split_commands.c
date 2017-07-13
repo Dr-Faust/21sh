@@ -6,13 +6,13 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/01 15:40:58 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/10 21:19:21 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/13 22:08:04 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int			valid_quote(char *s, unsigned int i, char quote)
+int			valid_quote(char *s, int i, char quote)
 {
 	while (s[i])
 	{
@@ -58,7 +58,27 @@ int			count_args(char *str)
 **		x.flag - to know if we have already caught a quote.
 */
 
-static void	split_quotes(char *line, char **args, unsigned int *i, t_var *x)
+static void	check_quotes(char *line, char **args, int *i, t_var *x)
+{
+	int		j;
+
+	while (line[++(*i)])
+		if (line[*i] != 34 && line[*i] != 39)
+		{
+			x->start = *i;
+			while (line[(*i)++])
+				if (line[*i] == 34 || line[*i] == 39)
+				{
+					j = *i;
+					break ;
+				}
+			args[x->numb] = ft_strjoin_free(args[x->numb],
+				ft_strsub(line, (unsigned int)x->start,
+				(size_t)(j - x->start)));
+		}
+}
+
+static void	split_quotes(char *line, char **args, int *i, t_var *x)
 {
 	while (line[*i] && !ft_isspace(line[*i]))
 	{
@@ -67,7 +87,10 @@ static void	split_quotes(char *line, char **args, unsigned int *i, t_var *x)
 		{
 			x->start = *i + 1;
 			*i = valid_quote(line, *i + 1, line[*i]);
-			args[x->numb] = ft_strsub(line, x->start, (size_t)(*i - x->start));
+			args[x->numb] = ft_strsub(line, (unsigned int)x->start,
+				(size_t)(*i - x->start));
+			if (line[*i + 1] && line[*i + 1] != ' ')
+				check_quotes(line, args, i, x);
 			x->numb++;
 			x->flag = 1;
 			(*i)++;
@@ -79,10 +102,10 @@ static void	split_quotes(char *line, char **args, unsigned int *i, t_var *x)
 
 char		**split_command(char *line)
 {
-	char			**args;
-	int				args_numb;
-	unsigned int	i;
-	t_var			x;
+	char	**args;
+	int		args_numb;
+	int		i;
+	t_var	x;
 
 	i = 0;
 	x.numb = 0;
@@ -97,7 +120,8 @@ char		**split_command(char *line)
 		x.start = i;
 		split_quotes(line, args, &i, &x);
 		if (!x.flag)
-			args[x.numb++] = ft_strsub(line, x.start, (size_t)(i - x.start));
+			args[x.numb++] = ft_strsub(line, (unsigned int)x.start,
+				(size_t)(i - x.start));
 	}
 	return (args);
 }

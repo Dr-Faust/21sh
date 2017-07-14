@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/01 15:40:58 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/14 18:57:43 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/14 19:21:53 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static void	check_quotes(char *line, char **args, int *i, t_var *x)
 	int		j;
 
 	while (line[++(*i)])
+	{
 		if (line[*i] != 34 && line[*i] != 39)
 		{
 			x->start = *i;
@@ -77,6 +78,8 @@ static void	check_quotes(char *line, char **args, int *i, t_var *x)
 				(size_t)(j - x->start)));
 			ft_printf("args = %s\n", args[x->numb]);
 		}
+		ft_printf("here\n");
+	}
 }
 
 static void	split_quotes(char *line, char **args, int *i, t_var *x)
@@ -96,22 +99,25 @@ static void	split_quotes(char *line, char **args, int *i, t_var *x)
 			if (line[*i + 1] && line[*i + 1] != ' ')
 				check_quotes(line, args, i, x);
 			x->flag = 1;
+			(*i)++;
 		}
 		if (line[*i] != 34 && line[*i] != 39)
 		{
 			x->start = *i;
-			while (line[(*i)++])
+			while (line[*i])
+			{
 				if (line[*i] == 34 || line[*i] == 39 || ft_isspace(line[*i]))
-				{
-					ft_printf("i = %d\n", *i);
 					break ;
-				}
+				(*i)++;
+			}
+			ft_printf("i = %d\n", *i);
 			args[x->numb] = ft_strjoin_free(args[x->numb],
 				ft_strsub(line, (unsigned int)x->start,
 				(size_t)(*i - x->start)));
 			x->flag = 1;
 			ft_printf("args_0 = %s\n", args[x->numb]);
 		}
+		ft_printf("here\n");
 	}
 	x->numb++;
 }

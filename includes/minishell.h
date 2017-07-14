@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/13 22:08:06 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/14 18:57:49 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char				*parse_dollar(char *line, int i, t_env *env_info);
 char				*get_env_var(char *var, t_env *env_info);
 int					count_args(char *str);
 int					count_commands(char *str);
-int					valid_quote(char *s, unsigned int i, char quote);
+int					valid_quote(char *s, int i, char quote);
 int					execute(char **args, t_env **env_info);
 char				**env_to_arr(t_env *env_info);
 char				*verif_access(char *command, t_env *env_info);

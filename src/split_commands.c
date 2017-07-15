@@ -58,37 +58,30 @@ int			count_args(char *str)
 **		x.flag - to know if we have already caught a quote.
 */
 
-static void	split_quotes(char *line, char **args, int *i, t_var *x)
+static void	split_quotes(char *line, char **args, int *i, int numb)
 {
-	args[x->numb] = ft_strnew(0);
-	while (line[*i] && !ft_isspace(line[*i]))
+	int		start;
+
+	if (line[*i] == 34 || line[*i] == 39)
 	{
-		if (line[*i] == 34 || line[*i] == 39)
+		start = *i + 1;
+		*i = valid_quote(line, *i + 1, line[*i]);
+		args[numb] = ft_strjoin_free(args[numb],
+			ft_strsub(line, (unsigned int)start, (size_t)(*i - start)));
+		(*i)++;
+	}
+	if (line[*i] != 34 && line[*i] != 39)
+	{
+		start = *i;
+		while (line[*i])
 		{
-			x->start = *i + 1;
-			*i = valid_quote(line, *i + 1, line[*i]);
-			args[x->numb] = ft_strjoin_free(args[x->numb],
-				ft_strsub(line, (unsigned int)x->start,
-				(size_t)(*i - x->start)));
-			x->flag = 1;
+			if (line[*i] == 34 || line[*i] == 39 || ft_isspace(line[*i]))
+				break ;
 			(*i)++;
 		}
-		if (line[*i] != 34 && line[*i] != 39)
-		{
-			x->start = *i;
-			while (line[*i])
-			{
-				if (line[*i] == 34 || line[*i] == 39 || ft_isspace(line[*i]))
-					break ;
-				(*i)++;
-			}
-			args[x->numb] = ft_strjoin_free(args[x->numb],
-				ft_strsub(line, (unsigned int)x->start,
-				(size_t)(*i - x->start)));
-			x->flag = 1;
-		}
+		args[numb] = ft_strjoin_free(args[numb],
+			ft_strsub(line, (unsigned int)start, (size_t)(*i - start)));
 	}
-	x->numb++;
 }
 
 char		**split_command(char *line)
@@ -96,23 +89,21 @@ char		**split_command(char *line)
 	char	**args;
 	int		args_numb;
 	int		i;
-	t_var	x;
+	int		numb;
 
 	i = 0;
-	x.numb = 0;
+	numb = 0;
 	args_numb = count_args(line);
 	if (!(args = ft_memalloc(sizeof(char *) * (args_numb + 1))))
 		error_exit(mem_alloc_err);
-	while (x.numb < args_numb)
+	while (numb < args_numb)
 	{
-		x.flag = 0;
 		while (line[i] && ft_isspace(line[i]))
 			i++;
-		x.start = i;
-		split_quotes(line, args, &i, &x);
-		if (!x.flag)
-			args[x.numb++] = ft_strsub(line, (unsigned int)x.start,
-				(size_t)(i - x.start));
+		args[numb] = ft_strnew(0);
+		while (line[i] && !ft_isspace(line[i]))
+			split_quotes(line, args, &i, numb);
+		numb++;
 	}
 	return (args);
 }

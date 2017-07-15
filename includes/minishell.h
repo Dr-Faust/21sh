@@ -19,7 +19,6 @@
 # include <stdlib.h>
 # include <sys/ioctl.h>
 # include <termios.h>
-# include <term.h>
 # include <pwd.h>
 # include <sys/stat.h>
 # include <stdbool.h>
@@ -33,14 +32,6 @@ typedef struct		s_env
 	char			*content;
 	struct s_env	*next;
 }					t_env;
-
-typedef struct		s_var
-{
-	int				numb;
-	int				flag;
-	unsigned int	start;
-	char			quote;
-}					t_var;
 
 typedef enum
 {

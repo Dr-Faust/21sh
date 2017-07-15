@@ -18,6 +18,7 @@
 # include <string.h>
 # include <stdint.h>
 # include <wchar.h>
+# include <stdio.h>
 # define MAX(a, b) ((a) > (b) ? (a) : (b))
 # define ABS(n) ((n) < 0 ? -(n) : (n))
 # define BUFF_SIZE 100000

@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 15:10:35 by opodolia          #+#    #+#             */
-/*   Updated: 2017/06/21 17:06:19 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/16 18:35:03 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <string.h>
 # include <stdint.h>
 # include <wchar.h>
-# include <stdio.h>
 # define MAX(a, b) ((a) > (b) ? (a) : (b))
 # define ABS(n) ((n) < 0 ? -(n) : (n))
 # define BUFF_SIZE 100000
@@ -118,7 +117,7 @@ void				ft_quicksort(int *arr, int first, int last);
 void				ft_swap(int *a, int *b);
 int					ft_sqrt(int nb);
 long double			ft_ld_intpower(long double nb, long double power);
-unsigned char		ft_getchar(void);
+wchar_t				ft_getchar(void);
 /*
 **					=====   [WIDE CHAR/STRING]   =====
 */

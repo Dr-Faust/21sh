@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/01 18:19:55 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/10 11:17:51 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/16 16:00:51 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	error_exit(int index)
 {
-	char	*error[1];
+	char	*error[2];
 
 	error[0] = "21sh: allocation error";
+	error[1] = "21sh: error setting up terminal";
 	ft_printf("%s\n", error[index]);
 	exit(EXIT_FAILURE);
 }

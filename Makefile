@@ -6,7 +6,7 @@
 #    By: opodolia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/20 16:00:27 by opodolia          #+#    #+#              #
-#    Updated: 2017/07/10 12:08:14 by opodolia         ###   ########.fr        #
+#    Updated: 2017/07/16 16:22:42 by opodolia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SH_INC_DIR = ./includes/
 # 21sh source files
 SH_FILES = main.c env_info.c prompt.c read_line.c split_line.c execute.c \
 		   env_to_arr.c access.c ft_echo.c ft_cd.c ft_setenv.c ft_unsetenv.c \
-		   ft_help.c parse_dollar.c split_commands.c errors.c parse_quotes.c
+		   ft_help.c parse_dollar.c split_commands.c errors.c parse_quotes.c \
+		   set_term.c
 
 SH_OBJ = $(addprefix $(SH_OBJ_DIR), $(SH_FILES:.c=.o))
 

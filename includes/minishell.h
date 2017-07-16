@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/14 18:57:49 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/16 18:35:06 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define READ_LINE_BUFSIZE	1024
 # define PATH_LEN			1024
 
+struct termios		default_term;
+
 typedef struct		s_env
 {
 	char			*name;
@@ -36,6 +38,7 @@ typedef struct		s_env
 typedef enum
 {
 	mem_alloc_err,
+	setup_term_err,
 }	t_err_exit;
 
 typedef	enum
@@ -53,10 +56,11 @@ typedef	enum
 	unset_no_such_var,
 }	t_err_return;
 
+void				set_term();
 t_env				*get_env_info(char **arr);
 void				manage_signal(void);
 int					check_prompt(int data);
-void				write_prompt(void);
+void				write_prompt(t_env *env_info);
 char				*read_line(void);
 void				expand_buffer(int position, int *bufsize, char **buffer);
 int					split_line(char *line, t_env **env_info, int status,

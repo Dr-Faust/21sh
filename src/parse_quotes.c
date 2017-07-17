@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 12:02:16 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/14 18:57:45 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/17 20:41:19 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	print_quotes(char **line, int *flag, int quote)
 		else if (quote == 34)
 			ft_printf("dquote> ");
 		str = read_line();
-		str = ft_strjoin_free_first(str, "\n");
 		*line = ft_strjoin_free_first(*line, str);
 		j = -1;
 		while (str[++j])
@@ -45,7 +44,6 @@ char		*parser(char *line)
 		if ((line[i] == 39 || line[i] == 34) &&
 			valid_quote(line, i + 1, line[i]) == -1)
 		{
-			line = ft_strjoin_free_first(line, "\n");
 			flag = 1;
 			print_quotes(&line, &flag, line[i]);
 		}

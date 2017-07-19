@@ -25,7 +25,9 @@ pwd.h
 -
 sys/stat.h
 -
-stdbool.h
+termcap.h
+-
+ncurses.h
 -
 
 ../libft_printf/includes/ft_printf.h

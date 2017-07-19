@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:10:03 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/17 20:42:01 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/18 21:41:29 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			main(void)
 	extern char	**environ;
 	t_env		*env_info;
 
-	set_term();
+	set_terminal();
 	env_info = get_env_info(environ);
 	minishell(&env_info);
 	return (EXIT_SUCCESS);

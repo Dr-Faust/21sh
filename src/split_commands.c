@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/01 15:40:58 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/14 19:34:13 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/19 17:49:12 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,6 @@ int			count_args(char *str)
 	}
 	return (numb);
 }
-
-/*
-**		i - index;
-**		x.numb - amount of arguments in string;
-**		x.start - start position for copping to new string;
-**		x.flag - to know if we have already caught a quote.
-*/
 
 static void	split_quotes(char *line, char **args, int *i, int numb)
 {

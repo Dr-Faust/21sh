@@ -6,7 +6,7 @@
 #    By: opodolia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/20 16:00:27 by opodolia          #+#    #+#              #
-#    Updated: 2017/07/16 16:22:42 by opodolia         ###   ########.fr        #
+#    Updated: 2017/07/18 21:58:51 by opodolia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SH_INC_DIR = ./includes/
 SH_FILES = main.c env_info.c prompt.c read_line.c split_line.c execute.c \
 		   env_to_arr.c access.c ft_echo.c ft_cd.c ft_setenv.c ft_unsetenv.c \
 		   ft_help.c parse_dollar.c split_commands.c errors.c parse_quotes.c \
-		   set_term.c
+		   set_terminal.c
 
 SH_OBJ = $(addprefix $(SH_OBJ_DIR), $(SH_FILES:.c=.o))
 
@@ -34,7 +34,7 @@ SH_OBJ = $(addprefix $(SH_OBJ_DIR), $(SH_FILES:.c=.o))
 LIB_DIR = ./libft_printf/
 LIB = $(addprefix $(LIB_DIR), libftprintf.a)
 LIB_INC = -I ./libft_printf
-LIB_LNK = -L ./libft_printf -l ftprintf
+LIB_LNK = -L ./libft_printf -lftprintf
 
 .SILENT:
 
@@ -50,7 +50,7 @@ $(LIB):
 	make -C $(LIB_DIR)
 
 $(NAME): $(SH_OBJ)
-	$(CC) $(SH_OBJ) $(LIB_LNK) -lm -o $(NAME)
+	$(CC) $(SH_OBJ) -ltermcap $(LIB_LNK) -lm -o $(NAME)
 	echo -en "\r\033[38;5;22m☑️  MAKE $(NAME_BASE)\033[0m\033[K"
 	echo "\r\033[38;5;184m👥  GROUP MEMBER(S):\033[0m\033[K"
 	echo "\r\033[38;5;15m`cat author | sed s/^/\ \ \ \ /g`\033[0m\033[K 🇺🇦"

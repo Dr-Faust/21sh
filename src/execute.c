@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 14:55:14 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/16 15:50:01 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/19 16:58:35 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int			execute(char **args, t_env **env_info)
 	else if (!ft_strcmp(args[0], "exit"))
 	{
 		tcsetattr(STDIN_FILENO, TCSADRAIN, &default_term);
+		tgetent(0, getenv("TERM"));
 		return (0);
 	}
 	return (treat_path(args, *env_info));

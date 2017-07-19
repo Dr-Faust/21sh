@@ -30,8 +30,9 @@ include_directories(
 
 link_directories(
         libft_printf
+        /usr/lib
 ) # libraries
 
 add_executable(minishell ${SOURCE_FILES}) # compilation
 
-target_link_libraries(minishell -lftprintf) # linkage
+target_link_libraries(minishell -lftprintf -ltermcap) # linkage

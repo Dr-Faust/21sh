@@ -6,13 +6,14 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 19:42:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/16 18:03:04 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/18 20:59:57 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(char c)
+int		ft_putchar(char c)
 {
 	write(1, &c, 1);
+	return (1);
 }

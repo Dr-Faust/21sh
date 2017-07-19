@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/16 18:35:06 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/18 22:04:11 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
 # include <stdlib.h>
 # include <sys/ioctl.h>
 # include <termios.h>
+# include <term.h>
 # include <pwd.h>
 # include <sys/stat.h>
-# include <stdbool.h>
+# include <termcap.h>
+# include <ncurses.h>
 
 # define READ_LINE_BUFSIZE	1024
 # define PATH_LEN			1024
@@ -56,7 +58,7 @@ typedef	enum
 	unset_no_such_var,
 }	t_err_return;
 
-void				set_term();
+void				set_terminal();
 t_env				*get_env_info(char **arr);
 void				manage_signal(void);
 int					check_prompt(int data);

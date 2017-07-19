@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 15:10:35 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/16 18:35:03 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/18 20:08:40 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ size_t				ft_wcstombs(char *s, const wchar_t *old_ws, size_t len);
 /*
 **					=====   [PRINT]   =====
 */
-void				ft_putchar(char c);
+int					ft_putchar(char c);
 void				ft_putnchar(int len, char c);
 void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);

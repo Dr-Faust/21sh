@@ -27,17 +27,46 @@ static char	*parse_keys(char *buf, char *buffer, int *position)
 	else if ((buf[0] == BACKSPACE && (*position) > 0) ||
 			(buf[2] == DELETE && buffer[(*position)]))
 		buffer = del_char(buf, buffer, position); 
-/*	else if (buf[2] == 'H' && (*i) > 0)
+	else if (buf[2] == START && (*position) > 0)
+		while (*position > 0)
+		{
+			ft_putstr(tgetstr("le", 0));
+			(*position)--;
+		}
+	else if (buf[2] == END && buffer[(*position)])
+		while (buffer[(*position)])
+		{
+			ft_putstr(tgetstr("nd", 0));
+			(*position)++;
+		}
+	else if (buf[5] == LEFT && (*position) > 0)
 	{
-		ft_printf("%s", buf);
-		*i = 0;
+		while (buffer[(*position) - 1] == ' ' && (*position) > 0)
+		{
+			ft_putstr(tgetstr("le", 0));
+			(*position)--;
+		}
+		while (buffer[(*position) - 1] != ' ' && (*position) > 0)
+		{
+			ft_putstr(tgetstr("le", 0));
+			(*position)--;
+		}
 	}
-	else if (buf[2] == 'F' && buffer[(*i)])
+	else if (buf[5] == RIGHT && buffer[(*position)])
 	{
-		ft_printf("%s", buf);
-		*i = ft_strlen(buffer) - 1;
+		while (buffer[(*position)] != ' ' &&
+			*position < (int)ft_strlen(buffer))
+		{
+			ft_putstr(tgetstr("nd", 0));
+			(*position)++;
+		}
+		while (buffer[(*position)] == ' ' &&
+			*position < (int)ft_strlen(buffer))
+		{
+			ft_putstr(tgetstr("nd", 0));
+			(*position)++;
+		}
 	}
-	ft_printf("%s", buf);*/
 	return (buffer);
 }
 
@@ -74,6 +103,7 @@ char		*read_line(void)
 	{
 		ft_bzero(buf, 8);
 		bytes = read(0, buf, 8);
+		//ft_printf("bytes = %d\n", bytes);
 		if (bytes == 1 && (ft_isprint(buf[0]) || buf[0] == '\n'))
 			if (check_print_position(buf, &buffer, &position))
 				return (buffer);

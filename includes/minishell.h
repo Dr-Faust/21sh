@@ -28,8 +28,6 @@
 # define READ_LINE_BUFSIZE	1024
 # define PATH_LEN			1024
 
-
-
 # define LEFT				'D'
 # define RIGHT				'C'
 # define UP					'A'

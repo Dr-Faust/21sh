@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/01 15:40:58 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/19 17:49:12 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/21 17:22:16 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			count_args(char *str)
 		while (str[i] && !ft_isspace(str[i]))
 		{
 			if ((str[i] == 34 || str[i] == 39) &&
-					valid_quote(str, i + 1, str[i]) != -1)
+				valid_quote(str, i + 1, str[i]) != -1)
 			{
 				i = valid_quote(str, i + 1, str[i]);
 				i++;
@@ -88,7 +88,7 @@ char		**split_command(char *line)
 	numb = 0;
 	args_numb = count_args(line);
 	if (!(args = ft_memalloc(sizeof(char *) * (args_numb + 1))))
-		error_exit(mem_alloc_err);
+		error_exit(sh, mem_alloc_err);
 	while (numb < args_numb)
 	{
 		while (line[i] && ft_isspace(line[i]))

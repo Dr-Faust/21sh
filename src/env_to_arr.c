@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/21 19:08:01 by opodolia          #+#    #+#             */
-/*   Updated: 2017/06/22 17:32:53 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/21 17:31:36 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	add_new_line(t_env *env_info, char ***arr)
 		size = (int)(ft_strlen(env_info->name) +
 				ft_strlen(env_info->content) + 1);
 		if (!((*arr)[i] = ft_memalloc(sizeof(char) * (size + 1))))
-			return ;
+			error_exit(sh, mem_alloc_err);
 		i++;
 		env_info = env_info->next;
 	}
@@ -80,7 +80,7 @@ char		**env_to_arr(t_env *env_info)
 	tmp = env_info;
 	size = env_size(env_info);
 	if (!(arr = ft_memalloc(sizeof(char *) * (size + 1))))
-		return (0);
+		error_exit(sh, mem_alloc_err);
 	add_new_line(env_info, &arr);
 	env_info = tmp;
 	fill_line(env_info, &arr);

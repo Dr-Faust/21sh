@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/18 16:42:41 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/03 19:04:16 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/21 17:24:14 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 static int	check_access(char *arg)
 {
 	if (access(arg, F_OK) == -1)
-		return (error_return(cd_no_s_f_or_dir, arg));
+		return (error_return(cd, no_s_f_or_dir, arg));
 	else
-		return (error_return(cd_perm_denied, arg));
+		return (error_return(cd, perm_denied, arg));
 }
 
 static int	treat_args(char **args, t_env **env_info, int *ret)
@@ -33,7 +33,7 @@ static int	treat_args(char **args, t_env **env_info, int *ret)
 		if (get_env_var("OLDPWD", *env_info))
 			*ret = chdir(get_env_var("OLDPWD", *env_info));
 		else
-			return (error_return(cd_oldpwd_not_set, 0));
+			return (error_return(cd, oldpwd_not_set, 0));
 	}
 	else if (args[1][0] == '~')
 	{
@@ -45,7 +45,7 @@ static int	treat_args(char **args, t_env **env_info, int *ret)
 			ft_memdel((void **)&line);
 		}
 		else
-			return (error_return(cd_home_not_set, 0));
+			return (error_return(cd, home_not_set, 0));
 	}
 	else
 		*ret = chdir(args[1]);
@@ -64,7 +64,7 @@ static int	treat_cd(char **args, t_env **env_info, int *ret)
 		if (get_env_var("HOME", *env_info))
 			*ret = chdir(get_env_var("HOME", *env_info));
 		else
-			return (error_return(cd_home_not_set, 0));
+			return (error_return(cd, home_not_set, 0));
 	}
 	return (0);
 }

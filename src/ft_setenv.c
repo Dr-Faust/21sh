@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/18 20:05:07 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/03 20:13:07 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/21 17:33:20 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	add_to_env(t_env **env_info, char *var, char *value)
 	if (!tmp)
 	{
 		if (!(*env_info = (t_env *)malloc(sizeof(t_env))))
-			return (1);
+			error_exit(sh, mem_alloc_err);
 		(*env_info)->name = ft_strdup(var);
 		(*env_info)->content = ft_strdup(value);
 		(*env_info)->next = 0;
@@ -30,7 +30,7 @@ static int	add_to_env(t_env **env_info, char *var, char *value)
 		while (tmp->next)
 			tmp = tmp->next;
 		if (!(tmp->next = (t_env *)malloc(sizeof(t_env))))
-			return (1);
+			error_exit(sh, mem_alloc_err);
 		tmp->next->name = ft_strdup(var);
 		tmp->next->content = ft_strdup(value);
 		tmp->next->next = 0;
@@ -44,15 +44,13 @@ static int	check_args(char *var, char *value, char **args)
 
 	i = -1;
 	if ((var == 0 || value == 0))
-		return (error_return(set_too_few_arg, 0));
+		return (error_return(set_env, too_few_args, 0));
 	else if (args[1] && args[2] && args[3])
-		return (error_return(set_too_much_arg, 0));
+		return (error_return(set_env, too_much_args, 0));
 	else
-	{
 		while (var[++i])
 			if (ft_isdigit(var[i]))
-				return (error_return(set_not_an_id, var));
-	}
+				return (error_return(set_env, not_an_id, var));
 	return (0);
 }
 

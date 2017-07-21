@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:50:42 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/16 18:35:01 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/21 17:29:37 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void		write_prompt(t_env *env_info)
 		write(1, "_", 1);
 	comp = getpwuid(getuid())->pw_name;
 	ft_printf("%s%s%s%s", B_YELLOW, comp, B_BLUE, "][");
-	buf = ft_memalloc(sizeof(char *) * 256);
+	if (!(buf = ft_memalloc(sizeof(char *) * 256)))
+		error_exit(sh, mem_alloc_err);
 	gethostname(buf, 256);
 	tmp = ft_strndup(buf, '.');
 	ft_printf("%s%s%s%s%s", B_GREEN, tmp, B_RED, " ✗ ", B_CYAN);

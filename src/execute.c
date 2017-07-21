@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 14:55:14 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/19 16:58:35 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/21 17:00:42 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	launch(char **args, t_env *env_info, char *path)
 	if (pid == 0)
 		execve(path, args, env);
 	else if (pid < 0)
-		ft_printf("21sh: error calling fork");
+		error_return(sh, err_cal_fork, 0);
 	else
 	{
 		waitpid(pid, &status, WUNTRACED);
@@ -45,7 +45,7 @@ static int	check_path(char *path, char *arg)
 
 	if ((lstat(path, &buf) != -1 && !S_ISREG(buf.st_mode))
 			|| access(path, X_OK) != 0)
-		return (error_return(min_perm_denied, arg));
+		return (error_return(sh, perm_denied, arg));
 	return (0);
 }
 
@@ -62,7 +62,7 @@ static char	*get_path(char *arg, t_env *env_info)
 	if (env_info)
 		return (verif_access(arg, env_info));
 	else
-		ft_printf("21sh: no such file or directory: %s\n", arg);
+		error_return(sh, no_s_f_or_dir, arg);
 	return (0);
 }
 
@@ -76,7 +76,7 @@ static int	treat_path(char **args, t_env *env_info)
 		if (access(args[0], F_OK) == 0)
 			path = ft_strdup(args[0]);
 		else
-			return (error_return(min_no_s_f_or_dir, args[0]));
+			return (error_return(sh, no_s_f_or_dir, args[0]));
 	}
 	path = (!path) ? get_path(args[0], env_info) : path;
 	if (path)

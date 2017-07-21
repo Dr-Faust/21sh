@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:33:54 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/20 15:14:06 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/21 17:41:34 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	set_terminal(void)
 	{
 		tcsetattr(STDIN_FILENO, TCSADRAIN, &default_term);
 		tgetent(0, getenv("TERM"));
-		error_exit(setup_term_err);
+		error_exit(sh, setup_term_err);
 	}
 	else
 		tgetent(0, terminal);

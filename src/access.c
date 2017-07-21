@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/17 17:13:47 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/10 11:11:31 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/21 16:53:53 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static void	clean_up(char **arr)
 static void	err_no_path(int ret, char *arg)
 {
 	if (ret == -1)
-		ft_printf("21sh: permission denied: %s\n", arg);
+		error_return(sh, perm_denied, arg); 
 	else
-		ft_printf("21sh: command not found: %s\n", arg);
+		error_return(sh, com_not_found, arg);
 }
 
 char		*add_slash(char *path, char *command)

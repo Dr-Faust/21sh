@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/18 17:12:17 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/03 18:28:36 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/21 17:25:05 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static int	is_env(t_env *env_info, char *var)
 static int	check_var(t_env *env_info, char *var)
 {
 	if (!var)
-		return (error_return(unset_too_few_arg, 0));
+		return (error_return(unset_env, too_few_args, 0));
 	if (!is_env(env_info, var))
-		return (error_return(unset_no_such_var, var));
+		return (error_return(unset_env, no_such_var, var));
 	return (0);
 }
 

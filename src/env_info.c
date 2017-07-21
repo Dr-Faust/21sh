@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 16:45:01 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/16 14:50:07 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/21 17:12:58 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	set_clicolor(t_env **lst)
 	else
 	{
 		if (!(*lst = (t_env *)malloc(sizeof(t_env))))
-			return ;
+			error_exit(sh, mem_alloc_err);
 		(*lst)->name = ft_strdup("CLICOLOR");
 		(*lst)->content = ft_strdup("1");
 		(*lst)->next = 0;
@@ -29,7 +29,7 @@ static void	set_clicolor(t_env **lst)
 static void	create_lst(t_env **lst, char *arr)
 {
 	if (!(*lst = (t_env *)malloc(sizeof(t_env))))
-		return ;
+		error_exit(sh, mem_alloc_err);
 	(*lst)->name = ft_strndup(arr, '=');
 	(*lst)->content = ft_strdup(ft_strchr(arr, '=') + 1);
 	if (!ft_strcmp((*lst)->name, "SHLVL"))

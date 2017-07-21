@@ -6,85 +6,27 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/20 15:15:14 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/21 17:32:47 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*del_char(char key, char *buffer, int *i)
+static char	*parse_keys(char *buf, char *buffer, int *position)
 {
-	char	*ret;
-	int		start;
-
-	if (!(ret = ft_strnew(1)))
-		error_exit(mem_alloc_err);
-	start = 0;
-	if (key == 127)
-	{
-		ret = ft_strjoin_free(ret, ft_strsub(buffer, start, (*i) - start - 1));
-		start = *i;
-	}
-	else if (key == '3')
-	{
-		ret = ft_strjoin_free(ret, ft_strsub(buffer, start, (*i) - start));
-		start = *i + 1;
-	}
-	ret = ft_strjoin_free(ret, ft_strsub(buffer, start,
-		ft_strlen(buffer) - start));
-	ft_memdel((void **)&buffer);
-	return (ret);
-}
-
-static char	*add_char(char chr, char *buffer, int *i)
-{
-	char	*ret;
-	int		start;
-	char	*print;
-
-	if (!(ret = ft_strnew(1)))
-		error_exit(mem_alloc_err);
-	if (!(print = ft_strnew(1)))
-		error_exit(mem_alloc_err);
-	start = 0;
-	ret = ft_strjoin_free(ret, ft_strsub(buffer, start, (*i) - start));
-	print[0] = chr;
-	start = *i;
-	print = ft_strjoin_free(print, ft_strsub(buffer, start,
-		ft_strlen(buffer) - start));
-	ft_putstr(tgetstr("sc", 0));
-	ft_printf("%s", print);
-	ft_putstr(tgetstr("rc", 0));
-	ft_putstr(tgetstr("nd", 0));
-	ret = ft_strjoin_free(ret, print);
-	ft_memdel((void **)&buffer);
-	return (ret);
-}
-
-static char	*parse_keys(char *buf, char *buffer, int *i)
-{
-	if (buf[2] == 'C' && buffer[(*i)])
+	if (buf[2] == RIGHT && buffer[(*position)])
 	{
 		ft_putstr(tgetstr("nd", 0));
-		(*i)++;
+		(*position)++;
 	}
-	else if (buf[2] == 'D' && (*i) > 0)
+	else if (buf[2] == LEFT && (*position) > 0)
 	{
 		ft_putstr(tgetstr("le", 0));
-		(*i)--;
+		(*position)--;
 	}
-	else if (buf[0] == 127 && (*i) > 0)
-	{
-		ft_putstr(tgetstr("le", 0));
-		ft_putstr(tgetstr("dc", 0));
-		buffer = del_char(buf[0], buffer, i);
-		(*i)--;
-	}
-	else if (buf[2] == '3' && buffer[(*i)])
-	{
-		ft_putstr(tgetstr("dc", 0));
-		buffer = del_char(buf[2], buffer, i);
-	}
+	else if ((buf[0] == BACKSPACE && (*position) > 0) ||
+			(buf[2] == DELETE && buffer[(*position)]))
+		buffer = del_char(buf, buffer, position); 
 /*	else if (buf[2] == 'H' && (*i) > 0)
 	{
 		ft_printf("%s", buf);
@@ -99,39 +41,42 @@ static char	*parse_keys(char *buf, char *buffer, int *i)
 	return (buffer);
 }
 
-static void	check_print_position(char *buf, char **buffer, int *i)
+static int	check_print_position(char *buf, char **buffer, int *position)
 {
-	if ((*i) < (int)ft_strlen(*buffer))
-		*buffer = add_char(buf[0], *buffer, i);
+	if (buf[0] == '\n')
+	{
+		ft_printf("\n");
+		*buffer = ft_strjoin_free_first(*buffer, "\n\0");
+		return (1);
+	}
+	else if ((*position) < (int)ft_strlen(*buffer))
+		*buffer = add_char(buf[0], *buffer, position);
 	else
 	{
 		*buffer = ft_strjoin_free_first(*buffer, buf);
 		ft_printf("%c", buf[0]);
 	}
-	(*i)++;
+	(*position)++;
+	return (0);
 }
 
 char		*read_line(void)
 {
 	char		*buffer;
 	char		buf[8];
-	int			i;
+	int			position;
+	int			bytes;
 
 	if (!(buffer = ft_strnew(1)))
-		error_exit(mem_alloc_err);
-	i = 0;
+		error_exit(sh, mem_alloc_err);
+	position = 0;
 	while (42)
 	{
 		ft_bzero(buf, 8);
-		read(0, buf, 8);
-		if (ft_isprint(buf[0]) && !buf[1])
-			check_print_position(buf, &buffer, &i);
-		else if (buf[0] == '\n')
-		{
-			ft_printf("\n");
-			return (buffer = ft_strjoin_free_first(buffer, "\n\0"));
-		}
-		else
-			buffer = parse_keys(buf, buffer, &i);
+		bytes = read(0, buf, 8);
+		if (bytes == 1 && (ft_isprint(buf[0]) || buf[0] == '\n'))
+			if (check_print_position(buf, &buffer, &position))
+				return (buffer);
+		buffer = parse_keys(buf, buffer, &position);
 	}
 }

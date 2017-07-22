@@ -6,6 +6,11 @@ CMakeFiles/minishell.dir/src/access.c.o: ../libft_printf/includes/ft_printf.h
 CMakeFiles/minishell.dir/src/access.c.o: ../libft_printf/libft/includes/libft.h
 CMakeFiles/minishell.dir/src/access.c.o: ../src/access.c
 
+CMakeFiles/minishell.dir/src/add_del_char.c.o: ../includes/minishell.h
+CMakeFiles/minishell.dir/src/add_del_char.c.o: ../libft_printf/includes/ft_printf.h
+CMakeFiles/minishell.dir/src/add_del_char.c.o: ../libft_printf/libft/includes/libft.h
+CMakeFiles/minishell.dir/src/add_del_char.c.o: ../src/add_del_char.c
+
 CMakeFiles/minishell.dir/src/env_info.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/src/env_info.c.o: ../libft_printf/includes/ft_printf.h
 CMakeFiles/minishell.dir/src/env_info.c.o: ../libft_printf/libft/includes/libft.h
@@ -75,6 +80,11 @@ CMakeFiles/minishell.dir/src/read_line.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/src/read_line.c.o: ../libft_printf/includes/ft_printf.h
 CMakeFiles/minishell.dir/src/read_line.c.o: ../libft_printf/libft/includes/libft.h
 CMakeFiles/minishell.dir/src/read_line.c.o: ../src/read_line.c
+
+CMakeFiles/minishell.dir/src/set_terminal.c.o: ../includes/minishell.h
+CMakeFiles/minishell.dir/src/set_terminal.c.o: ../libft_printf/includes/ft_printf.h
+CMakeFiles/minishell.dir/src/set_terminal.c.o: ../libft_printf/libft/includes/libft.h
+CMakeFiles/minishell.dir/src/set_terminal.c.o: ../src/set_terminal.c
 
 CMakeFiles/minishell.dir/src/split_commands.c.o: ../includes/minishell.h
 CMakeFiles/minishell.dir/src/split_commands.c.o: ../libft_printf/includes/ft_printf.h

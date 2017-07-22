@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 16:19:56 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/21 17:17:29 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/22 18:18:02 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char		*del_char(char *buf, char *buffer, int *position)
 	ret = ft_strjoin_free(ret, ft_strsub(buffer, start, (*position) - start));
 	start = *position + 1;
 	ret = ft_strjoin_free(ret, ft_strsub(buffer, start,
-				ft_strlen(buffer) - start));
+		ft_strlen(buffer) - start));
 	ft_memdel((void **)&buffer);
 	return (ret);
 }

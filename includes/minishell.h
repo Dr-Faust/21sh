@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/21 17:41:27 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/22 19:42:39 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <pwd.h>
 # include <sys/stat.h>
 # include <termcap.h>
-# include <ncurses.h>
 
 # define READ_LINE_BUFSIZE	1024
 # define PATH_LEN			1024
@@ -38,6 +37,7 @@
 # define BACKSPACE			127
 
 struct termios		default_term;
+struct winsize		win_size;
 
 typedef struct		s_env
 {
@@ -81,6 +81,8 @@ void				manage_signal(void);
 int					check_prompt(int data);
 void				write_prompt(t_env *env_info);
 char				*read_line(void);
+void				move_left(char *buf, char *buffer, int *position);
+void				move_right(char *buf, char *buffer, int *position);
 char				*del_char(char *buf, char *buffer, int *position);
 char				*add_char(char chr, char *buffer, int *position);
 int					split_line(char *line, t_env **env_info, int status,

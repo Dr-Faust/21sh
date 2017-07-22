@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named minishell
+# Target rules for targets named 21sh
 
 # Build rule for target.
-minishell: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 minishell
-.PHONY : minishell
+21sh: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 21sh
+.PHONY : 21sh
 
 # fast build rule for target.
-minishell/fast:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/build
-.PHONY : minishell/fast
+21sh/fast:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/build
+.PHONY : 21sh/fast
 
 src/access.o: src/access.c.o
 
@@ -129,7 +129,7 @@ src/access.o: src/access.c.o
 
 # target to build an object file
 src/access.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/access.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/access.c.o
 .PHONY : src/access.c.o
 
 src/access.i: src/access.c.i
@@ -138,7 +138,7 @@ src/access.i: src/access.c.i
 
 # target to preprocess a source file
 src/access.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/access.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/access.c.i
 .PHONY : src/access.c.i
 
 src/access.s: src/access.c.s
@@ -147,8 +147,35 @@ src/access.s: src/access.c.s
 
 # target to generate assembly for a file
 src/access.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/access.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/access.c.s
 .PHONY : src/access.c.s
+
+src/add_del_char.o: src/add_del_char.c.o
+
+.PHONY : src/add_del_char.o
+
+# target to build an object file
+src/add_del_char.c.o:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/add_del_char.c.o
+.PHONY : src/add_del_char.c.o
+
+src/add_del_char.i: src/add_del_char.c.i
+
+.PHONY : src/add_del_char.i
+
+# target to preprocess a source file
+src/add_del_char.c.i:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/add_del_char.c.i
+.PHONY : src/add_del_char.c.i
+
+src/add_del_char.s: src/add_del_char.c.s
+
+.PHONY : src/add_del_char.s
+
+# target to generate assembly for a file
+src/add_del_char.c.s:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/add_del_char.c.s
+.PHONY : src/add_del_char.c.s
 
 src/env_info.o: src/env_info.c.o
 
@@ -156,7 +183,7 @@ src/env_info.o: src/env_info.c.o
 
 # target to build an object file
 src/env_info.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/env_info.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/env_info.c.o
 .PHONY : src/env_info.c.o
 
 src/env_info.i: src/env_info.c.i
@@ -165,7 +192,7 @@ src/env_info.i: src/env_info.c.i
 
 # target to preprocess a source file
 src/env_info.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/env_info.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/env_info.c.i
 .PHONY : src/env_info.c.i
 
 src/env_info.s: src/env_info.c.s
@@ -174,7 +201,7 @@ src/env_info.s: src/env_info.c.s
 
 # target to generate assembly for a file
 src/env_info.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/env_info.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/env_info.c.s
 .PHONY : src/env_info.c.s
 
 src/env_to_arr.o: src/env_to_arr.c.o
@@ -183,7 +210,7 @@ src/env_to_arr.o: src/env_to_arr.c.o
 
 # target to build an object file
 src/env_to_arr.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/env_to_arr.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/env_to_arr.c.o
 .PHONY : src/env_to_arr.c.o
 
 src/env_to_arr.i: src/env_to_arr.c.i
@@ -192,7 +219,7 @@ src/env_to_arr.i: src/env_to_arr.c.i
 
 # target to preprocess a source file
 src/env_to_arr.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/env_to_arr.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/env_to_arr.c.i
 .PHONY : src/env_to_arr.c.i
 
 src/env_to_arr.s: src/env_to_arr.c.s
@@ -201,7 +228,7 @@ src/env_to_arr.s: src/env_to_arr.c.s
 
 # target to generate assembly for a file
 src/env_to_arr.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/env_to_arr.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/env_to_arr.c.s
 .PHONY : src/env_to_arr.c.s
 
 src/errors.o: src/errors.c.o
@@ -210,7 +237,7 @@ src/errors.o: src/errors.c.o
 
 # target to build an object file
 src/errors.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/errors.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/errors.c.o
 .PHONY : src/errors.c.o
 
 src/errors.i: src/errors.c.i
@@ -219,7 +246,7 @@ src/errors.i: src/errors.c.i
 
 # target to preprocess a source file
 src/errors.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/errors.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/errors.c.i
 .PHONY : src/errors.c.i
 
 src/errors.s: src/errors.c.s
@@ -228,7 +255,7 @@ src/errors.s: src/errors.c.s
 
 # target to generate assembly for a file
 src/errors.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/errors.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/errors.c.s
 .PHONY : src/errors.c.s
 
 src/execute.o: src/execute.c.o
@@ -237,7 +264,7 @@ src/execute.o: src/execute.c.o
 
 # target to build an object file
 src/execute.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/execute.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/execute.c.o
 .PHONY : src/execute.c.o
 
 src/execute.i: src/execute.c.i
@@ -246,7 +273,7 @@ src/execute.i: src/execute.c.i
 
 # target to preprocess a source file
 src/execute.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/execute.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/execute.c.i
 .PHONY : src/execute.c.i
 
 src/execute.s: src/execute.c.s
@@ -255,7 +282,7 @@ src/execute.s: src/execute.c.s
 
 # target to generate assembly for a file
 src/execute.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/execute.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/execute.c.s
 .PHONY : src/execute.c.s
 
 src/ft_cd.o: src/ft_cd.c.o
@@ -264,7 +291,7 @@ src/ft_cd.o: src/ft_cd.c.o
 
 # target to build an object file
 src/ft_cd.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_cd.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_cd.c.o
 .PHONY : src/ft_cd.c.o
 
 src/ft_cd.i: src/ft_cd.c.i
@@ -273,7 +300,7 @@ src/ft_cd.i: src/ft_cd.c.i
 
 # target to preprocess a source file
 src/ft_cd.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_cd.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_cd.c.i
 .PHONY : src/ft_cd.c.i
 
 src/ft_cd.s: src/ft_cd.c.s
@@ -282,7 +309,7 @@ src/ft_cd.s: src/ft_cd.c.s
 
 # target to generate assembly for a file
 src/ft_cd.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_cd.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_cd.c.s
 .PHONY : src/ft_cd.c.s
 
 src/ft_echo.o: src/ft_echo.c.o
@@ -291,7 +318,7 @@ src/ft_echo.o: src/ft_echo.c.o
 
 # target to build an object file
 src/ft_echo.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_echo.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_echo.c.o
 .PHONY : src/ft_echo.c.o
 
 src/ft_echo.i: src/ft_echo.c.i
@@ -300,7 +327,7 @@ src/ft_echo.i: src/ft_echo.c.i
 
 # target to preprocess a source file
 src/ft_echo.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_echo.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_echo.c.i
 .PHONY : src/ft_echo.c.i
 
 src/ft_echo.s: src/ft_echo.c.s
@@ -309,7 +336,7 @@ src/ft_echo.s: src/ft_echo.c.s
 
 # target to generate assembly for a file
 src/ft_echo.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_echo.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_echo.c.s
 .PHONY : src/ft_echo.c.s
 
 src/ft_help.o: src/ft_help.c.o
@@ -318,7 +345,7 @@ src/ft_help.o: src/ft_help.c.o
 
 # target to build an object file
 src/ft_help.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_help.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_help.c.o
 .PHONY : src/ft_help.c.o
 
 src/ft_help.i: src/ft_help.c.i
@@ -327,7 +354,7 @@ src/ft_help.i: src/ft_help.c.i
 
 # target to preprocess a source file
 src/ft_help.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_help.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_help.c.i
 .PHONY : src/ft_help.c.i
 
 src/ft_help.s: src/ft_help.c.s
@@ -336,7 +363,7 @@ src/ft_help.s: src/ft_help.c.s
 
 # target to generate assembly for a file
 src/ft_help.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_help.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_help.c.s
 .PHONY : src/ft_help.c.s
 
 src/ft_setenv.o: src/ft_setenv.c.o
@@ -345,7 +372,7 @@ src/ft_setenv.o: src/ft_setenv.c.o
 
 # target to build an object file
 src/ft_setenv.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_setenv.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_setenv.c.o
 .PHONY : src/ft_setenv.c.o
 
 src/ft_setenv.i: src/ft_setenv.c.i
@@ -354,7 +381,7 @@ src/ft_setenv.i: src/ft_setenv.c.i
 
 # target to preprocess a source file
 src/ft_setenv.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_setenv.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_setenv.c.i
 .PHONY : src/ft_setenv.c.i
 
 src/ft_setenv.s: src/ft_setenv.c.s
@@ -363,7 +390,7 @@ src/ft_setenv.s: src/ft_setenv.c.s
 
 # target to generate assembly for a file
 src/ft_setenv.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_setenv.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_setenv.c.s
 .PHONY : src/ft_setenv.c.s
 
 src/ft_unsetenv.o: src/ft_unsetenv.c.o
@@ -372,7 +399,7 @@ src/ft_unsetenv.o: src/ft_unsetenv.c.o
 
 # target to build an object file
 src/ft_unsetenv.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_unsetenv.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_unsetenv.c.o
 .PHONY : src/ft_unsetenv.c.o
 
 src/ft_unsetenv.i: src/ft_unsetenv.c.i
@@ -381,7 +408,7 @@ src/ft_unsetenv.i: src/ft_unsetenv.c.i
 
 # target to preprocess a source file
 src/ft_unsetenv.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_unsetenv.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_unsetenv.c.i
 .PHONY : src/ft_unsetenv.c.i
 
 src/ft_unsetenv.s: src/ft_unsetenv.c.s
@@ -390,7 +417,7 @@ src/ft_unsetenv.s: src/ft_unsetenv.c.s
 
 # target to generate assembly for a file
 src/ft_unsetenv.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/ft_unsetenv.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/ft_unsetenv.c.s
 .PHONY : src/ft_unsetenv.c.s
 
 src/main.o: src/main.c.o
@@ -399,7 +426,7 @@ src/main.o: src/main.c.o
 
 # target to build an object file
 src/main.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/main.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/main.c.o
 .PHONY : src/main.c.o
 
 src/main.i: src/main.c.i
@@ -408,7 +435,7 @@ src/main.i: src/main.c.i
 
 # target to preprocess a source file
 src/main.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/main.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/main.c.i
 .PHONY : src/main.c.i
 
 src/main.s: src/main.c.s
@@ -417,7 +444,7 @@ src/main.s: src/main.c.s
 
 # target to generate assembly for a file
 src/main.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/main.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/main.c.s
 .PHONY : src/main.c.s
 
 src/parse_dollar.o: src/parse_dollar.c.o
@@ -426,7 +453,7 @@ src/parse_dollar.o: src/parse_dollar.c.o
 
 # target to build an object file
 src/parse_dollar.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/parse_dollar.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/parse_dollar.c.o
 .PHONY : src/parse_dollar.c.o
 
 src/parse_dollar.i: src/parse_dollar.c.i
@@ -435,7 +462,7 @@ src/parse_dollar.i: src/parse_dollar.c.i
 
 # target to preprocess a source file
 src/parse_dollar.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/parse_dollar.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/parse_dollar.c.i
 .PHONY : src/parse_dollar.c.i
 
 src/parse_dollar.s: src/parse_dollar.c.s
@@ -444,7 +471,7 @@ src/parse_dollar.s: src/parse_dollar.c.s
 
 # target to generate assembly for a file
 src/parse_dollar.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/parse_dollar.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/parse_dollar.c.s
 .PHONY : src/parse_dollar.c.s
 
 src/parse_quotes.o: src/parse_quotes.c.o
@@ -453,7 +480,7 @@ src/parse_quotes.o: src/parse_quotes.c.o
 
 # target to build an object file
 src/parse_quotes.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/parse_quotes.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/parse_quotes.c.o
 .PHONY : src/parse_quotes.c.o
 
 src/parse_quotes.i: src/parse_quotes.c.i
@@ -462,7 +489,7 @@ src/parse_quotes.i: src/parse_quotes.c.i
 
 # target to preprocess a source file
 src/parse_quotes.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/parse_quotes.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/parse_quotes.c.i
 .PHONY : src/parse_quotes.c.i
 
 src/parse_quotes.s: src/parse_quotes.c.s
@@ -471,7 +498,7 @@ src/parse_quotes.s: src/parse_quotes.c.s
 
 # target to generate assembly for a file
 src/parse_quotes.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/parse_quotes.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/parse_quotes.c.s
 .PHONY : src/parse_quotes.c.s
 
 src/prompt.o: src/prompt.c.o
@@ -480,7 +507,7 @@ src/prompt.o: src/prompt.c.o
 
 # target to build an object file
 src/prompt.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/prompt.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/prompt.c.o
 .PHONY : src/prompt.c.o
 
 src/prompt.i: src/prompt.c.i
@@ -489,7 +516,7 @@ src/prompt.i: src/prompt.c.i
 
 # target to preprocess a source file
 src/prompt.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/prompt.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/prompt.c.i
 .PHONY : src/prompt.c.i
 
 src/prompt.s: src/prompt.c.s
@@ -498,7 +525,7 @@ src/prompt.s: src/prompt.c.s
 
 # target to generate assembly for a file
 src/prompt.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/prompt.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/prompt.c.s
 .PHONY : src/prompt.c.s
 
 src/read_line.o: src/read_line.c.o
@@ -507,7 +534,7 @@ src/read_line.o: src/read_line.c.o
 
 # target to build an object file
 src/read_line.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/read_line.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/read_line.c.o
 .PHONY : src/read_line.c.o
 
 src/read_line.i: src/read_line.c.i
@@ -516,7 +543,7 @@ src/read_line.i: src/read_line.c.i
 
 # target to preprocess a source file
 src/read_line.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/read_line.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/read_line.c.i
 .PHONY : src/read_line.c.i
 
 src/read_line.s: src/read_line.c.s
@@ -525,8 +552,35 @@ src/read_line.s: src/read_line.c.s
 
 # target to generate assembly for a file
 src/read_line.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/read_line.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/read_line.c.s
 .PHONY : src/read_line.c.s
+
+src/set_terminal.o: src/set_terminal.c.o
+
+.PHONY : src/set_terminal.o
+
+# target to build an object file
+src/set_terminal.c.o:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/set_terminal.c.o
+.PHONY : src/set_terminal.c.o
+
+src/set_terminal.i: src/set_terminal.c.i
+
+.PHONY : src/set_terminal.i
+
+# target to preprocess a source file
+src/set_terminal.c.i:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/set_terminal.c.i
+.PHONY : src/set_terminal.c.i
+
+src/set_terminal.s: src/set_terminal.c.s
+
+.PHONY : src/set_terminal.s
+
+# target to generate assembly for a file
+src/set_terminal.c.s:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/set_terminal.c.s
+.PHONY : src/set_terminal.c.s
 
 src/split_commands.o: src/split_commands.c.o
 
@@ -534,7 +588,7 @@ src/split_commands.o: src/split_commands.c.o
 
 # target to build an object file
 src/split_commands.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/split_commands.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/split_commands.c.o
 .PHONY : src/split_commands.c.o
 
 src/split_commands.i: src/split_commands.c.i
@@ -543,7 +597,7 @@ src/split_commands.i: src/split_commands.c.i
 
 # target to preprocess a source file
 src/split_commands.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/split_commands.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/split_commands.c.i
 .PHONY : src/split_commands.c.i
 
 src/split_commands.s: src/split_commands.c.s
@@ -552,7 +606,7 @@ src/split_commands.s: src/split_commands.c.s
 
 # target to generate assembly for a file
 src/split_commands.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/split_commands.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/split_commands.c.s
 .PHONY : src/split_commands.c.s
 
 src/split_line.o: src/split_line.c.o
@@ -561,7 +615,7 @@ src/split_line.o: src/split_line.c.o
 
 # target to build an object file
 src/split_line.c.o:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/split_line.c.o
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/split_line.c.o
 .PHONY : src/split_line.c.o
 
 src/split_line.i: src/split_line.c.i
@@ -570,7 +624,7 @@ src/split_line.i: src/split_line.c.i
 
 # target to preprocess a source file
 src/split_line.c.i:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/split_line.c.i
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/split_line.c.i
 .PHONY : src/split_line.c.i
 
 src/split_line.s: src/split_line.c.s
@@ -579,7 +633,7 @@ src/split_line.s: src/split_line.c.s
 
 # target to generate assembly for a file
 src/split_line.c.s:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/split_line.c.s
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/split_line.c.s
 .PHONY : src/split_line.c.s
 
 # Help Target
@@ -590,10 +644,13 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... minishell"
+	@echo "... 21sh"
 	@echo "... src/access.o"
 	@echo "... src/access.i"
 	@echo "... src/access.s"
+	@echo "... src/add_del_char.o"
+	@echo "... src/add_del_char.i"
+	@echo "... src/add_del_char.s"
 	@echo "... src/env_info.o"
 	@echo "... src/env_info.i"
 	@echo "... src/env_info.s"
@@ -636,6 +693,9 @@ help:
 	@echo "... src/read_line.o"
 	@echo "... src/read_line.i"
 	@echo "... src/read_line.s"
+	@echo "... src/set_terminal.o"
+	@echo "... src/set_terminal.i"
+	@echo "... src/set_terminal.s"
 	@echo "... src/split_commands.o"
 	@echo "... src/split_commands.i"
 	@echo "... src/split_commands.s"

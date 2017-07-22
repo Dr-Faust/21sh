@@ -15,6 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/minishell.dir/src/parse_dollar.c.o"
   "CMakeFiles/minishell.dir/src/env_to_arr.c.o"
   "CMakeFiles/minishell.dir/src/parse_quotes.c.o"
+  "CMakeFiles/minishell.dir/src/set_terminal.c.o"
+  "CMakeFiles/minishell.dir/src/add_del_char.c.o"
   "CMakeFiles/minishell.dir/src/prompt.c.o"
   "minishell.pdb"
   "minishell"

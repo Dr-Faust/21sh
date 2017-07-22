@@ -20,6 +20,12 @@
 //Dependencies for target
 -ltermcap_LIB_DEPENDS:STATIC=
 
+//Value Computed by CMake
+21sh_BINARY_DIR:STATIC=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug
+
+//Value Computed by CMake
+21sh_SOURCE_DIR:STATIC=/nfs/2016/o/opodolia/projects/GitHub/21sh
+
 //Path to a program.
 CMAKE_AR:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar
 
@@ -141,7 +147,7 @@ CMAKE_OSX_DEPLOYMENT_TARGET:STRING=
 CMAKE_OSX_SYSROOT:STRING=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=minishell
+CMAKE_PROJECT_NAME:STATIC=21sh
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib

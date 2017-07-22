@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.6)
-project(minishell)
+project(21sh)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -Wextra")
 
@@ -20,6 +20,8 @@ set(SOURCE_FILES
         src/parse_dollar.c
         src/env_to_arr.c
         src/parse_quotes.c
+        src/set_terminal.c
+        src/add_del_char.c
         src/prompt.c)# sources
 
 include_directories(
@@ -30,9 +32,12 @@ include_directories(
 
 link_directories(
         libft_printf
-        /usr/lib
 ) # libraries
 
-add_executable(minishell ${SOURCE_FILES}) # compilation
+link_libraries(
+        -ltermcap
+)
 
-target_link_libraries(minishell -lftprintf -ltermcap) # linkage
+add_executable(21sh ${SOURCE_FILES}) # compilation
+
+target_link_libraries(21sh -lftprintf) # linkage

@@ -441,9 +441,57 @@ CMakeFiles/minishell.dir/src/parse_quotes.c.o.provides: CMakeFiles/minishell.dir
 CMakeFiles/minishell.dir/src/parse_quotes.c.o.provides.build: CMakeFiles/minishell.dir/src/parse_quotes.c.o
 
 
+CMakeFiles/minishell.dir/src/set_terminal.c.o: CMakeFiles/minishell.dir/flags.make
+CMakeFiles/minishell.dir/src/set_terminal.c.o: ../src/set_terminal.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/minishell.dir/src/set_terminal.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/minishell.dir/src/set_terminal.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/set_terminal.c
+
+CMakeFiles/minishell.dir/src/set_terminal.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/minishell.dir/src/set_terminal.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/2016/o/opodolia/projects/GitHub/21sh/src/set_terminal.c > CMakeFiles/minishell.dir/src/set_terminal.c.i
+
+CMakeFiles/minishell.dir/src/set_terminal.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/minishell.dir/src/set_terminal.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/2016/o/opodolia/projects/GitHub/21sh/src/set_terminal.c -o CMakeFiles/minishell.dir/src/set_terminal.c.s
+
+CMakeFiles/minishell.dir/src/set_terminal.c.o.requires:
+
+.PHONY : CMakeFiles/minishell.dir/src/set_terminal.c.o.requires
+
+CMakeFiles/minishell.dir/src/set_terminal.c.o.provides: CMakeFiles/minishell.dir/src/set_terminal.c.o.requires
+	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/set_terminal.c.o.provides.build
+.PHONY : CMakeFiles/minishell.dir/src/set_terminal.c.o.provides
+
+CMakeFiles/minishell.dir/src/set_terminal.c.o.provides.build: CMakeFiles/minishell.dir/src/set_terminal.c.o
+
+
+CMakeFiles/minishell.dir/src/add_del_char.c.o: CMakeFiles/minishell.dir/flags.make
+CMakeFiles/minishell.dir/src/add_del_char.c.o: ../src/add_del_char.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/minishell.dir/src/add_del_char.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/minishell.dir/src/add_del_char.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/add_del_char.c
+
+CMakeFiles/minishell.dir/src/add_del_char.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/minishell.dir/src/add_del_char.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/2016/o/opodolia/projects/GitHub/21sh/src/add_del_char.c > CMakeFiles/minishell.dir/src/add_del_char.c.i
+
+CMakeFiles/minishell.dir/src/add_del_char.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/minishell.dir/src/add_del_char.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/2016/o/opodolia/projects/GitHub/21sh/src/add_del_char.c -o CMakeFiles/minishell.dir/src/add_del_char.c.s
+
+CMakeFiles/minishell.dir/src/add_del_char.c.o.requires:
+
+.PHONY : CMakeFiles/minishell.dir/src/add_del_char.c.o.requires
+
+CMakeFiles/minishell.dir/src/add_del_char.c.o.provides: CMakeFiles/minishell.dir/src/add_del_char.c.o.requires
+	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/src/add_del_char.c.o.provides.build
+.PHONY : CMakeFiles/minishell.dir/src/add_del_char.c.o.provides
+
+CMakeFiles/minishell.dir/src/add_del_char.c.o.provides.build: CMakeFiles/minishell.dir/src/add_del_char.c.o
+
+
 CMakeFiles/minishell.dir/src/prompt.c.o: CMakeFiles/minishell.dir/flags.make
 CMakeFiles/minishell.dir/src/prompt.c.o: ../src/prompt.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/minishell.dir/src/prompt.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/minishell.dir/src/prompt.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/minishell.dir/src/prompt.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/prompt.c
 
 CMakeFiles/minishell.dir/src/prompt.c.i: cmake_force
@@ -483,6 +531,8 @@ minishell_OBJECTS = \
 "CMakeFiles/minishell.dir/src/parse_dollar.c.o" \
 "CMakeFiles/minishell.dir/src/env_to_arr.c.o" \
 "CMakeFiles/minishell.dir/src/parse_quotes.c.o" \
+"CMakeFiles/minishell.dir/src/set_terminal.c.o" \
+"CMakeFiles/minishell.dir/src/add_del_char.c.o" \
 "CMakeFiles/minishell.dir/src/prompt.c.o"
 
 # External object files for target minishell
@@ -504,10 +554,12 @@ minishell: CMakeFiles/minishell.dir/src/ft_unsetenv.c.o
 minishell: CMakeFiles/minishell.dir/src/parse_dollar.c.o
 minishell: CMakeFiles/minishell.dir/src/env_to_arr.c.o
 minishell: CMakeFiles/minishell.dir/src/parse_quotes.c.o
+minishell: CMakeFiles/minishell.dir/src/set_terminal.c.o
+minishell: CMakeFiles/minishell.dir/src/add_del_char.c.o
 minishell: CMakeFiles/minishell.dir/src/prompt.c.o
 minishell: CMakeFiles/minishell.dir/build.make
 minishell: CMakeFiles/minishell.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking C executable minishell"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking C executable minishell"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/minishell.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -531,6 +583,8 @@ CMakeFiles/minishell.dir/requires: CMakeFiles/minishell.dir/src/ft_unsetenv.c.o.
 CMakeFiles/minishell.dir/requires: CMakeFiles/minishell.dir/src/parse_dollar.c.o.requires
 CMakeFiles/minishell.dir/requires: CMakeFiles/minishell.dir/src/env_to_arr.c.o.requires
 CMakeFiles/minishell.dir/requires: CMakeFiles/minishell.dir/src/parse_quotes.c.o.requires
+CMakeFiles/minishell.dir/requires: CMakeFiles/minishell.dir/src/set_terminal.c.o.requires
+CMakeFiles/minishell.dir/requires: CMakeFiles/minishell.dir/src/add_del_char.c.o.requires
 CMakeFiles/minishell.dir/requires: CMakeFiles/minishell.dir/src/prompt.c.o.requires
 
 .PHONY : CMakeFiles/minishell.dir/requires

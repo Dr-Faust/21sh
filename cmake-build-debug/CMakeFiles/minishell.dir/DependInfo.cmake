@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/access.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/minishell.dir/src/access.c.o"
+  "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/add_del_char.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/minishell.dir/src/add_del_char.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/env_info.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/minishell.dir/src/env_info.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/env_to_arr.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/minishell.dir/src/env_to_arr.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/errors.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/minishell.dir/src/errors.c.o"
@@ -19,6 +20,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/parse_quotes.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/minishell.dir/src/parse_quotes.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/prompt.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/minishell.dir/src/prompt.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/read_line.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/minishell.dir/src/read_line.c.o"
+  "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/set_terminal.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/minishell.dir/src/set_terminal.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/split_commands.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/minishell.dir/src/split_commands.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/split_line.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/minishell.dir/src/split_line.c.o"
   )

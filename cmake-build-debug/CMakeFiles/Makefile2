@@ -60,39 +60,39 @@ CMAKE_SOURCE_DIR = /nfs/2016/o/opodolia/projects/GitHub/21sh
 CMAKE_BINARY_DIR = /nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/minishell.dir
+# Target rules for target CMakeFiles/21sh.dir
 
 # All Build rule for target.
-CMakeFiles/minishell.dir/all:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/depend
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18 "Built target minishell"
-.PHONY : CMakeFiles/minishell.dir/all
+CMakeFiles/21sh.dir/all:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/depend
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 "Built target 21sh"
+.PHONY : CMakeFiles/21sh.dir/all
 
 # Include target in all.
-all: CMakeFiles/minishell.dir/all
+all: CMakeFiles/21sh.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/minishell.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles 18
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/minishell.dir/all
+CMakeFiles/21sh.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles 20
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/21sh.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/minishell.dir/rule
+.PHONY : CMakeFiles/21sh.dir/rule
 
 # Convenience name for target.
-minishell: CMakeFiles/minishell.dir/rule
+21sh: CMakeFiles/21sh.dir/rule
 
-.PHONY : minishell
-
-# clean rule for target.
-CMakeFiles/minishell.dir/clean:
-	$(MAKE) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/clean
-.PHONY : CMakeFiles/minishell.dir/clean
+.PHONY : 21sh
 
 # clean rule for target.
-clean: CMakeFiles/minishell.dir/clean
+CMakeFiles/21sh.dir/clean:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/clean
+.PHONY : CMakeFiles/21sh.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/21sh.dir/clean
 
 .PHONY : clean
 

@@ -6,20 +6,20 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/22 19:41:14 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/23 21:02:54 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*parse_keys(char *buf, char *buffer, int *position)
+static char	*parse_keys(char *buf, char *buffer, int *position, int prompt_len)
 {
 	if ((buf[2] == LEFT || buf[3] == LEFT || buf[2] == START)
 		&& (*position) > 0)
 		move_left(buf, buffer, position);
 	else if ((buf[2] == RIGHT || buf[3] == RIGHT || buf[2] == END)
 			&& buffer[(*position)])
-		move_right(buf, buffer, position);
+		move_right(buf, buffer, position, prompt_len);
 	else if ((buf[0] == BACKSPACE && (*position) > 0) ||
 			(buf[2] == DELETE && buffer[(*position)]))
 		buffer = del_char(buf, buffer, position);
@@ -45,7 +45,7 @@ static int	check_print_position(char *buf, char **buffer, int *position)
 	return (0);
 }
 
-char		*read_line(void)
+char		*read_line(int prompt_len)
 {
 	char		*buffer;
 	char		buf[8];
@@ -63,6 +63,6 @@ char		*read_line(void)
 		if (bytes == 1 && (ft_isprint(buf[0]) || buf[0] == '\n'))
 			if (check_print_position(buf, &buffer, &position))
 				return (buffer);
-		buffer = parse_keys(buf, buffer, &position);
+		buffer = parse_keys(buf, buffer, &position, prompt_len);
 	}
 }

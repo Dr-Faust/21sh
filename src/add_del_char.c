@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 16:19:56 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/22 18:18:02 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/23 21:09:46 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ char		*add_char(char chr, char *buffer, int *position)
 	print[0] = chr;
 	start = *position;
 	print = ft_strjoin_free(print, ft_strsub(buffer, start,
-				ft_strlen(buffer) - start));
+		ft_strlen(buffer) - start));
 	ft_putstr(tgetstr("sc", 0));
 	ft_printf("%s", print);
-	ft_putstr(tgetstr("rc", 0));
+//	ft_putstr(tgetstr("rc", 0));
 	ft_putstr(tgetstr("nd", 0));
 	ret = ft_strjoin_free(ret, print);
 	ft_memdel((void **)&buffer);

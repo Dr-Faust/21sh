@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:10:03 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/21 17:32:19 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/23 19:09:24 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ static void	minishell(t_env **env_info)
 	char	*line;
 	int		status;
 	char	***args;
+	int		prompt_len;
 
 	status = 1;
 	while (status)
 	{
-		write_prompt(*env_info);
-		line = read_line();
-		line = parser(line);
+		prompt_len = write_prompt(*env_info);
+		line = read_line(prompt_len);
+		line = parser(line, prompt_len);
 		if (!(args = ft_memalloc(sizeof(char **) * (count_commands(line) + 1))))
 			error_exit(sh, mem_alloc_err);
 		status = split_line(&(line[0]), env_info, status, args);

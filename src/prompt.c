@@ -6,13 +6,13 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:50:42 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/22 19:38:06 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/07/23 18:48:18 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	current_dir(t_env *env_info)
+static char	*current_dir(t_env *env_info)
 {
 	char	*dir;
 	int		len;
@@ -32,28 +32,32 @@ static void	current_dir(t_env *env_info)
 		start--;
 	dir = ft_strsub(env_info->content, start + 1, len - start);
 	ft_printf("%s%s%s%s", dir, B_YELLOW, " ➜ ", DEF);
-	ft_memdel((void **)&dir);
+	return (dir);
 }
 
-void		write_prompt(t_env *env_info)
+int			write_prompt(t_env *env_info)
 {
-	int				i;
-	char			*buf;
-	char			*tmp;
-	char			*comp;
+	int		len;
+	char	*buf;
+	char	*comp;
+	char	*user;
+	char	*curr_dir;
 
 	ioctl(0, TIOCGWINSZ, &win_size);
-	i = -1;
-	while (++i < win_size.ws_col)
+	len = -1;
+	while (++len < win_size.ws_col)
 		write(1, "_", 1);
-	comp = getpwuid(getuid())->pw_name;
-	ft_printf("%s%s%s%s", B_YELLOW, comp, B_BLUE, "][");
+	user = getpwuid(getuid())->pw_name;
+	ft_printf("%s%s%s%s", B_YELLOW, user, B_BLUE, "][");
 	if (!(buf = ft_memalloc(sizeof(char *) * 256)))
 		error_exit(sh, mem_alloc_err);
 	gethostname(buf, 256);
-	tmp = ft_strndup(buf, '.');
-	ft_printf("%s%s%s%s%s", B_GREEN, tmp, B_RED, " ✗ ", B_CYAN);
-	current_dir(env_info);
+	comp = ft_strndup(buf, '.');
+	ft_printf("%s%s%s%s%s", B_GREEN, comp, B_RED, " ✗ ", B_CYAN);
+	curr_dir = current_dir(env_info);
+	len = ft_strlen(user) + ft_strlen(comp) + ft_strlen(curr_dir) + 8;
+	ft_memdel((void **)&curr_dir);
 	ft_memdel((void **)&buf);
-	ft_memdel((void **)&tmp);
+	ft_memdel((void **)&comp);
+	return (len);
 }

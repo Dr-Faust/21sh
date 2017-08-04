@@ -14,12 +14,12 @@
 
 static char	*parse_keys(char *buf, char *buffer, t_win *w)
 {
-	if ((buf[2] == LEFT || buf[3] == LEFT || buf[2] == START)
+	if ((buf[2] == LEFT || buf[5] == LEFT || buf[2] == START)
 		&& w->index > 0)
-		move_left(buf, buffer, w);
-	else if ((buf[2] == RIGHT || buf[3] == RIGHT || buf[2] == END)
+		left_side(buf, buffer, w);
+	else if ((buf[2] == RIGHT || buf[5] == RIGHT || buf[2] == END)
 			&& buffer[w->index])
-		move_right(buf, buffer, w);
+		right_side(buf, buffer, w);
 	else if ((buf[0] == BACKSPACE && w->index > 0) ||
 			(buf[2] == DELETE && buffer[w->index]))
 		buffer = del_char(buf, buffer, w);
@@ -28,8 +28,13 @@ static char	*parse_keys(char *buf, char *buffer, t_win *w)
 
 static int	check_print_position(char *buf, char **buffer, t_win *w)
 {
+	char *tmp;
+
+	tmp = *buffer;
 	if (buf[0] == '\n')
 	{
+		while (tmp[w->index])
+			move_right(w, buf);
 		ft_printf("\n");
 		*buffer = ft_strjoin_free_first(*buffer, "\n\0");
 		return (1);
@@ -40,8 +45,8 @@ static int	check_print_position(char *buf, char **buffer, t_win *w)
 	{
 		*buffer = ft_strjoin_free_first(*buffer, buf);
 		ft_printf("%c", buf[0]);
-		if (w->position == w->size - 1)
-			ft_putchar('\n');
+	//	if ((w->position + 1) % w->size == 0)
+	//		ft_putchar('\n');
 	}
 	w->index++;
 	w->position++;

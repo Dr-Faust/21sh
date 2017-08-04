@@ -88,8 +88,10 @@ void				manage_signal(void);
 int					check_prompt(int data);
 void				write_prompt(t_env *env_info, t_win *w);
 char				*read_line(t_win *w);
-void				move_left(char *buf, char *buffer, t_win *w);
-void				move_right(char *buf, char *buffer, t_win *w);
+void				left_side(char *buf, char *buffer, t_win *w);
+void				right_side(char *buf, char *buffer, t_win *w);
+void				move_left(t_win *w, char *buf);
+void				move_right(t_win *w, char *buf);
 char				*del_char(char *buf, char *buffer, t_win *w);
 char				*add_char(char chr, char *buffer, t_win *w);
 int					split_line(char *line, t_env **env_info, int status,

@@ -33,12 +33,9 @@ char		*add_char(char chr, char *buffer, t_win *w)
 	tputs(tgetstr("rc", 0), 1, &ft_put_my_char);
 	tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 	ret = ft_strjoin_free(ret, print);
-//	ft_printf("pos = %d\n", w->position);
-//	ft_printf("len = %d\n", ft_strlen(ret) + w->prompt_len);
-//	ft_printf("win_size = %d\n", w->size);
-	if (w->size == (int)ft_strlen(ret) + w->prompt_len - 1)
+	if (((int)ft_strlen(ret) + w->prompt_len - 1) % w->size == 0)
 		tputs(tgetstr("up", 0), 1, &ft_put_my_char);
-	if (w->position == w->size - 1)
+	if ((w->position + 1) % w->size == 0)
 		ft_putchar('\n');
 	ft_memdel((void **)&buffer);
 	return (ret);
@@ -52,13 +49,9 @@ char		*del_char(char *buf, char *buffer, t_win *w)
 	if (!(ret = ft_strnew(1)))
 		error_exit(sh, mem_alloc_err);
 	if (buf[0] == BACKSPACE && w->index > 0)
-	{
-		tputs(tgetstr("le", 0), 1, &ft_put_my_char);
-		w->index--;
-		w->position--;
-	}
+		move_left(w, buf);
 	tputs(tgetstr("dc", 0), 1, &ft_put_my_char);
-	if (w->position == w->size - 1 && buf[0] == BACKSPACE)
+	if ((w->position + 1) % w->size == 0 && buf[0] == BACKSPACE)
 	{
 		tputs(tgetstr("up", 0), 1, &ft_put_my_char);
 		w->position = 0;

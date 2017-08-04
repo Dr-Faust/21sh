@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:50:42 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/23 18:48:18 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/04 19:54:26 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,18 @@ static char	*current_dir(t_env *env_info)
 	return (dir);
 }
 
-int			write_prompt(t_env *env_info)
+void		write_prompt(t_env *env_info, t_win *w)
 {
-	int		len;
-	char	*buf;
-	char	*comp;
-	char	*user;
-	char	*curr_dir;
+	struct winsize	win_size;
+	char			*buf;
+	char			*comp;
+	char			*user;
+	char			*curr_dir;
 
 	ioctl(0, TIOCGWINSZ, &win_size);
-	len = -1;
-	while (++len < win_size.ws_col)
+	w->prompt_len = -1;
+	w->size = win_size.ws_col;
+	while (++w->prompt_len < w->size)
 		write(1, "_", 1);
 	user = getpwuid(getuid())->pw_name;
 	ft_printf("%s%s%s%s", B_YELLOW, user, B_BLUE, "][");
@@ -55,9 +56,8 @@ int			write_prompt(t_env *env_info)
 	comp = ft_strndup(buf, '.');
 	ft_printf("%s%s%s%s%s", B_GREEN, comp, B_RED, " ✗ ", B_CYAN);
 	curr_dir = current_dir(env_info);
-	len = ft_strlen(user) + ft_strlen(comp) + ft_strlen(curr_dir) + 8;
+	w->prompt_len = ft_strlen(user) + ft_strlen(comp) + ft_strlen(curr_dir) + 8;
 	ft_memdel((void **)&curr_dir);
 	ft_memdel((void **)&buf);
 	ft_memdel((void **)&comp);
-	return (len);
 }

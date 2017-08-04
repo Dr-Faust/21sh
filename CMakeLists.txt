@@ -5,6 +5,8 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -Wextra")
 
 set(SOURCE_FILES
         src/main.c
+        src/add_del_char.c
+        src/move_cursor.c
         src/read_line.c
         src/split_line.c
         src/split_commands.c
@@ -21,7 +23,6 @@ set(SOURCE_FILES
         src/env_to_arr.c
         src/parse_quotes.c
         src/set_terminal.c
-        src/add_del_char.c
         src/prompt.c)# sources
 
 include_directories(
@@ -34,10 +35,6 @@ link_directories(
         libft_printf
 ) # libraries
 
-link_libraries(
-        -ltermcap
-)
-
 add_executable(21sh ${SOURCE_FILES}) # compilation
 
-target_link_libraries(21sh -lftprintf) # linkage
+target_link_libraries(21sh -lftprintf -ltermcap) # linkage

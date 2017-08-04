@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/22 19:42:39 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/04 22:13:53 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 # define BACKSPACE			127
 
 struct termios		default_term;
-struct winsize		win_size;
 
 typedef struct		s_env
 {
@@ -45,6 +44,14 @@ typedef struct		s_env
 	char			*content;
 	struct s_env	*next;
 }					t_env;
+
+typedef struct		s_win
+{
+	int				size;
+	int				prompt_len;
+	int				position;
+	int				index;
+}					t_win;
 
 typedef enum
 {
@@ -79,16 +86,16 @@ void				set_terminal();
 t_env				*get_env_info(char **arr);
 void				manage_signal(void);
 int					check_prompt(int data);
-void				write_prompt(t_env *env_info);
-char				*read_line(void);
-void				move_left(char *buf, char *buffer, int *position);
-void				move_right(char *buf, char *buffer, int *position);
-char				*del_char(char *buf, char *buffer, int *position);
-char				*add_char(char chr, char *buffer, int *position);
+void				write_prompt(t_env *env_info, t_win *w);
+char				*read_line(t_win *w);
+void				move_left(char *buf, char *buffer, t_win *w);
+void				move_right(char *buf, char *buffer, t_win *w);
+char				*del_char(char *buf, char *buffer, t_win *w);
+char				*add_char(char chr, char *buffer, t_win *w);
 int					split_line(char *line, t_env **env_info, int status,
 					char ***args);
 char				**split_command(char *line);
-char				*parser(char *line);
+char				*parser(char *line, t_win *w);
 void				error_exit(t_command command_type, t_err_exit error_type);
 int					error_return(t_command command_type, t_err_ret error_type,
 					char *arg);

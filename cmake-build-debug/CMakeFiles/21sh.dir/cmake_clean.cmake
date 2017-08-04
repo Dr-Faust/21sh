@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/21sh.dir/src/main.c.o"
+  "CMakeFiles/21sh.dir/src/add_del_char.c.o"
+  "CMakeFiles/21sh.dir/src/move_cursor.c.o"
   "CMakeFiles/21sh.dir/src/read_line.c.o"
   "CMakeFiles/21sh.dir/src/split_line.c.o"
   "CMakeFiles/21sh.dir/src/split_commands.c.o"
@@ -16,7 +18,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/21sh.dir/src/env_to_arr.c.o"
   "CMakeFiles/21sh.dir/src/parse_quotes.c.o"
   "CMakeFiles/21sh.dir/src/set_terminal.c.o"
-  "CMakeFiles/21sh.dir/src/add_del_char.c.o"
   "CMakeFiles/21sh.dir/src/prompt.c.o"
   "21sh.pdb"
   "21sh"

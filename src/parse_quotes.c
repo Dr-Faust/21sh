@@ -6,13 +6,13 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 12:02:16 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/23 19:09:46 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/04 22:14:00 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	print_quotes(char **line, int *flag, int quote, int prompt_len)
+static void	print_quotes(char **line, int *flag, int quote, t_win *w)
 {
 	char	*str;
 	int		j;
@@ -23,7 +23,7 @@ static void	print_quotes(char **line, int *flag, int quote, int prompt_len)
 			ft_printf("quote> ");
 		else if (quote == 34)
 			ft_printf("dquote> ");
-		str = read_line(prompt_len);
+		str = read_line(w);
 		*line = ft_strjoin_free_first(*line, str);
 		j = -1;
 		while (str[++j])
@@ -33,7 +33,7 @@ static void	print_quotes(char **line, int *flag, int quote, int prompt_len)
 	}
 }
 
-char		*parser(char *line, int prompt_len)
+char		*parser(char *line, t_win *w)
 {
 	int		flag;
 	int		i;
@@ -45,7 +45,7 @@ char		*parser(char *line, int prompt_len)
 			valid_quote(line, i + 1, line[i]) == -1)
 		{
 			flag = 1;
-			print_quotes(&line, &flag, line[i], prompt_len);
+			print_quotes(&line, &flag, line[i], w);
 		}
 		else if ((line[i] == 39 || line[i] == 34) &&
 				valid_quote(line, i + 1, line[i]) != -1)

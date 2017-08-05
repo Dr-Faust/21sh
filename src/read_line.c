@@ -34,7 +34,7 @@ static int	check_print_position(char *buf, char **buffer, t_win *w)
 	if (buf[0] == '\n')
 	{
 		while (tmp[w->index])
-			move_right(w, buf);
+			move_right(w);
 		ft_printf("\n");
 		*buffer = ft_strjoin_free_first(*buffer, "\n\0");
 		return (1);

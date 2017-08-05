@@ -12,17 +12,20 @@
 
 #include "minishell.h"
 
-void		move_right(t_win *w, char *buf)
+void		move_right(t_win *w/*, char *buf*/)
 {
-	int		count;
-
+//	int		count;
+	w->str_count = 0;
 	if ((w->position + 1) % w->size == 0)
 		ft_putchar('\n');
 	if ((w->position + 1) % w->size != 0)
 		tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
-	if ((buf[2] == RIGHT || buf[3] == RIGHT || buf[2] == END)
-		&& (w->position + 1) % w->size == 0)
-		count = (w->position + 1) / w->size;
+	if (/*(buf[2] == RIGHT || buf[3] == RIGHT || buf[2] == END)
+		&& */(w->position + 1) % w->size == 0)
+	{
+		w->str_count = (w->position + 1) / w->size;
+		ft_printf("\ncount = %d\n", w->str_count);
+	}
 	w->index++;
 	w->position++;
 }
@@ -61,15 +64,15 @@ void		left_side(char *buf, char *buffer, t_win *w)
 void		right_side(char *buf, char *buffer, t_win *w)
 {
 	if (buf[2] == RIGHT && buffer[w->index])
-		move_right(w, buf);
+		move_right(w);
 	else if (buf[3] == RIGHT && buffer[w->index])
 	{
 		while (buffer[w->index] != ' ' && w->index < (int)ft_strlen(buffer))
-			move_right(w, buf);
+			move_right(w);
 		while (buffer[w->index] == ' ' && w->index < (int)ft_strlen(buffer))
-			move_right(w, buf);
+			move_right(w);
 	}
 	else if (buf[2] == END && buffer[w->index])
 		while (buffer[w->index])
-			move_right(w, buf);
+			move_right(w);
 }

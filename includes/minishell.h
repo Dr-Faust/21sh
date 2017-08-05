@@ -51,6 +51,7 @@ typedef struct		s_win
 	int				prompt_len;
 	int				position;
 	int				index;
+	int				str_count;
 }					t_win;
 
 typedef enum
@@ -91,7 +92,7 @@ char				*read_line(t_win *w);
 void				left_side(char *buf, char *buffer, t_win *w);
 void				right_side(char *buf, char *buffer, t_win *w);
 void				move_left(t_win *w);
-void				move_right(t_win *w, char *buf);
+void				move_right(t_win *w);
 char				*del_char(char *buf, char *buffer, t_win *w);
 char				*add_char(char chr, char *buffer, t_win *w);
 int					split_line(char *line, t_env **env_info, int status,

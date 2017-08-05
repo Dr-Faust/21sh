@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/04 22:13:53 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/05 21:46:22 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void				write_prompt(t_env *env_info, t_win *w);
 char				*read_line(t_win *w);
 void				left_side(char *buf, char *buffer, t_win *w);
 void				right_side(char *buf, char *buffer, t_win *w);
-void				move_left(t_win *w, char *buf);
+void				move_left(t_win *w);
 void				move_right(t_win *w, char *buf);
 char				*del_char(char *buf, char *buffer, t_win *w);
 char				*add_char(char chr, char *buffer, t_win *w);

@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/04 22:13:58 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/05 21:46:25 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static char	*parse_keys(char *buf, char *buffer, t_win *w)
 {
-	if ((buf[2] == LEFT || buf[5] == LEFT || buf[2] == START)
+	if ((buf[2] == LEFT || buf[3] == LEFT || buf[2] == START)
 		&& w->index > 0)
 		left_side(buf, buffer, w);
-	else if ((buf[2] == RIGHT || buf[5] == RIGHT || buf[2] == END)
+	else if ((buf[2] == RIGHT || buf[3] == RIGHT || buf[2] == END)
 			&& buffer[w->index])
 		right_side(buf, buffer, w);
 	else if ((buf[0] == BACKSPACE && w->index > 0) ||
@@ -45,8 +45,8 @@ static int	check_print_position(char *buf, char **buffer, t_win *w)
 	{
 		*buffer = ft_strjoin_free_first(*buffer, buf);
 		ft_printf("%c", buf[0]);
-	//	if ((w->position + 1) % w->size == 0)
-	//		ft_putchar('\n');
+		if ((w->position + 1) % w->size == 0)
+			ft_putchar('\n');
 	}
 	w->index++;
 	w->position++;
@@ -63,12 +63,10 @@ char		*read_line(t_win *w)
 		error_exit(sh, mem_alloc_err);
 	w->position = w->prompt_len;
 	w->index = 0;
-//	ft_printf("pos = %d\n", w->position);
 	while (42)
 	{
 		ft_bzero(buf, 8);
 		bytes = read(0, buf, 8);
-	//	ft_printf("bytes = %d\n", bytes);
 		if (bytes == 1 && (ft_isprint(buf[0]) || buf[0] == '\n'))
 			if (check_print_position(buf, &buffer, w))
 				return (buffer);

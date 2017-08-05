@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 16:19:56 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/04 22:13:51 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/05 21:46:20 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,25 @@ char		*del_char(char *buf, char *buffer, t_win *w)
 	if (!(ret = ft_strnew(1)))
 		error_exit(sh, mem_alloc_err);
 	if (buf[0] == BACKSPACE && w->index > 0)
-		move_left(w, buf);
+	{
+		move_left(w);
+	/*	if (w->position % w->size == 0 && buf[0] == BACKSPACE)
+		{
+			tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
+			tputs(tgetstr("dc", 0), 1, &ft_put_my_char);
+		}*/
+	}
 	tputs(tgetstr("dc", 0), 1, &ft_put_my_char);
-	if ((w->position + 1) % w->size == 0 && buf[0] == BACKSPACE)
+/*	if (w->position % w->size == 0 && buf[0] == BACKSPACE)
 	{
 		tputs(tgetstr("up", 0), 1, &ft_put_my_char);
 		w->position = 0;
 		while (w->position++ < w->size - 1)
 			tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
-		tputs(tgetstr("le", 0), 1, &ft_put_my_char);
-		tputs(tgetstr("dc", 0), 1, &ft_put_my_char);
-		tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
-		w->position--;
-	}
+	//	tputs(tgetstr("le", 0), 1, &ft_put_my_char);
+	//	tputs(tgetstr("dc", 0), 1, &ft_put_my_char);
+	//	tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
+	}*/
 	start = 0;
 	ret = ft_strjoin_free(ret, ft_strsub(buffer, start, w->index - start));
 	start = w->index + 1;

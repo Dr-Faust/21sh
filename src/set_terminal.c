@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:33:54 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/04 15:54:05 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/07 21:08:15 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	set_terminal(void)
 	term.c_lflag &= ~(ECHO | ICANON);
 	term.c_cc[VMIN] = 1;
 	term.c_cc[VTIME] = 0;
+	if (tgetflag("am"))
+		ft_printf("exist\n");
 	if (tcsetattr(STDIN_FILENO, TCSADRAIN, &term) < 0 ||
 		(term.c_lflag & (ECHO | ICANON)) || term.c_cc[VMIN] != 1 ||
 		term.c_cc[VTIME] != 0 || !(terminal = getenv("TERM")))

@@ -6,35 +6,30 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/22 17:51:08 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/05 21:46:18 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/07 20:51:38 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		move_right(t_win *w/*, char *buf*/)
+void		move_right(t_win *w)
 {
-//	int		count;
 	w->str_count = 0;
 	if ((w->position + 1) % w->size == 0)
 		ft_putchar('\n');
 	if ((w->position + 1) % w->size != 0)
 		tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
-	if (/*(buf[2] == RIGHT || buf[3] == RIGHT || buf[2] == END)
-		&& */(w->position + 1) % w->size == 0)
-	{
+	if ((w->position + 1) % w->size == 0)
 		w->str_count = (w->position + 1) / w->size;
-		ft_printf("\ncount = %d\n", w->str_count);
-	}
 	w->index++;
 	w->position++;
 }
 
-void		move_left(t_win *w /*char *buf*/)
+void		move_left(t_win *w)
 {
 	if (w->position % w->size != 0)
 		tputs(tgetstr("le", 0), 1, &ft_put_my_char);
-	if (/*buf[0] != BACKSPACE &&*/ w->position % w->size == 0)
+	if (w->position % w->size == 0)
 	{
 		tputs(tgetstr("up", 0), 1, ft_put_my_char);
 		w->position = 0;

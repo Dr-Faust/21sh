@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/08 19:07:35 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/08 20:44:41 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ static char	*parse_keys(char *buf, char *buffer, t_win *w)
 {
 	if ((buf[2] == LEFT || buf[3] == LEFT || buf[2] == START)
 		&& w->index > 0)
-		left_side(buf, buffer, w);
+		left_arrow(buf, buffer, w);
 	else if ((buf[2] == RIGHT || buf[3] == RIGHT || buf[2] == END)
 			&& buffer[w->index])
-		right_side(buf, buffer, w);
+		right_arrow(buf, buffer, w);
+	else if ((buf[2] == UP || buf[3] == UP) && w->position > w->size)
+		up_arrow(buf, buffer, w);
+	else if ((buf[2] == DOWN || buf[3] == DOWN) && w->position <= w->size)
+		down_arrow(buf, buffer, w);
 	else if ((buf[0] == BACKSPACE && w->index > 0) ||
 			(buf[2] == DELETE && buffer[w->index]))
 		buffer = del_char(buf, buffer, w);

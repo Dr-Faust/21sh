@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_cursor.c                                      :+:      :+:    :+:   */
+/*   right_left_arrows.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/22 17:51:08 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/08 19:06:52 by opodolia         ###   ########.fr       */
+/*   Created: 2017/08/08 20:01:30 by opodolia          #+#    #+#             */
+/*   Updated: 2017/08/08 21:04:53 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		move_left(t_win *w)
 	w->position--;
 }
 
-void		left_side(char *buf, char *buffer, t_win *w)
+void		left_arrow(char *buf, char *buffer, t_win *w)
 {
 	if (buf[2] == LEFT && w->index > 0)
 		move_left(w);
@@ -53,7 +53,7 @@ void		left_side(char *buf, char *buffer, t_win *w)
 			move_left(w);
 }
 
-void		right_side(char *buf, char *buffer, t_win *w)
+void		right_arrow(char *buf, char *buffer, t_win *w)
 {
 	if (buf[2] == RIGHT && buffer[w->index])
 		move_right(w);

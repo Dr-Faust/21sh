@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/05 21:46:22 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/08 21:04:56 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct		s_win
 	int				prompt_len;
 	int				position;
 	int				index;
-	int				str_count;
 }					t_win;
 
 typedef enum
@@ -89,12 +88,6 @@ void				manage_signal(void);
 int					check_prompt(int data);
 void				write_prompt(t_env *env_info, t_win *w);
 char				*read_line(t_win *w);
-void				left_side(char *buf, char *buffer, t_win *w);
-void				right_side(char *buf, char *buffer, t_win *w);
-void				move_left(t_win *w);
-void				move_right(t_win *w);
-char				*del_char(char *buf, char *buffer, t_win *w);
-char				*add_char(char chr, char *buffer, t_win *w);
 int					split_line(char *line, t_env **env_info, int status,
 					char ***args);
 char				**split_command(char *line);
@@ -118,5 +111,23 @@ int					ft_setenv(t_env **env_info, char *var, char *value,
 					char **args);
 int					ft_unsetenv(t_env *env_info, char *var);
 int					ft_help(void);
+
+/*
+**						== Cursor movement ==
+*/
+
+void				left_arrow(char *buf, char *buffer, t_win *w);
+void				right_arrow(char *buf, char *buffer, t_win *w);
+void				move_left(t_win *w);
+void				move_right(t_win *w);
+void				up_arrow(char *buf, char *buffer, t_win *w);
+void				down_arrow(char *buf, char *buffer, t_win *w);
+
+/*
+**						== Line edition ==
+*/
+
+char				*add_char(char chr, char *buffer, t_win *w);
+char				*del_char(char *buf, char *buffer, t_win *w);
 
 #endif

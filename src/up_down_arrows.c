@@ -14,22 +14,21 @@
 
 void		up_arrow(char *buf, char *buffer, t_win *w)
 {
-	if (buf[3] == UP && w->position >= w->size + w->prompt_len &&
+	int		i;
+
+	i = 0;
+	if (buf[5] == UP && w->position >= w->size + w->prompt_len &&
 		buffer[w->index - 1])
-	{
-		tputs(tgetstr("up", 0), 1, &ft_put_my_char);
-		w->position -= w->size;
-		w->index -= w->size;
-	}
+		while (i++ < w->size)
+			move_left(w);
 }
 
 void		down_arrow(char *buf, char *buffer, t_win *w)
 {
-	if (buf[3] == DOWN && w->position < (int)ft_strlen(buffer) &&
-		w->position > w->prompt_len && buffer[w->index])
-	{
-		tputs(tgetstr("do", 0), 1, &ft_put_my_char);
-		w->position += w->size;
-		w->index += w->size;
-	}
+	int		i;
+
+	i = 0;
+	if (buf[5] == DOWN && w->index + w->size <= (int)ft_strlen(buffer))
+		while (i++ < w->size)
+			move_right(w);
 }

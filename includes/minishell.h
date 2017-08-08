@@ -51,6 +51,8 @@ typedef struct		s_win
 	int				prompt_len;
 	int				position;
 	int				index;
+	int				bytes;
+	int				flag;
 }					t_win;
 
 typedef enum
@@ -127,7 +129,7 @@ void				down_arrow(char *buf, char *buffer, t_win *w);
 **						== Line edition ==
 */
 
-char				*add_char(char chr, char *buffer, t_win *w);
+char				*add_char(char *buf, char *buffer, t_win *w);
 char				*del_char(char *buf, char *buffer, t_win *w);
 
 #endif

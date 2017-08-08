@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-char		*add_char(char chr, char *buffer, t_win *w)
+char		*add_char(char *buf, char *buffer, t_win *w)
 {
 	char	*ret;
 	int		start;
@@ -24,7 +24,7 @@ char		*add_char(char chr, char *buffer, t_win *w)
 		error_exit(sh, mem_alloc_err);
 	start = 0;
 	ret = ft_strjoin_free(ret, ft_strsub(buffer, start, w->index - start));
-	print[0] = chr;
+	print[0] = buf[0];
 	start = w->index;
 	print = ft_strjoin_free(print, ft_strsub(buffer, start,
 		ft_strlen(buffer) - start));

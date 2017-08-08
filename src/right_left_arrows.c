@@ -24,13 +24,15 @@ void		move_right(t_win *w)
 
 void		move_left(t_win *w)
 {
+	int		tmp;
+
 	if (w->position % w->size != 0)
 		tputs(tgetstr("le", 0), 1, &ft_put_my_char);
 	if (w->position % w->size == 0)
 	{
 		tputs(tgetstr("up", 0), 1, ft_put_my_char);
-		w->position = 0;
-		while (w->position++ < w->size - 1)
+		tmp = 0;
+		while (tmp++ < w->size - 1)
 			tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 	}
 	w->index--;

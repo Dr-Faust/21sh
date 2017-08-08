@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/22 17:51:08 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/07 20:51:38 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/08 19:06:52 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 void		move_right(t_win *w)
 {
-	w->str_count = 0;
 	if ((w->position + 1) % w->size == 0)
 		ft_putchar('\n');
 	if ((w->position + 1) % w->size != 0)
 		tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
-	if ((w->position + 1) % w->size == 0)
-		w->str_count = (w->position + 1) / w->size;
 	w->index++;
 	w->position++;
 }

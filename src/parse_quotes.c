@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 12:02:16 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/04 22:14:00 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/08 19:31:30 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@ static void	print_quotes(char **line, int *flag, int quote, t_win *w)
 	while (*flag)
 	{
 		if (quote == 39)
+		{
+			w->prompt_len = 7;
 			ft_printf("quote> ");
+		}
 		else if (quote == 34)
+		{
+			w->prompt_len = 8;
 			ft_printf("dquote> ");
+		}
 		str = read_line(w);
 		*line = ft_strjoin_free_first(*line, str);
 		j = -1;

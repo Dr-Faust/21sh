@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/08 21:04:56 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/09 19:56:23 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <sys/stat.h>
 # include <termcap.h>
 
-# define READ_LINE_BUFSIZE	1024
 # define PATH_LEN			1024
 
 # define LEFT				'D'

@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:33:54 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/08 19:00:58 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/09 20:32:13 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	set_terminal(void)
 	{
 		tcsetattr(STDIN_FILENO, TCSADRAIN, &default_term);
 		tgetent(0, getenv("TERM"));
+		if (tgetflag("ks"))
+			ft_printf("EXIST!\n");
 		error_exit(sh, setup_term_err);
 	}
 	else

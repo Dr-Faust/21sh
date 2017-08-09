@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 16:19:56 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/08 19:37:20 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/09 19:56:52 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char		*add_char(char *buf, char *buffer, t_win *w)
 		error_exit(sh, mem_alloc_err);
 	start = 0;
 	ret = ft_strjoin_free(ret, ft_strsub(buffer, start, w->index - start));
-	print[0] = buf[0];
+	print = ft_strjoin_free_first(print, buf);
 	start = w->index;
 	print = ft_strjoin_free(print, ft_strsub(buffer, start,
 		ft_strlen(buffer) - start));
@@ -70,7 +70,6 @@ char		*del_char(char *buf, char *buffer, t_win *w)
 	start = w->index + 1;
 	ret = ft_strjoin_free(ret, ft_strsub(buffer, start,
 		ft_strlen(buffer) - start));
-	if (buffer[w->index + 1])
-		ft_memdel((void **)&buffer);
+	ft_memdel((void **)&buffer);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/09 20:45:07 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/10 21:11:27 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	check_print_position(char *buf, char **buffer, t_win *w)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = *buffer;
 	if (buf[0] == '\n')
@@ -34,20 +34,21 @@ static int	check_print_position(char *buf, char **buffer, t_win *w)
 		if ((w->position + 1) % w->size == 0)
 			ft_putchar('\n');
 	}
-	w->index++;
+	w->index += w->bytes[w->i] - '0';
 	w->position++;
+	w->i++;
 	return (0);
 }
 
 static char	*parse_keys(char *buf, char *buffer, t_win *w)
 {
-	if (buf[2] == LEFT || buf[3] == LEFT || buf[2] == START)
+	if (buf[1] == LEFT || buf[2] == LEFT || buf[1] == START)
 		left_arrow(buf, buffer, w);
-	else if (buf[2] == RIGHT || buf[3] == RIGHT || buf[2] == END)
+	else if (buf[1] == RIGHT || buf[2] == RIGHT || buf[1] == END)
 		right_arrow(buf, buffer, w);
-	else if (buf[2] == UP || buf[3] == UP)
+	else if (buf[1] == UP || buf[2] == UP)
 		up_arrow(buf, buffer, w);
-	else if (buf[2] == DOWN || buf[3] == DOWN)
+	else if (buf[1] == DOWN || buf[2] == DOWN)
 		down_arrow(buf, buffer, w);
 	else if ((buf[0] == BACKSPACE && w->index > 0) ||
 			(buf[2] == DELETE && buffer[w->index]))
@@ -57,6 +58,24 @@ static char	*parse_keys(char *buf, char *buffer, t_win *w)
 	return (buffer);
 }
 
+static void	read_buf(t_win *w, char *buf)
+{
+	char		tmp[8];
+	int			bytes;
+
+	bytes = read(0, buf, 1);
+	if (buf[0] == '\033')
+		bytes = read(0, buf, 8);
+	else if (!ft_isascii(buf[0]))
+	{
+		ft_bzero(tmp, 8);
+		bytes += read(0, tmp, 4);
+		ft_strcat(&buf[0], &tmp[0]);
+	}
+//	ft_printf("bytes = %d\n", bytes);
+	w->bytes = ft_strjoin_free_first(w->bytes, ft_itoa(bytes));
+}
+
 char		*read_line(t_win *w)
 {
 	char		*buffer;
@@ -64,23 +83,22 @@ char		*read_line(t_win *w)
 
 	if (!(buffer = ft_strnew(1)))
 		error_exit(sh, mem_alloc_err);
+	if (!(w->bytes = ft_strnew(1)))
+		error_exit(sh, mem_alloc_err);
 	w->position = w->prompt_len;
 	w->index = 0;
 	w->flag = 0;
+	w->i = 0;
 	while (42)
 	{
 		ft_bzero(buf, 8);
-		w->bytes = read(0, buf, 8);
-//		if (buf[0] == '\033')
-//		{
-//			ft_bzero(buf, 8);
-//			w->bytes = read(0, buf, 8);
-//		}
-	//	ft_printf("\nbytes = %d\n", w->bytes);
-	//	if (w->bytes == 1 && (ft_isprint(buf[0]) || buf[0] == '\n'))
-	//		if (check_print_position(buf, &buffer, w))
-	//			return (buffer);
-		buffer = parse_keys(buf, buffer, w);
+		read_buf(w, buf);
+	//	ft_printf("b = %c\n", w->bytes[w->i]);
+		if (w->bytes[w->i] < '5')
+		{
+		//	ft_printf("here\n");
+			buffer = parse_keys(buf, buffer, w);
+		}
 		if (w->flag)
 			return (buffer);
 	}

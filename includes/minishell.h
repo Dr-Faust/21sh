@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/09 19:56:23 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/10 19:50:18 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define DOWN				'B'
 # define START				'H'
 # define END				'F'
-# define DELETE				'3'
+# define DELETE				'~'
 # define BACKSPACE			127
 
 struct termios		default_term;
@@ -50,8 +50,9 @@ typedef struct		s_win
 	int				prompt_len;
 	int				position;
 	int				index;
-	int				bytes;
 	int				flag;
+	char			*bytes;
+	int				i;
 }					t_win;
 
 typedef enum

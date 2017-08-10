@@ -43,32 +43,32 @@ void		move_left(t_win *w)
 
 void		left_arrow(char *buf, char *buffer, t_win *w)
 {
-	if (buf[1] == LEFT && w->index > 0)
+	if (buf[2] == LEFT && w->index > 0)
 		move_left(w);
-	else if (buf[2] == LEFT && w->index > 0)
+	else if (buf[5] == LEFT && w->index > 0)
 	{
 		while (buffer[w->index - 1] == ' ' && w->index > 0)
 			move_left(w);
 		while (buffer[w->index - 1] != ' ' && w->index > 0)
 			move_left(w);
 	}
-	else if (buf[1] == START && w->index > 0)
+	else if (buf[2] == START && w->index > 0)
 		while (w->index > 0)
 			move_left(w);
 }
 
 void		right_arrow(char *buf, char *buffer, t_win *w)
 {
-	if (buf[1] == RIGHT && buffer[w->index])
+	if (buf[2] == RIGHT && buffer[w->index])
 		move_right(w);
-	else if (buf[2] == RIGHT && buffer[w->index])
+	else if (buf[5] == RIGHT && buffer[w->index])
 	{
 		while (buffer[w->index] != ' ' && w->index < (int)ft_strlen(buffer))
 			move_right(w);
 		while (buffer[w->index] == ' ' && w->index < (int)ft_strlen(buffer))
 			move_right(w);
 	}
-	else if (buf[1] == END && buffer[w->index])
+	else if (buf[2] == END && buffer[w->index])
 		while (buffer[w->index])
 			move_right(w);
 }

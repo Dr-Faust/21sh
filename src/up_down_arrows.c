@@ -17,7 +17,7 @@ void		up_arrow(char *buf, char *buffer, t_win *w)
 	int		i;
 
 	i = 0;
-	if (buf[2] == UP && w->position >= w->size + w->prompt_len &&
+	if (buf[5] == UP && w->position >= w->size + w->prompt_len &&
 		buffer[w->index - 1])
 		while (i++ < w->size)
 			move_left(w);
@@ -28,7 +28,7 @@ void		down_arrow(char *buf, char *buffer, t_win *w)
 	int		i;
 
 	i = 0;
-	if (buf[2] == DOWN && w->index + w->size <= (int)ft_strlen(buffer))
+	if (buf[5] == DOWN && w->index + w->size <= (int)ft_strlen(buffer))
 		while (i++ < w->size)
 			move_right(w);
 }

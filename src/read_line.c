@@ -42,18 +42,18 @@ static int	check_print_position(char *buf, char **buffer, t_win *w)
 
 static char	*parse_keys(char *buf, char *buffer, t_win *w)
 {
-	if (buf[1] == LEFT || buf[2] == LEFT || buf[1] == START)
+	if (buf[2] == LEFT || buf[5] == LEFT || buf[2] == START)
 		left_arrow(buf, buffer, w);
-	else if (buf[1] == RIGHT || buf[2] == RIGHT || buf[1] == END)
+	else if (buf[2] == RIGHT || buf[5] == RIGHT || buf[2] == END)
 		right_arrow(buf, buffer, w);
-	else if (buf[1] == UP || buf[2] == UP)
+	else if (buf[2] == UP || buf[5] == UP)
 		up_arrow(buf, buffer, w);
-	else if (buf[1] == DOWN || buf[2] == DOWN)
+	else if (buf[2] == DOWN || buf[5] == DOWN)
 		down_arrow(buf, buffer, w);
 	else if ((buf[0] == BACKSPACE && w->index > 0) ||
-			(buf[2] == DELETE && buffer[w->index]))
+			(buf[3] == DELETE && buffer[w->index]))
 		buffer = del_char(buf, buffer, w);
-	else if (buf[0] != BACKSPACE && buf[2] != DELETE)
+	else if (buf[0] != BACKSPACE && buf[3] != DELETE && !ft_strchr(buf, '\033'))
 			w->flag = check_print_position(buf, &buffer, w);
 	return (buffer);
 }
@@ -64,15 +64,17 @@ static void	read_buf(t_win *w, char *buf)
 	int			bytes;
 
 	bytes = read(0, buf, 1);
+	ft_bzero(tmp, 8);
 	if (buf[0] == '\033')
-		bytes = read(0, buf, 8);
+	{
+		read(0, tmp, 8);
+		ft_strcat(&buf[0], &tmp[0]);
+	}
 	else if (!ft_isascii(buf[0]))
 	{
-		ft_bzero(tmp, 8);
 		bytes += read(0, tmp, 4);
 		ft_strcat(&buf[0], &tmp[0]);
 	}
-//	ft_printf("bytes = %d\n", bytes);
 	w->bytes = ft_strjoin_free_first(w->bytes, ft_itoa(bytes));
 }
 
@@ -93,12 +95,7 @@ char		*read_line(t_win *w)
 	{
 		ft_bzero(buf, 8);
 		read_buf(w, buf);
-	//	ft_printf("b = %c\n", w->bytes[w->i]);
-		if (w->bytes[w->i] < '5')
-		{
-		//	ft_printf("here\n");
-			buffer = parse_keys(buf, buffer, w);
-		}
+		buffer = parse_keys(buf, buffer, w);
 		if (w->flag)
 			return (buffer);
 	}

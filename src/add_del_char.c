@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 16:19:56 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/10 21:11:31 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/11 20:43:28 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,17 @@ char		*del_char(char *buf, char *buffer, t_win *w)
 	char	*ret;
 	int		start;
 
-	if (!(ret = ft_strnew(1)))
-		error_exit(sh, mem_alloc_err);
+//	if (!(ret = ft_strnew(1)))
+//		error_exit(sh, mem_alloc_err);
 	if (buf[0] == BACKSPACE && w->index > 0)
 		move_left(w);
 	tputs(tgetstr("cd", 0), 1, &ft_put_my_char);
+//	start = 0;
+//	ret = ft_strjoin_free_first(ret, ft_strsub(buffer, start
 	reprint_str(w, buffer);
+//	ft_memdel((void **)&ret);
 	start = 0;
-	ret = ft_strjoin_free(ret, ft_strsub(buffer, start, w->index - start));
+	ret = ft_strsub(buffer, start, w->index - start);
 	start = w->index + 1;
 	ret = ft_strjoin_free(ret, ft_strsub(buffer, start,
 		ft_strlen(buffer) - start));

@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:01:30 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/10 21:12:05 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/11 18:01:15 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		left_arrow(char *buf, char *buffer, t_win *w)
 {
 	if (buf[2] == LEFT && w->index > 0)
 		move_left(w);
-	else if (buf[5] == LEFT && w->index > 0)
+	else if (buf[3] == LEFT && w->index > 0)
 	{
 		while (buffer[w->index - 1] == ' ' && w->index > 0)
 			move_left(w);
@@ -61,7 +61,7 @@ void		right_arrow(char *buf, char *buffer, t_win *w)
 {
 	if (buf[2] == RIGHT && buffer[w->index])
 		move_right(w);
-	else if (buf[5] == RIGHT && buffer[w->index])
+	else if (buf[3] == RIGHT && buffer[w->index])
 	{
 		while (buffer[w->index] != ' ' && w->index < (int)ft_strlen(buffer))
 			move_right(w);

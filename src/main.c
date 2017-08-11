@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:10:03 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/04 18:47:49 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/11 20:31:46 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int			main(void)
 	t_env		*env_info;
 
 	set_terminal();
+	ft_putstr("\x1B[?7h");
 	env_info = get_env_info(environ);
 	minishell(&env_info);
 	return (EXIT_SUCCESS);

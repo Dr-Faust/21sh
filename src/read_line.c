@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/10 21:11:27 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/11 20:43:24 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ static int	check_print_position(char *buf, char **buffer, t_win *w)
 
 static char	*parse_keys(char *buf, char *buffer, t_win *w)
 {
-	if (buf[2] == LEFT || buf[5] == LEFT || buf[2] == START)
+	if (buf[2] == LEFT || buf[3] == LEFT || buf[2] == START)
 		left_arrow(buf, buffer, w);
-	else if (buf[2] == RIGHT || buf[5] == RIGHT || buf[2] == END)
+	else if (buf[2] == RIGHT || buf[3] == RIGHT || buf[2] == END)
 		right_arrow(buf, buffer, w);
-	else if (buf[2] == UP || buf[5] == UP)
+	else if (buf[2] == UP || buf[3] == UP)
 		up_arrow(buf, buffer, w);
-	else if (buf[2] == DOWN || buf[5] == DOWN)
+	else if (buf[2] == DOWN || buf[3] == DOWN)
 		down_arrow(buf, buffer, w);
 	else if ((buf[0] == BACKSPACE && w->index > 0) ||
 			(buf[3] == DELETE && buffer[w->index]))
 		buffer = del_char(buf, buffer, w);
 	else if (buf[0] != BACKSPACE && buf[3] != DELETE && !ft_strchr(buf, '\033'))
-			w->flag = check_print_position(buf, &buffer, w);
+		w->flag = check_print_position(buf, &buffer, w);
 	return (buffer);
 }
 

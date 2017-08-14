@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   up_down_arrows.c                                   :+:      :+:    :+:   */
+/*   ft_wstrequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/08 20:12:56 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/14 20:55:53 by opodolia         ###   ########.fr       */
+/*   Created: 2017/08/14 14:26:05 by opodolia          #+#    #+#             */
+/*   Updated: 2017/08/14 14:28:17 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void		up_arrow(char *buf, char *buffer, t_win *w)
+int		ft_wstrequ(wchar_t *s1, char *s2)
 {
-	int		i;
-
-	i = 0;
-	if (buf[3] == UP && w->position >= w->size + w->prompt_len &&
-		buffer[w->index - 1])
-		while (i++ < w->size)
-			move_left(w);
-}
-
-void		down_arrow(char *buf, char *buffer, t_win *w)
-{
-	int		i;
-
-	i = 0;
-	if (buf[3] == DOWN && w->index + w->size <= (int)ft_strlen(buffer))
-		while (i++ < w->size)
-			move_right(w);
+	if (s1 && s2)
+		return ((ft_strcmp((char *)s1, s2) == 0) ? 1 : 0);
+	return (0);
 }

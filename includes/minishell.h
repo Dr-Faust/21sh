@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/11 20:28:13 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/14 20:55:51 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ typedef struct		s_win
 	int				position;
 	int				index;
 	int				flag;
-	char			*bytes;
+	char			*bytes_str;
 	int				i;
+	int				bytes;
 }					t_win;
 
 typedef enum

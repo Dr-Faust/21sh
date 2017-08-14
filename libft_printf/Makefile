@@ -6,7 +6,7 @@
 #    By: opodolia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/03 13:55:22 by opodolia          #+#    #+#              #
-#    Updated: 2017/08/04 17:12:21 by opodolia         ###   ########.fr        #
+#    Updated: 2017/08/14 14:29:07 by opodolia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ L_FILES = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		  ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c ft_strjoin.c \
 		  ft_strjoin_free.c ft_strjoin_free_first.c ft_strtrim.c \
 		  ft_strsplit.c ft_split_del.c ft_strrev.c ft_strchr_index.c \
-		  ft_strndup.c ft_isspace.c ft_put_my_char.c\
+		  ft_strndup.c ft_isspace.c ft_put_my_char.c ft_wstrequ.c\
 		  ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 		  ft_lstmap.c ft_lstsize.c ft_lstcount.c ft_lstrev.c \
 		  ft_atoi.c ft_itoa.c ft_uitoa_base.c ft_ftoa_base.c ft_isalpha.c \
@@ -60,7 +60,7 @@ L_FILES = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 L_SRC = $(addprefix $(L_SRC_DIR), $(L_FILES))
 L_OBJ = $(addprefix $(L_OBJ_DIR), $(L_FILES:.c=.o))
 
-#.SILENT:
+.SILENT:
 
 all: $(NAME)
 	echo "\033[38;5;44m☑️  ALL    $(NAME_BASE) is done\033[0m\033[K"
@@ -96,4 +96,4 @@ fclean: clean
 
 re: fclean all
 
-#.PHONY: fclean clean re
+.PHONY: fclean clean re

@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/11 20:43:24 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/14 20:55:56 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ static int	check_print_position(char *buf, char **buffer, t_win *w)
 		*buffer = add_char(buf, *buffer, w);
 	else
 	{
+		w->bytes_str = ft_strjoin_free_first(w->bytes_str, ft_itoa(w->bytes));
 		*buffer = ft_strjoin_free_first(*buffer, buf);
 		ft_printf("%s", buf);
 		if ((w->position + 1) % w->size == 0)
 			ft_putchar('\n');
 	}
-	w->index += w->bytes[w->i] - '0';
+	w->index += w->bytes_str[w->i] - '0';
 	w->position++;
 	w->i++;
 	return (0);
@@ -61,9 +62,9 @@ static char	*parse_keys(char *buf, char *buffer, t_win *w)
 static void	read_buf(t_win *w, char *buf)
 {
 	char		tmp[8];
-	int			bytes;
 
-	bytes = read(0, buf, 1);
+	ft_bzero(buf, 8);
+	w->bytes = read(0, buf, 1);
 	ft_bzero(tmp, 8);
 	if (buf[0] == '\033')
 	{
@@ -72,10 +73,9 @@ static void	read_buf(t_win *w, char *buf)
 	}
 	else if (!ft_isascii(buf[0]))
 	{
-		bytes += read(0, tmp, 4);
+		w->bytes += read(0, tmp, 4);
 		ft_strcat(&buf[0], &tmp[0]);
 	}
-	w->bytes = ft_strjoin_free_first(w->bytes, ft_itoa(bytes));
 }
 
 char		*read_line(t_win *w)
@@ -85,7 +85,7 @@ char		*read_line(t_win *w)
 
 	if (!(buffer = ft_strnew(1)))
 		error_exit(sh, mem_alloc_err);
-	if (!(w->bytes = ft_strnew(1)))
+	if (!(w->bytes_str = ft_strnew(1)))
 		error_exit(sh, mem_alloc_err);
 	w->position = w->prompt_len;
 	w->index = 0;
@@ -93,7 +93,6 @@ char		*read_line(t_win *w)
 	w->i = 0;
 	while (42)
 	{
-		ft_bzero(buf, 8);
 		read_buf(w, buf);
 		buffer = parse_keys(buf, buffer, w);
 		if (w->flag)

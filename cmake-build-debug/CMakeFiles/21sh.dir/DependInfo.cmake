@@ -16,14 +16,15 @@ set(CMAKE_DEPENDS_CHECK_C
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/ft_setenv.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/ft_setenv.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/ft_unsetenv.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/ft_unsetenv.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/main.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/main.c.o"
-  "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/move_cursor.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/move_cursor.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/parse_dollar.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/parse_dollar.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/parse_quotes.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/parse_quotes.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/prompt.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/prompt.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/read_line.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/read_line.c.o"
+  "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/right_left_arrows.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/right_left_arrows.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/set_terminal.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/set_terminal.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/split_commands.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/split_commands.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/split_line.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/split_line.c.o"
+  "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/up_down_arrows.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/up_down_arrows.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

@@ -447,33 +447,6 @@ src/main.c.s:
 	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/main.c.s
 .PHONY : src/main.c.s
 
-src/move_cursor.o: src/move_cursor.c.o
-
-.PHONY : src/move_cursor.o
-
-# target to build an object file
-src/move_cursor.c.o:
-	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/move_cursor.c.o
-.PHONY : src/move_cursor.c.o
-
-src/move_cursor.i: src/move_cursor.c.i
-
-.PHONY : src/move_cursor.i
-
-# target to preprocess a source file
-src/move_cursor.c.i:
-	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/move_cursor.c.i
-.PHONY : src/move_cursor.c.i
-
-src/move_cursor.s: src/move_cursor.c.s
-
-.PHONY : src/move_cursor.s
-
-# target to generate assembly for a file
-src/move_cursor.c.s:
-	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/move_cursor.c.s
-.PHONY : src/move_cursor.c.s
-
 src/parse_dollar.o: src/parse_dollar.c.o
 
 .PHONY : src/parse_dollar.o
@@ -582,6 +555,33 @@ src/read_line.c.s:
 	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/read_line.c.s
 .PHONY : src/read_line.c.s
 
+src/right_left_arrows.o: src/right_left_arrows.c.o
+
+.PHONY : src/right_left_arrows.o
+
+# target to build an object file
+src/right_left_arrows.c.o:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/right_left_arrows.c.o
+.PHONY : src/right_left_arrows.c.o
+
+src/right_left_arrows.i: src/right_left_arrows.c.i
+
+.PHONY : src/right_left_arrows.i
+
+# target to preprocess a source file
+src/right_left_arrows.c.i:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/right_left_arrows.c.i
+.PHONY : src/right_left_arrows.c.i
+
+src/right_left_arrows.s: src/right_left_arrows.c.s
+
+.PHONY : src/right_left_arrows.s
+
+# target to generate assembly for a file
+src/right_left_arrows.c.s:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/right_left_arrows.c.s
+.PHONY : src/right_left_arrows.c.s
+
 src/set_terminal.o: src/set_terminal.c.o
 
 .PHONY : src/set_terminal.o
@@ -663,6 +663,33 @@ src/split_line.c.s:
 	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/split_line.c.s
 .PHONY : src/split_line.c.s
 
+src/up_down_arrows.o: src/up_down_arrows.c.o
+
+.PHONY : src/up_down_arrows.o
+
+# target to build an object file
+src/up_down_arrows.c.o:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/up_down_arrows.c.o
+.PHONY : src/up_down_arrows.c.o
+
+src/up_down_arrows.i: src/up_down_arrows.c.i
+
+.PHONY : src/up_down_arrows.i
+
+# target to preprocess a source file
+src/up_down_arrows.c.i:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/up_down_arrows.c.i
+.PHONY : src/up_down_arrows.c.i
+
+src/up_down_arrows.s: src/up_down_arrows.c.s
+
+.PHONY : src/up_down_arrows.s
+
+# target to generate assembly for a file
+src/up_down_arrows.c.s:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/up_down_arrows.c.s
+.PHONY : src/up_down_arrows.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -708,9 +735,6 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/move_cursor.o"
-	@echo "... src/move_cursor.i"
-	@echo "... src/move_cursor.s"
 	@echo "... src/parse_dollar.o"
 	@echo "... src/parse_dollar.i"
 	@echo "... src/parse_dollar.s"
@@ -723,6 +747,9 @@ help:
 	@echo "... src/read_line.o"
 	@echo "... src/read_line.i"
 	@echo "... src/read_line.s"
+	@echo "... src/right_left_arrows.o"
+	@echo "... src/right_left_arrows.i"
+	@echo "... src/right_left_arrows.s"
 	@echo "... src/set_terminal.o"
 	@echo "... src/set_terminal.i"
 	@echo "... src/set_terminal.s"
@@ -732,6 +759,9 @@ help:
 	@echo "... src/split_line.o"
 	@echo "... src/split_line.i"
 	@echo "... src/split_line.s"
+	@echo "... src/up_down_arrows.o"
+	@echo "... src/up_down_arrows.i"
+	@echo "... src/up_down_arrows.s"
 .PHONY : help
 
 

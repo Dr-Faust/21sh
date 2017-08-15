@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/21sh.dir/src/main.c.o"
   "CMakeFiles/21sh.dir/src/add_del_char.c.o"
-  "CMakeFiles/21sh.dir/src/move_cursor.c.o"
+  "CMakeFiles/21sh.dir/src/right_left_arrows.c.o"
+  "CMakeFiles/21sh.dir/src/up_down_arrows.c.o"
   "CMakeFiles/21sh.dir/src/read_line.c.o"
   "CMakeFiles/21sh.dir/src/split_line.c.o"
   "CMakeFiles/21sh.dir/src/split_commands.c.o"

@@ -61,11 +61,6 @@ CMakeFiles/21sh.dir/src/main.c.o: ../libft_printf/includes/ft_printf.h
 CMakeFiles/21sh.dir/src/main.c.o: ../libft_printf/libft/includes/libft.h
 CMakeFiles/21sh.dir/src/main.c.o: ../src/main.c
 
-CMakeFiles/21sh.dir/src/move_cursor.c.o: ../includes/minishell.h
-CMakeFiles/21sh.dir/src/move_cursor.c.o: ../libft_printf/includes/ft_printf.h
-CMakeFiles/21sh.dir/src/move_cursor.c.o: ../libft_printf/libft/includes/libft.h
-CMakeFiles/21sh.dir/src/move_cursor.c.o: ../src/move_cursor.c
-
 CMakeFiles/21sh.dir/src/parse_dollar.c.o: ../includes/minishell.h
 CMakeFiles/21sh.dir/src/parse_dollar.c.o: ../libft_printf/includes/ft_printf.h
 CMakeFiles/21sh.dir/src/parse_dollar.c.o: ../libft_printf/libft/includes/libft.h
@@ -86,6 +81,11 @@ CMakeFiles/21sh.dir/src/read_line.c.o: ../libft_printf/includes/ft_printf.h
 CMakeFiles/21sh.dir/src/read_line.c.o: ../libft_printf/libft/includes/libft.h
 CMakeFiles/21sh.dir/src/read_line.c.o: ../src/read_line.c
 
+CMakeFiles/21sh.dir/src/right_left_arrows.c.o: ../includes/minishell.h
+CMakeFiles/21sh.dir/src/right_left_arrows.c.o: ../libft_printf/includes/ft_printf.h
+CMakeFiles/21sh.dir/src/right_left_arrows.c.o: ../libft_printf/libft/includes/libft.h
+CMakeFiles/21sh.dir/src/right_left_arrows.c.o: ../src/right_left_arrows.c
+
 CMakeFiles/21sh.dir/src/set_terminal.c.o: ../includes/minishell.h
 CMakeFiles/21sh.dir/src/set_terminal.c.o: ../libft_printf/includes/ft_printf.h
 CMakeFiles/21sh.dir/src/set_terminal.c.o: ../libft_printf/libft/includes/libft.h
@@ -100,4 +100,9 @@ CMakeFiles/21sh.dir/src/split_line.c.o: ../includes/minishell.h
 CMakeFiles/21sh.dir/src/split_line.c.o: ../libft_printf/includes/ft_printf.h
 CMakeFiles/21sh.dir/src/split_line.c.o: ../libft_printf/libft/includes/libft.h
 CMakeFiles/21sh.dir/src/split_line.c.o: ../src/split_line.c
+
+CMakeFiles/21sh.dir/src/up_down_arrows.c.o: ../includes/minishell.h
+CMakeFiles/21sh.dir/src/up_down_arrows.c.o: ../libft_printf/includes/ft_printf.h
+CMakeFiles/21sh.dir/src/up_down_arrows.c.o: ../libft_printf/libft/includes/libft.h
+CMakeFiles/21sh.dir/src/up_down_arrows.c.o: ../src/up_down_arrows.c
 

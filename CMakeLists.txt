@@ -6,7 +6,8 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -Wextra")
 set(SOURCE_FILES
         src/main.c
         src/add_del_char.c
-        src/move_cursor.c
+        src/right_left_arrows.c
+        src/up_down_arrows.c
         src/read_line.c
         src/split_line.c
         src/split_commands.c

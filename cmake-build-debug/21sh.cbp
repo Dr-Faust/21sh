@@ -124,9 +124,6 @@
 		<Unit filename="/nfs/2016/o/opodolia/projects/GitHub/21sh/src/main.c">
 			<Option target="21sh"/>
 		</Unit>
-		<Unit filename="/nfs/2016/o/opodolia/projects/GitHub/21sh/src/move_cursor.c">
-			<Option target="21sh"/>
-		</Unit>
 		<Unit filename="/nfs/2016/o/opodolia/projects/GitHub/21sh/src/parse_dollar.c">
 			<Option target="21sh"/>
 		</Unit>
@@ -139,6 +136,9 @@
 		<Unit filename="/nfs/2016/o/opodolia/projects/GitHub/21sh/src/read_line.c">
 			<Option target="21sh"/>
 		</Unit>
+		<Unit filename="/nfs/2016/o/opodolia/projects/GitHub/21sh/src/right_left_arrows.c">
+			<Option target="21sh"/>
+		</Unit>
 		<Unit filename="/nfs/2016/o/opodolia/projects/GitHub/21sh/src/set_terminal.c">
 			<Option target="21sh"/>
 		</Unit>
@@ -146,6 +146,9 @@
 			<Option target="21sh"/>
 		</Unit>
 		<Unit filename="/nfs/2016/o/opodolia/projects/GitHub/21sh/src/split_line.c">
+			<Option target="21sh"/>
+		</Unit>
+		<Unit filename="/nfs/2016/o/opodolia/projects/GitHub/21sh/src/up_down_arrows.c">
 			<Option target="21sh"/>
 		</Unit>
 		<Unit filename="/nfs/2016/o/opodolia/projects/GitHub/21sh/CMakeLists.txt">

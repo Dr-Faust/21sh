@@ -96,10 +96,6 @@ minishell.h
 minishell.h
 /nfs/2016/o/opodolia/projects/GitHub/21sh/src/minishell.h
 
-/nfs/2016/o/opodolia/projects/GitHub/21sh/src/move_cursor.c
-minishell.h
-/nfs/2016/o/opodolia/projects/GitHub/21sh/src/minishell.h
-
 /nfs/2016/o/opodolia/projects/GitHub/21sh/src/parse_dollar.c
 minishell.h
 /nfs/2016/o/opodolia/projects/GitHub/21sh/src/minishell.h
@@ -116,6 +112,10 @@ minishell.h
 minishell.h
 /nfs/2016/o/opodolia/projects/GitHub/21sh/src/minishell.h
 
+/nfs/2016/o/opodolia/projects/GitHub/21sh/src/right_left_arrows.c
+minishell.h
+/nfs/2016/o/opodolia/projects/GitHub/21sh/src/minishell.h
+
 /nfs/2016/o/opodolia/projects/GitHub/21sh/src/set_terminal.c
 minishell.h
 /nfs/2016/o/opodolia/projects/GitHub/21sh/src/minishell.h
@@ -125,6 +125,10 @@ minishell.h
 /nfs/2016/o/opodolia/projects/GitHub/21sh/src/minishell.h
 
 /nfs/2016/o/opodolia/projects/GitHub/21sh/src/split_line.c
+minishell.h
+/nfs/2016/o/opodolia/projects/GitHub/21sh/src/minishell.h
+
+/nfs/2016/o/opodolia/projects/GitHub/21sh/src/up_down_arrows.c
 minishell.h
 /nfs/2016/o/opodolia/projects/GitHub/21sh/src/minishell.h
 

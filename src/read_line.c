@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/14 20:55:56 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/15 18:49:33 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	read_buf(t_win *w, char *buf)
 	}
 	else if (!ft_isascii(buf[0]))
 	{
-		w->bytes += read(0, tmp, 4);
+		w->bytes += read(0, tmp, 1);
 		ft_strcat(&buf[0], &tmp[0]);
 	}
 }

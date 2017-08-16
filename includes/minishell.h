@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/15 18:49:18 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/16 20:09:29 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <pwd.h>
 # include <sys/stat.h>
 # include <termcap.h>
+# include <signal.h>
 
 # define PATH_LEN			1024
 
@@ -36,6 +37,9 @@
 # define BACKSPACE			127
 
 struct termios		default_term;
+struct winsize		win_size;
+static int			g_sig_flag;
+int					g_win_size;
 
 typedef struct		s_env
 {
@@ -46,7 +50,6 @@ typedef struct		s_env
 
 typedef struct		s_win
 {
-	int				size;
 	int				prompt_len;
 	int				position;
 	int				index;
@@ -79,6 +82,12 @@ typedef	enum
 
 typedef enum
 {
+	err_sys,
+	err_dump,
+}	t_sig_err;
+
+typedef enum
+{
 	sh,
 	cd,
 	set_env,
@@ -87,7 +96,6 @@ typedef enum
 
 void				set_terminal();
 t_env				*get_env_info(char **arr);
-void				manage_signal(void);
 int					check_prompt(int data);
 void				write_prompt(t_env *env_info, t_win *w);
 char				*read_line(t_win *w);
@@ -95,9 +103,6 @@ int					split_line(char *line, t_env **env_info, int status,
 					char ***args);
 char				**split_command(char *line);
 char				*parser(char *line, t_win *w);
-void				error_exit(t_command command_type, t_err_exit error_type);
-int					error_return(t_command command_type, t_err_ret error_type,
-					char *arg);
 char				*parse_dollar(char *line, int i, t_env *env_info);
 char				*get_env_var(char *var, t_env *env_info);
 int					count_args(char *str);
@@ -127,10 +132,28 @@ void				up_arrow(char *buf, char *buffer, t_win *w);
 void				down_arrow(char *buf, char *buffer, t_win *w);
 
 /*
-**						== Line edition ==
+**						 == Line edition ==
 */
 
 char				*add_char(char *buf, char *buffer, t_win *w);
 char				*del_char(char *buf, char *buffer, t_win *w);
+
+/*
+**						    == Errors ==
+*/
+
+void				error_exit(t_command command_type, t_err_exit error_type);
+int					error_return(t_command command_type, t_err_ret error_type,
+					char *arg);
+int					signal_error(t_command command_type, t_sig_err error_type,
+					char *arg);
+
+/*
+**						    == Sugnals ==
+*/
+
+int					manage_signal(void);
+void				signal_handle(int signal);
+int					singleton_prompt(int data);
 
 #endif

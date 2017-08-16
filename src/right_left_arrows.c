@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:01:30 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/15 18:52:29 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/16 20:39:21 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void		move_right(t_win *w)
 {
-	if ((w->position + 1) % w->size == 0)
+	if ((w->position + 1) % g_win_size == 0)
 		ft_putchar('\n');
-	if ((w->position + 1) % w->size != 0)
+	if ((w->position + 1) % g_win_size != 0)
 		tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 	w->index += w->bytes_str[w->i] - '0';
 	w->position++;
@@ -27,13 +27,13 @@ void		move_left(t_win *w)
 {
 	int		tmp;
 
-	if (w->position % w->size != 0)
+	if (w->position % g_win_size != 0)
 		tputs(tgetstr("le", 0), 1, &ft_put_my_char);
-	if (w->position % w->size == 0)
+	if (w->position % g_win_size == 0)
 	{
 		tputs(tgetstr("up", 0), 1, ft_put_my_char);
 		tmp = 0;
-		while (tmp++ < w->size - 1)
+		while (tmp++ < g_win_size - 1)
 			tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 	}
 	w->index -= w->bytes_str[w->i - 1] - '0';

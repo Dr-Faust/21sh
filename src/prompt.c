@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:50:42 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/07 18:38:48 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/16 20:17:51 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static char	*current_dir(t_env *env_info)
 
 void		write_prompt(t_env *env_info, t_win *w)
 {
-	struct winsize	win_size;
 	char			*buf;
 	char			*comp;
 	char			*user;
@@ -45,9 +44,9 @@ void		write_prompt(t_env *env_info, t_win *w)
 
 	ioctl(0, TIOCGWINSZ, &win_size);
 	w->prompt_len = -1;
-	w->size = win_size.ws_col;
-	while (++w->prompt_len < w->size)
-		write(1, "_", 1);
+	g_win_size = win_size.ws_col;
+//	while (++w->prompt_len < g_win_size)
+//		write(1, "_", 1);
 	user = getpwuid(getuid())->pw_name;
 	ft_printf("%s%s%s%s", B_YELLOW, user, B_BLUE, "][");
 	if (!(buf = ft_memalloc(sizeof(char *) * 256)))

@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/15 18:49:33 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/16 20:29:51 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	check_print_position(char *buf, char **buffer, t_win *w)
 		w->bytes_str = ft_strjoin_free_first(w->bytes_str, ft_itoa(w->bytes));
 		*buffer = ft_strjoin_free_first(*buffer, buf);
 		ft_printf("%s", buf);
-		if ((w->position + 1) % w->size == 0)
+		if ((w->position + 1) % g_win_size == 0)
 			ft_putchar('\n');
 	}
 	w->index += w->bytes_str[w->i] - '0';
@@ -93,6 +93,8 @@ char		*read_line(t_win *w)
 	w->i = 0;
 	while (42)
 	{
+//		ft_printf("size = %d\n", g_win_size);
+		manage_signal();
 		read_buf(w, buf);
 		buffer = parse_keys(buf, buffer, w);
 		if (w->flag)

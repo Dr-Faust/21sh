@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 14:55:14 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/21 17:00:42 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/16 17:31:13 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,10 @@ static int	treat_path(char **args, t_env *env_info)
 int			execute(char **args, t_env **env_info)
 {
 	if (args[0] == NULL)
+	{
+		ft_printf("here\n");
 		return (1);
+	}
 	if (!(ft_strcmp(args[0], "echo")))
 		return (ft_echo(args));
 	if (!ft_strcmp(args[0], "cd"))

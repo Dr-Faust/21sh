@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/01 18:19:55 by opodolia          #+#    #+#             */
-/*   Updated: 2017/07/21 17:41:31 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/16 17:08:19 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,21 @@ int		error_return(t_command command_type, t_err_ret error_type, char *arg)
 	error[8] = "too few arguments: unsetenv var_name\n";
 	error[9] = "there is no such variable: ";
 	error[10] = "error calling fork";
+	ft_printf("%s%s%s%s%s", CYAN, command[command_type],
+		RED, error[error_type], DEF);
+	if (arg)
+		ft_printf("%s\n", arg);
+	return (1);
+}
+
+int		signal_error(t_command command_type, t_sig_err error_type, char *arg)
+{
+	char	*error[2];
+	char	*command[1];
+
+	command[0] = "21sh: ";
+	error[0] = "signal interception impossible: ";
+	error[1] = "received signal: ";
 	ft_printf("%s%s%s%s%s", CYAN, command[command_type],
 		RED, error[error_type], DEF);
 	if (arg)

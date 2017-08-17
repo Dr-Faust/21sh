@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 16:01:08 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/17 18:15:05 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/17 20:27:10 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ static void	signal_handler(int signal)
 	//	ft_printf("here\n");
 		signal = 0;
 		if (prompt == 1)
-			g_sig_flag = 1;
+		{
+			ft_putchar('\n');
+			write_prompt();
+		}
+	//	g_sig_flag = 1;
 	}
 	else if (signal == SIGWINCH)
 	{

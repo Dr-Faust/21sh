@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/17 18:15:02 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/17 20:27:04 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,20 @@ char		*read_line(t_win *w)
 	{
 	//	ft_printf("size = %d\n", g_win_size);
 	//	ft_printf("here\n");
+		ioctl(0, TIOCGWINSZ, &win_size);
+		g_win_size = win_size.ws_col;
+		singleton_prompt(1);
 		manage_signal();
 		read_buf(w, buf);
 		buffer = parse_keys(buf, buffer, w);
+		singleton_prompt(2);
+		if (g_line)
+		{
+			ft_memdel((void **)&buffer);
+			buffer = ft_strdup(g_line);
+			ft_memdel((void **)&g_line);
+			return (buffer);
+		}
 		if (w->flag)
 			return (buffer);
 	}

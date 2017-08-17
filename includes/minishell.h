@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/17 18:10:10 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/17 20:27:45 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ struct termios		default_term;
 struct winsize		win_size;
 int					g_sig_flag;
 int					g_win_size;
+char				*g_line;
 
 typedef enum
 {
@@ -100,7 +101,7 @@ typedef enum
 void				set_terminal();
 t_env				*get_env_info(char **arr);
 int					check_prompt(int data);
-void				write_prompt(t_win *w);
+int					write_prompt();
 char				*read_line(t_win *w);
 int					split_line(char *line, t_env **env_info, int status,
 					char ***args);

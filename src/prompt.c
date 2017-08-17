@@ -6,38 +6,33 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:50:42 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/16 20:17:51 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/17 18:15:03 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*current_dir(t_env *env_info)
+static char	*current_dir(void)
 {
 	char	*dir;
 	int		len;
 	int		start;
+	char	path[PATH_LEN];
 
 	dir = 0;
-	while (env_info)
-	{
-		if (ft_strcmp(env_info->name, "PWD"))
-			env_info = env_info->next;
-		else
-			break ;
-	}
-	len = ft_strlen(env_info->content);
+	getcwd(path, PATH_LEN);
+	len = ft_strlen(path);
 	start = len - 1;
-	while (env_info->content[start] != '/')
+	while (path[start] != '/')
 		start--;
-	dir = ft_strsub(env_info->content, start + 1, len - start);
+	dir = ft_strsub(path, start + 1, len - start);
 	ft_printf("%s%s%s%s", dir, B_YELLOW, " ➜ ", DEF);
 	return (dir);
 }
 
-void		write_prompt(t_env *env_info, t_win *w)
+void		write_prompt(t_win *w)
 {
-	char			*buf;
+	char			*host_name;
 	char			*comp;
 	char			*user;
 	char			*curr_dir;
@@ -49,14 +44,14 @@ void		write_prompt(t_env *env_info, t_win *w)
 //		write(1, "_", 1);
 	user = getpwuid(getuid())->pw_name;
 	ft_printf("%s%s%s%s", B_YELLOW, user, B_BLUE, "][");
-	if (!(buf = ft_memalloc(sizeof(char *) * 256)))
+	if (!(host_name = ft_memalloc(sizeof(char *) * 256)))
 		error_exit(sh, mem_alloc_err);
-	gethostname(buf, 256);
-	comp = ft_strndup(buf, '.');
+	gethostname(host_name, 256);
+	comp = ft_strndup(host_name, '.');
 	ft_printf("%s%s%s%s%s", B_GREEN, comp, B_RED, " ✗ ", B_CYAN);
-	curr_dir = current_dir(env_info);
+	curr_dir = current_dir();
 	w->prompt_len = ft_strlen(user) + ft_strlen(comp) + ft_strlen(curr_dir) + 8;
 	ft_memdel((void **)&curr_dir);
-	ft_memdel((void **)&buf);
+	ft_memdel((void **)&host_name);
 	ft_memdel((void **)&comp);
 }

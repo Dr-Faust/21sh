@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:01:30 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/16 20:39:21 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/17 14:56:50 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void		move_left(t_win *w)
 		tputs(tgetstr("le", 0), 1, &ft_put_my_char);
 	if (w->position % g_win_size == 0)
 	{
-		tputs(tgetstr("up", 0), 1, ft_put_my_char);
+		ft_putstr("\033M");
+	//	tputs(tgetstr("sr", 0), 1, ft_put_my_char);
 		tmp = 0;
 		while (tmp++ < g_win_size - 1)
 			tputs(tgetstr("nd", 0), 1, &ft_put_my_char);

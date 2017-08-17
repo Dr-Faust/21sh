@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/16 20:09:29 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/17 18:10:10 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,6 @@
 # define DELETE				'~'
 # define BACKSPACE			127
 
-struct termios		default_term;
-struct winsize		win_size;
-static int			g_sig_flag;
-int					g_win_size;
-
 typedef struct		s_env
 {
 	char			*name;
@@ -50,6 +45,7 @@ typedef struct		s_env
 
 typedef struct		s_win
 {
+	struct winsize	win_size;
 	int				prompt_len;
 	int				position;
 	int				index;
@@ -58,6 +54,13 @@ typedef struct		s_win
 	int				i;
 	int				bytes;
 }					t_win;
+
+//struct t_win		w;
+
+struct termios		default_term;
+struct winsize		win_size;
+int					g_sig_flag;
+int					g_win_size;
 
 typedef enum
 {
@@ -97,7 +100,7 @@ typedef enum
 void				set_terminal();
 t_env				*get_env_info(char **arr);
 int					check_prompt(int data);
-void				write_prompt(t_env *env_info, t_win *w);
+void				write_prompt(t_win *w);
 char				*read_line(t_win *w);
 int					split_line(char *line, t_env **env_info, int status,
 					char ***args);
@@ -152,8 +155,7 @@ int					signal_error(t_command command_type, t_sig_err error_type,
 **						    == Sugnals ==
 */
 
-int					manage_signal(void);
-void				signal_handle(int signal);
+void				manage_signal(void);
 int					singleton_prompt(int data);
 
 #endif

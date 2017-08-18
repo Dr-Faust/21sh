@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 19:26:48 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/16 20:10:57 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/18 19:20:41 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char		*add_char(char *buf, char *buffer, t_win *w)
 		ft_putchar('\n');
 	start = 0;
 	tmp = ft_strsub(w->bytes_str, start, w->i - start);
-	tmp = ft_strjoin_free_first(tmp, ft_itoa(w->bytes));
+	tmp = ft_strjoin_free(tmp, ft_itoa(w->bytes));
 	start = w->i;
 	tmp = ft_strjoin_free(tmp, ft_strsub(w->bytes_str, start,
 		ft_strlen(w->bytes_str) - start));

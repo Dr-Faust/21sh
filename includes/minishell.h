@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/17 20:27:45 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/18 20:45:20 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct		s_win
 
 struct termios		default_term;
 struct winsize		win_size;
-int					g_sig_flag;
 int					g_win_size;
 char				*g_line;
 

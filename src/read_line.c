@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/17 20:27:04 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/18 20:47:05 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,9 @@ static int	check_print_position(char *buf, char **buffer, t_win *w)
 		*buffer = add_char(buf, *buffer, w);
 	else
 	{
-		w->bytes_str = ft_strjoin_free_first(w->bytes_str, ft_itoa(w->bytes));
+		w->bytes_str = ft_strjoin_free(w->bytes_str, ft_itoa(w->bytes));
 		*buffer = ft_strjoin_free_first(*buffer, buf);
 		ft_printf("%s", buf);
-	//	if ((w->position + 1) % g_win_size == 0)
-	//		ft_putchar('\n');
 	}
 	w->index += w->bytes_str[w->i] - '0';
 	w->position++;
@@ -102,13 +100,12 @@ char		*read_line(t_win *w)
 		read_buf(w, buf);
 		buffer = parse_keys(buf, buffer, w);
 		singleton_prompt(2);
-		if (g_line)
-		{
-			ft_memdel((void **)&buffer);
-			buffer = ft_strdup(g_line);
-			ft_memdel((void **)&g_line);
-			return (buffer);
-		}
+	//	if (g_line)
+	//	{
+	//		ft_memdel((void **)&buffer);
+	//		buffer = ft_strdup(g_line);
+	//		ft_memdel((void **)&g_line);
+	//	}
 		if (w->flag)
 			return (buffer);
 	}

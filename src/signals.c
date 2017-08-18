@@ -6,18 +6,20 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 16:01:08 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/17 20:27:10 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/18 20:48:03 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int			singleton_prompt(int data)
+int			singleton_prompt(int flag)
 {
 	static int    prompt;
 
-	if (data)
-		prompt = data;
+	if (flag)
+		prompt = flag;
+//	ft_printf("flag = %d\n", flag);
+//	ft_printf("prompt = %d\n", prompt);
 	return (prompt);
 }
 
@@ -29,13 +31,16 @@ static void	signal_handler(int signal)
 	if (signal == SIGINT)
 	{
 	//	ft_printf("here\n");
-		signal = 0;
+		//signal = 0;
 		if (prompt == 1)
 		{
 			ft_putchar('\n');
 			write_prompt();
 		}
-	//	g_sig_flag = 1;
+	//	kill(getpid(), SIGINT);
+		signal = 0;
+		g_line = 0;
+		g_line = ft_strnew(1);
 	}
 	else if (signal == SIGWINCH)
 	{

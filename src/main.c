@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:10:03 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/17 20:27:01 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/18 20:47:08 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,38 +22,20 @@ static void	minishell(t_env **env_info)
 	status = 1;
 	while (status)
 	{
-	//	g_line = 0;
-	//	g_sig_flag = 0;
+		g_line = 0;
 	//	singleton_prompt(1);
 	//	manage_signal();
-	//	ft_printf("flag_1 = %d\n", g_sig_flag);
-	//	if (!g_sig_flag)
 		w.prompt_len = write_prompt();
-	//	else
-	//		line = ft_strdup("\n\0");
-	//	if (g_sig_flag)
-	//		line = ft_strdup("\0\n");
-	//	else
-
-	//	ft_printf("flag = %d\n", g_sig_flag);
-	//	if (g_sig_flag)
-	//		line = ft_strdup("\0\n");
-	//	if (g_line)
-	//	{
-	//		ft_printf("here\n");
-	//		line = ft_strjoin_free(line, g_line);
-	//	}
-	//	else	
-	//	{
-			line = read_line(&w);
-			line = parser(line, &w);
-			singleton_prompt(2);
-			if (!(args = ft_memalloc(sizeof(char **) * (count_commands(line) + 1))))
-				error_exit(sh, mem_alloc_err);
-			status = split_line(&(line[0]), env_info, status, args);
-			ft_memdel((void **)&args);
-	//	}
+		line = read_line(&w);
+		line = parser(line, &w);
+		ft_printf("line = %s\n", line);
+	//	singleton_prompt(2);
+		if (!(args = ft_memalloc(sizeof(char **) * (count_commands(line) + 1))))
+			error_exit(sh, mem_alloc_err);
+		status = split_line(&(line[0]), env_info, status, args);
+		ft_memdel((void **)&args);
 		ft_memdel((void **)&line);
+		ft_memdel((void **)&w.bytes_str);
 	}
 }
 

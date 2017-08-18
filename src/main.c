@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:10:03 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/18 20:47:08 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/18 21:17:56 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ static void	minishell(t_env **env_info)
 	status = 1;
 	while (status)
 	{
-		g_line = 0;
+		if (!(g_line = ft_strnew(1)))
+			error_exit(sh, mem_alloc_err);
 	//	singleton_prompt(1);
 	//	manage_signal();
 		w.prompt_len = write_prompt();
-		line = read_line(&w);
+		if (read_line(&w))
+			line = ft_strdup(g_line);
 		line = parser(line, &w);
-		ft_printf("line = %s\n", line);
+	//	ft_printf("line = %s\n", line);
 	//	singleton_prompt(2);
 		if (!(args = ft_memalloc(sizeof(char **) * (count_commands(line) + 1))))
 			error_exit(sh, mem_alloc_err);
@@ -48,5 +50,6 @@ int			main(void)
 //	ft_putstr("\x1B[?7h");
 	env_info = get_env_info(environ);
 	minishell(&env_info);
+	ft_memdel((void **)&g_line);
 	return (EXIT_SUCCESS);
 }

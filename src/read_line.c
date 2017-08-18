@@ -6,31 +6,28 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/18 20:47:05 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/18 21:19:37 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	check_print_position(char *buf, char **buffer, t_win *w)
+static int	check_print_position(char *buf, t_win *w)
 {
-	char	*tmp;
-
-	tmp = *buffer;
 	if (buf[0] == '\n')
 	{
-		while (tmp[w->index])
+		while (g_line[w->index])
 			move_right(w);
 		ft_printf("\n");
-		*buffer = ft_strjoin_free_first(*buffer, "\n\0");
+		g_line = ft_strjoin_free_first(g_line, "\n\0");
 		return (1);
 	}
-	else if (w->index < (int)ft_strlen(*buffer))
-		*buffer = add_char(buf, *buffer, w);
+	else if (w->index < (int)ft_strlen(g_line))
+		g_line = add_char(buf, w);
 	else
 	{
 		w->bytes_str = ft_strjoin_free(w->bytes_str, ft_itoa(w->bytes));
-		*buffer = ft_strjoin_free_first(*buffer, buf);
+		g_line = ft_strjoin_free_first(g_line, buf);
 		ft_printf("%s", buf);
 	}
 	w->index += w->bytes_str[w->i] - '0';
@@ -39,22 +36,21 @@ static int	check_print_position(char *buf, char **buffer, t_win *w)
 	return (0);
 }
 
-static char	*parse_keys(char *buf, char *buffer, t_win *w)
+static void	parse_keys(char *buf, t_win *w)
 {
 	if (buf[2] == LEFT || buf[3] == LEFT || buf[2] == START)
-		left_arrow(buf, buffer, w);
+		left_arrow(buf, w);
 	else if (buf[2] == RIGHT || buf[3] == RIGHT || buf[2] == END)
-		right_arrow(buf, buffer, w);
+		right_arrow(buf, w);
 	else if (buf[2] == UP || buf[3] == UP)
-		up_arrow(buf, buffer, w);
+		up_arrow(buf, w);
 	else if (buf[2] == DOWN || buf[3] == DOWN)
-		down_arrow(buf, buffer, w);
+		down_arrow(buf, w);
 	else if ((buf[0] == BACKSPACE && w->index > 0) ||
-			(buf[3] == DELETE && buffer[w->index]))
-		buffer = del_char(buf, buffer, w);
+			(buf[3] == DELETE && g_line[w->index]))
+		g_line = del_char(buf, w);
 	else if (buf[0] != BACKSPACE && buf[3] != DELETE && !ft_strchr(buf, '\033'))
-		w->flag = check_print_position(buf, &buffer, w);
-	return (buffer);
+		w->flag = check_print_position(buf, w);
 }
 
 static void	read_buf(t_win *w, char *buf)
@@ -81,8 +77,6 @@ char		*read_line(t_win *w)
 	char		*buffer;
 	char		buf[8];
 
-	if (!(buffer = ft_strnew(1)))
-		error_exit(sh, mem_alloc_err);
 	if (!(w->bytes_str = ft_strnew(1)))
 		error_exit(sh, mem_alloc_err);
 	w->position = w->prompt_len;
@@ -98,14 +92,9 @@ char		*read_line(t_win *w)
 		singleton_prompt(1);
 		manage_signal();
 		read_buf(w, buf);
-		buffer = parse_keys(buf, buffer, w);
+		parse_keys(buf, w);
+		buffer = ft_strdup(g_line);
 		singleton_prompt(2);
-	//	if (g_line)
-	//	{
-	//		ft_memdel((void **)&buffer);
-	//		buffer = ft_strdup(g_line);
-	//		ft_memdel((void **)&g_line);
-	//	}
 		if (w->flag)
 			return (buffer);
 	}

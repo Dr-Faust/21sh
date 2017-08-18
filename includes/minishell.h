@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/18 20:45:20 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/18 21:19:25 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,19 +127,19 @@ int					ft_help(void);
 **						== Cursor movement ==
 */
 
-void				left_arrow(char *buf, char *buffer, t_win *w);
-void				right_arrow(char *buf, char *buffer, t_win *w);
+void				left_arrow(char *buf, t_win *w);
+void				right_arrow(char *buf, t_win *w);
 void				move_left(t_win *w);
 void				move_right(t_win *w);
-void				up_arrow(char *buf, char *buffer, t_win *w);
-void				down_arrow(char *buf, char *buffer, t_win *w);
+void				up_arrow(char *buf, t_win *w);
+void				down_arrow(char *buf, t_win *w);
 
 /*
 **						 == Line edition ==
 */
 
-char				*add_char(char *buf, char *buffer, t_win *w);
-char				*del_char(char *buf, char *buffer, t_win *w);
+char				*add_char(char *buf, t_win *w);
+char				*del_char(char *buf, t_win *w);
 
 /*
 **						    == Errors ==

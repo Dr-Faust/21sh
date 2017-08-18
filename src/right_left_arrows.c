@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:01:30 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/17 14:56:50 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/18 21:01:44 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void		move_left(t_win *w)
 	if (w->position % g_win_size == 0)
 	{
 		ft_putstr("\033M");
-	//	tputs(tgetstr("sr", 0), 1, ft_put_my_char);
 		tmp = 0;
 		while (tmp++ < g_win_size - 1)
 			tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
@@ -42,15 +41,15 @@ void		move_left(t_win *w)
 	w->i--;
 }
 
-void		left_arrow(char *buf, char *buffer, t_win *w)
+void		left_arrow(char *buf, t_win *w)
 {
 	if (buf[2] == LEFT && w->index > 0)
 		move_left(w);
 	else if (buf[3] == LEFT && w->index > 0)
 	{
-		while (buffer[w->index - 1] == ' ' && w->index > 0)
+		while (g_line[w->index - 1] == ' ' && w->index > 0)
 			move_left(w);
-		while (buffer[w->index - 1] != ' ' && w->index > 0)
+		while (g_line[w->index - 1] != ' ' && w->index > 0)
 			move_left(w);
 	}
 	else if (buf[2] == START && w->index > 0)
@@ -58,18 +57,18 @@ void		left_arrow(char *buf, char *buffer, t_win *w)
 			move_left(w);
 }
 
-void		right_arrow(char *buf, char *buffer, t_win *w)
+void		right_arrow(char *buf, t_win *w)
 {
-	if (buf[2] == RIGHT && buffer[w->index])
+	if (buf[2] == RIGHT && g_line[w->index])
 		move_right(w);
-	else if (buf[3] == RIGHT && buffer[w->index])
+	else if (buf[3] == RIGHT && g_line[w->index])
 	{
-		while (buffer[w->index] != ' ' && w->index < (int)ft_strlen(buffer))
+		while (g_line[w->index] != ' ' && w->index < (int)ft_strlen(g_line))
 			move_right(w);
-		while (buffer[w->index] == ' ' && w->index < (int)ft_strlen(buffer))
+		while (g_line[w->index] == ' ' && w->index < (int)ft_strlen(g_line))
 			move_right(w);
 	}
-	else if (buf[2] == END && buffer[w->index])
-		while (buffer[w->index])
+	else if (buf[2] == END && g_line[w->index])
+		while (g_line[w->index])
 			move_right(w);
 }

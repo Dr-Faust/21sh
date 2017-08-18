@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 16:01:08 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/18 20:48:03 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/18 21:10:26 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	signal_handler(int signal)
 	if (signal == SIGINT)
 	{
 	//	ft_printf("here\n");
-		//signal = 0;
 		if (prompt == 1)
 		{
 			ft_putchar('\n');
@@ -39,7 +38,7 @@ static void	signal_handler(int signal)
 		}
 	//	kill(getpid(), SIGINT);
 		signal = 0;
-		g_line = 0;
+		ft_memdel((void **)&g_line);
 		g_line = ft_strnew(1);
 	}
 	else if (signal == SIGWINCH)

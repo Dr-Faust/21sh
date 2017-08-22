@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 14:55:14 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/22 15:39:29 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/22 20:39:28 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,11 @@ int			execute(char **args, t_env **env_info)
 		return (ft_help());
 	else if (!ft_strcmp(args[0], "exit"))
 	{
-		tcsetattr(STDIN_FILENO, TCSADRAIN, &default_term);
+		tcsetattr(STDIN_FILENO, TCSADRAIN, &g_info->default_term);
 		tgetent(0, getenv("TERM"));
 		return (0);
 	}
 	else if (!ft_strcmp(args[0], "cat"))
-		tcsetattr(STDIN_FILENO, TCSADRAIN, &default_term);
+		tcsetattr(STDIN_FILENO, TCSADRAIN, &g_info->default_term);
 	return (treat_path(args, *env_info));
 }

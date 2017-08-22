@@ -81,9 +81,33 @@ CMakeFiles/21sh.dir/src/main.c.o.provides: CMakeFiles/21sh.dir/src/main.c.o.requ
 CMakeFiles/21sh.dir/src/main.c.o.provides.build: CMakeFiles/21sh.dir/src/main.c.o
 
 
+CMakeFiles/21sh.dir/src/signals.c.o: CMakeFiles/21sh.dir/flags.make
+CMakeFiles/21sh.dir/src/signals.c.o: ../src/signals.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/21sh.dir/src/signals.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/signals.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/signals.c
+
+CMakeFiles/21sh.dir/src/signals.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/21sh.dir/src/signals.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/2016/o/opodolia/projects/GitHub/21sh/src/signals.c > CMakeFiles/21sh.dir/src/signals.c.i
+
+CMakeFiles/21sh.dir/src/signals.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/21sh.dir/src/signals.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/2016/o/opodolia/projects/GitHub/21sh/src/signals.c -o CMakeFiles/21sh.dir/src/signals.c.s
+
+CMakeFiles/21sh.dir/src/signals.c.o.requires:
+
+.PHONY : CMakeFiles/21sh.dir/src/signals.c.o.requires
+
+CMakeFiles/21sh.dir/src/signals.c.o.provides: CMakeFiles/21sh.dir/src/signals.c.o.requires
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/signals.c.o.provides.build
+.PHONY : CMakeFiles/21sh.dir/src/signals.c.o.provides
+
+CMakeFiles/21sh.dir/src/signals.c.o.provides.build: CMakeFiles/21sh.dir/src/signals.c.o
+
+
 CMakeFiles/21sh.dir/src/add_del_char.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/add_del_char.c.o: ../src/add_del_char.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/21sh.dir/src/add_del_char.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/21sh.dir/src/add_del_char.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/add_del_char.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/add_del_char.c
 
 CMakeFiles/21sh.dir/src/add_del_char.c.i: cmake_force
@@ -107,7 +131,7 @@ CMakeFiles/21sh.dir/src/add_del_char.c.o.provides.build: CMakeFiles/21sh.dir/src
 
 CMakeFiles/21sh.dir/src/right_left_arrows.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/right_left_arrows.c.o: ../src/right_left_arrows.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/21sh.dir/src/right_left_arrows.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/21sh.dir/src/right_left_arrows.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/right_left_arrows.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/right_left_arrows.c
 
 CMakeFiles/21sh.dir/src/right_left_arrows.c.i: cmake_force
@@ -131,7 +155,7 @@ CMakeFiles/21sh.dir/src/right_left_arrows.c.o.provides.build: CMakeFiles/21sh.di
 
 CMakeFiles/21sh.dir/src/up_down_arrows.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/up_down_arrows.c.o: ../src/up_down_arrows.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/21sh.dir/src/up_down_arrows.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/21sh.dir/src/up_down_arrows.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/up_down_arrows.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/up_down_arrows.c
 
 CMakeFiles/21sh.dir/src/up_down_arrows.c.i: cmake_force
@@ -155,7 +179,7 @@ CMakeFiles/21sh.dir/src/up_down_arrows.c.o.provides.build: CMakeFiles/21sh.dir/s
 
 CMakeFiles/21sh.dir/src/read_line.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/read_line.c.o: ../src/read_line.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/21sh.dir/src/read_line.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/21sh.dir/src/read_line.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/read_line.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/read_line.c
 
 CMakeFiles/21sh.dir/src/read_line.c.i: cmake_force
@@ -179,7 +203,7 @@ CMakeFiles/21sh.dir/src/read_line.c.o.provides.build: CMakeFiles/21sh.dir/src/re
 
 CMakeFiles/21sh.dir/src/split_line.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/split_line.c.o: ../src/split_line.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/21sh.dir/src/split_line.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/21sh.dir/src/split_line.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/split_line.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/split_line.c
 
 CMakeFiles/21sh.dir/src/split_line.c.i: cmake_force
@@ -203,7 +227,7 @@ CMakeFiles/21sh.dir/src/split_line.c.o.provides.build: CMakeFiles/21sh.dir/src/s
 
 CMakeFiles/21sh.dir/src/split_commands.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/split_commands.c.o: ../src/split_commands.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/21sh.dir/src/split_commands.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/21sh.dir/src/split_commands.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/split_commands.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/split_commands.c
 
 CMakeFiles/21sh.dir/src/split_commands.c.i: cmake_force
@@ -227,7 +251,7 @@ CMakeFiles/21sh.dir/src/split_commands.c.o.provides.build: CMakeFiles/21sh.dir/s
 
 CMakeFiles/21sh.dir/src/execute.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/execute.c.o: ../src/execute.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/21sh.dir/src/execute.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/21sh.dir/src/execute.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/execute.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/execute.c
 
 CMakeFiles/21sh.dir/src/execute.c.i: cmake_force
@@ -251,7 +275,7 @@ CMakeFiles/21sh.dir/src/execute.c.o.provides.build: CMakeFiles/21sh.dir/src/exec
 
 CMakeFiles/21sh.dir/src/errors.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/errors.c.o: ../src/errors.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/21sh.dir/src/errors.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/21sh.dir/src/errors.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/errors.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/errors.c
 
 CMakeFiles/21sh.dir/src/errors.c.i: cmake_force
@@ -275,7 +299,7 @@ CMakeFiles/21sh.dir/src/errors.c.o.provides.build: CMakeFiles/21sh.dir/src/error
 
 CMakeFiles/21sh.dir/src/access.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/access.c.o: ../src/access.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/21sh.dir/src/access.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/21sh.dir/src/access.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/access.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/access.c
 
 CMakeFiles/21sh.dir/src/access.c.i: cmake_force
@@ -299,7 +323,7 @@ CMakeFiles/21sh.dir/src/access.c.o.provides.build: CMakeFiles/21sh.dir/src/acces
 
 CMakeFiles/21sh.dir/src/env_info.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/env_info.c.o: ../src/env_info.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/21sh.dir/src/env_info.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/21sh.dir/src/env_info.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/env_info.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/env_info.c
 
 CMakeFiles/21sh.dir/src/env_info.c.i: cmake_force
@@ -323,7 +347,7 @@ CMakeFiles/21sh.dir/src/env_info.c.o.provides.build: CMakeFiles/21sh.dir/src/env
 
 CMakeFiles/21sh.dir/src/ft_cd.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/ft_cd.c.o: ../src/ft_cd.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/21sh.dir/src/ft_cd.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/21sh.dir/src/ft_cd.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/ft_cd.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/ft_cd.c
 
 CMakeFiles/21sh.dir/src/ft_cd.c.i: cmake_force
@@ -347,7 +371,7 @@ CMakeFiles/21sh.dir/src/ft_cd.c.o.provides.build: CMakeFiles/21sh.dir/src/ft_cd.
 
 CMakeFiles/21sh.dir/src/ft_echo.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/ft_echo.c.o: ../src/ft_echo.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/21sh.dir/src/ft_echo.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/21sh.dir/src/ft_echo.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/ft_echo.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/ft_echo.c
 
 CMakeFiles/21sh.dir/src/ft_echo.c.i: cmake_force
@@ -371,7 +395,7 @@ CMakeFiles/21sh.dir/src/ft_echo.c.o.provides.build: CMakeFiles/21sh.dir/src/ft_e
 
 CMakeFiles/21sh.dir/src/ft_help.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/ft_help.c.o: ../src/ft_help.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/21sh.dir/src/ft_help.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/21sh.dir/src/ft_help.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/ft_help.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/ft_help.c
 
 CMakeFiles/21sh.dir/src/ft_help.c.i: cmake_force
@@ -395,7 +419,7 @@ CMakeFiles/21sh.dir/src/ft_help.c.o.provides.build: CMakeFiles/21sh.dir/src/ft_h
 
 CMakeFiles/21sh.dir/src/ft_setenv.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/ft_setenv.c.o: ../src/ft_setenv.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/21sh.dir/src/ft_setenv.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/21sh.dir/src/ft_setenv.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/ft_setenv.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/ft_setenv.c
 
 CMakeFiles/21sh.dir/src/ft_setenv.c.i: cmake_force
@@ -419,7 +443,7 @@ CMakeFiles/21sh.dir/src/ft_setenv.c.o.provides.build: CMakeFiles/21sh.dir/src/ft
 
 CMakeFiles/21sh.dir/src/ft_unsetenv.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/ft_unsetenv.c.o: ../src/ft_unsetenv.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/21sh.dir/src/ft_unsetenv.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/21sh.dir/src/ft_unsetenv.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/ft_unsetenv.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/ft_unsetenv.c
 
 CMakeFiles/21sh.dir/src/ft_unsetenv.c.i: cmake_force
@@ -443,7 +467,7 @@ CMakeFiles/21sh.dir/src/ft_unsetenv.c.o.provides.build: CMakeFiles/21sh.dir/src/
 
 CMakeFiles/21sh.dir/src/parse_dollar.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/parse_dollar.c.o: ../src/parse_dollar.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/21sh.dir/src/parse_dollar.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/21sh.dir/src/parse_dollar.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/parse_dollar.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/parse_dollar.c
 
 CMakeFiles/21sh.dir/src/parse_dollar.c.i: cmake_force
@@ -467,7 +491,7 @@ CMakeFiles/21sh.dir/src/parse_dollar.c.o.provides.build: CMakeFiles/21sh.dir/src
 
 CMakeFiles/21sh.dir/src/env_to_arr.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/env_to_arr.c.o: ../src/env_to_arr.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/21sh.dir/src/env_to_arr.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/21sh.dir/src/env_to_arr.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/env_to_arr.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/env_to_arr.c
 
 CMakeFiles/21sh.dir/src/env_to_arr.c.i: cmake_force
@@ -491,7 +515,7 @@ CMakeFiles/21sh.dir/src/env_to_arr.c.o.provides.build: CMakeFiles/21sh.dir/src/e
 
 CMakeFiles/21sh.dir/src/parse_quotes.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/parse_quotes.c.o: ../src/parse_quotes.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/21sh.dir/src/parse_quotes.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/21sh.dir/src/parse_quotes.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/parse_quotes.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/parse_quotes.c
 
 CMakeFiles/21sh.dir/src/parse_quotes.c.i: cmake_force
@@ -515,7 +539,7 @@ CMakeFiles/21sh.dir/src/parse_quotes.c.o.provides.build: CMakeFiles/21sh.dir/src
 
 CMakeFiles/21sh.dir/src/set_terminal.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/set_terminal.c.o: ../src/set_terminal.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/21sh.dir/src/set_terminal.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/21sh.dir/src/set_terminal.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/set_terminal.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/set_terminal.c
 
 CMakeFiles/21sh.dir/src/set_terminal.c.i: cmake_force
@@ -539,7 +563,7 @@ CMakeFiles/21sh.dir/src/set_terminal.c.o.provides.build: CMakeFiles/21sh.dir/src
 
 CMakeFiles/21sh.dir/src/prompt.c.o: CMakeFiles/21sh.dir/flags.make
 CMakeFiles/21sh.dir/src/prompt.c.o: ../src/prompt.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/21sh.dir/src/prompt.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/21sh.dir/src/prompt.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/21sh.dir/src/prompt.c.o   -c /nfs/2016/o/opodolia/projects/GitHub/21sh/src/prompt.c
 
 CMakeFiles/21sh.dir/src/prompt.c.i: cmake_force
@@ -564,6 +588,7 @@ CMakeFiles/21sh.dir/src/prompt.c.o.provides.build: CMakeFiles/21sh.dir/src/promp
 # Object files for target 21sh
 21sh_OBJECTS = \
 "CMakeFiles/21sh.dir/src/main.c.o" \
+"CMakeFiles/21sh.dir/src/signals.c.o" \
 "CMakeFiles/21sh.dir/src/add_del_char.c.o" \
 "CMakeFiles/21sh.dir/src/right_left_arrows.c.o" \
 "CMakeFiles/21sh.dir/src/up_down_arrows.c.o" \
@@ -589,6 +614,7 @@ CMakeFiles/21sh.dir/src/prompt.c.o.provides.build: CMakeFiles/21sh.dir/src/promp
 21sh_EXTERNAL_OBJECTS =
 
 21sh: CMakeFiles/21sh.dir/src/main.c.o
+21sh: CMakeFiles/21sh.dir/src/signals.c.o
 21sh: CMakeFiles/21sh.dir/src/add_del_char.c.o
 21sh: CMakeFiles/21sh.dir/src/right_left_arrows.c.o
 21sh: CMakeFiles/21sh.dir/src/up_down_arrows.c.o
@@ -611,7 +637,7 @@ CMakeFiles/21sh.dir/src/prompt.c.o.provides.build: CMakeFiles/21sh.dir/src/promp
 21sh: CMakeFiles/21sh.dir/src/prompt.c.o
 21sh: CMakeFiles/21sh.dir/build.make
 21sh: CMakeFiles/21sh.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking C executable 21sh"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking C executable 21sh"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/21sh.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -620,6 +646,7 @@ CMakeFiles/21sh.dir/build: 21sh
 .PHONY : CMakeFiles/21sh.dir/build
 
 CMakeFiles/21sh.dir/requires: CMakeFiles/21sh.dir/src/main.c.o.requires
+CMakeFiles/21sh.dir/requires: CMakeFiles/21sh.dir/src/signals.c.o.requires
 CMakeFiles/21sh.dir/requires: CMakeFiles/21sh.dir/src/add_del_char.c.o.requires
 CMakeFiles/21sh.dir/requires: CMakeFiles/21sh.dir/src/right_left_arrows.c.o.requires
 CMakeFiles/21sh.dir/requires: CMakeFiles/21sh.dir/src/up_down_arrows.c.o.requires

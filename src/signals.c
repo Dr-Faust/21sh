@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 16:01:08 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/22 16:23:32 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/22 20:39:31 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ int			prompt_flag(int flag)
 {
 	static int	prompt;
 
-//	ft_printf("flag = %d\n", flag);
 	if (flag)
 		prompt = flag;
-//	ft_printf("prompt = %d\n", prompt);
 	return (prompt);
 }
 
@@ -31,16 +29,22 @@ static void	handle_sigint(int *signal)
 	if (prompt == 42)
 	{
 		ft_putchar('\n');
-		write_prompt();
+		g_info->prompt_len = write_prompt();
 	}
 	*signal = 0;
-	ft_memdel((void **)&g_line);
-	if (!(g_line = ft_strnew(1)))
+	ft_memdel((void **)&g_info->line);
+	if (!(g_info->line = ft_strnew(1)))
 		error_exit(sh, mem_alloc_err);
-	if (g_quote_line)
+	ft_memdel((void **)&g_info->bytes_str);
+	if (!(g_info->bytes_str = ft_strnew(1)))
+		error_exit(sh, mem_alloc_err);
+	g_info->position = g_info->prompt_len;
+	g_info->line_index = 0;
+	g_info->bytes_index = 0;
+	if (g_info->quote_line)
 	{
-		ft_memdel((void **)&g_quote_line);
-		if (!(g_quote_line = ft_strnew(1)))
+		ft_memdel((void **)&g_info->quote_line);
+		if (!(g_info->quote_line = ft_strnew(1)))
 			error_exit(sh, mem_alloc_err);
 	}
 }
@@ -51,8 +55,8 @@ static void	signal_handler(int signal)
 		handle_sigint(&signal);
 	else if (signal == SIGWINCH)
 	{
-		ioctl(0, TIOCGWINSZ, &win_size);
-		g_win_size = win_size.ws_col;
+		ioctl(0, TIOCGWINSZ, &g_info->win);
+		g_info->win_size = g_info->win.ws_col;
 	}
 	return ;
 }

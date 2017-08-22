@@ -609,6 +609,33 @@ src/set_terminal.c.s:
 	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/set_terminal.c.s
 .PHONY : src/set_terminal.c.s
 
+src/signals.o: src/signals.c.o
+
+.PHONY : src/signals.o
+
+# target to build an object file
+src/signals.c.o:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/signals.c.o
+.PHONY : src/signals.c.o
+
+src/signals.i: src/signals.c.i
+
+.PHONY : src/signals.i
+
+# target to preprocess a source file
+src/signals.c.i:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/signals.c.i
+.PHONY : src/signals.c.i
+
+src/signals.s: src/signals.c.s
+
+.PHONY : src/signals.s
+
+# target to generate assembly for a file
+src/signals.c.s:
+	$(MAKE) -f CMakeFiles/21sh.dir/build.make CMakeFiles/21sh.dir/src/signals.c.s
+.PHONY : src/signals.c.s
+
 src/split_commands.o: src/split_commands.c.o
 
 .PHONY : src/split_commands.o
@@ -753,6 +780,9 @@ help:
 	@echo "... src/set_terminal.o"
 	@echo "... src/set_terminal.i"
 	@echo "... src/set_terminal.s"
+	@echo "... src/signals.o"
+	@echo "... src/signals.i"
+	@echo "... src/signals.s"
 	@echo "... src/split_commands.o"
 	@echo "... src/split_commands.i"
 	@echo "... src/split_commands.s"

@@ -5,6 +5,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -Wextra")
 
 set(SOURCE_FILES
         src/main.c
+        src/signals.c
         src/add_del_char.c
         src/right_left_arrows.c
         src/up_down_arrows.c

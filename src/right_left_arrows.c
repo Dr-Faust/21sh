@@ -6,69 +6,73 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:01:30 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/18 21:01:44 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/22 19:17:59 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		move_right(t_win *w)
+void		move_right(void)
 {
-	if ((w->position + 1) % g_win_size == 0)
+	if ((g_info->position + 1) % g_info->win_size == 0)
 		ft_putchar('\n');
-	if ((w->position + 1) % g_win_size != 0)
+	if ((g_info->position + 1) % g_info->win_size != 0)
 		tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
-	w->index += w->bytes_str[w->i] - '0';
-	w->position++;
-	w->i++;
+	g_info->line_index += g_info->bytes_str[g_info->bytes_index] - '0';
+	g_info->position++;
+	g_info->bytes_index++;
 }
 
-void		move_left(t_win *w)
+void		move_left(void)
 {
 	int		tmp;
 
-	if (w->position % g_win_size != 0)
+	if (g_info->position % g_info->win_size != 0)
 		tputs(tgetstr("le", 0), 1, &ft_put_my_char);
-	if (w->position % g_win_size == 0)
+	if (g_info->position % g_info->win_size == 0)
 	{
 		ft_putstr("\033M");
 		tmp = 0;
-		while (tmp++ < g_win_size - 1)
+		while (tmp++ < g_info->win_size - 1)
 			tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 	}
-	w->index -= w->bytes_str[w->i - 1] - '0';
-	w->position--;
-	w->i--;
+	g_info->line_index -= g_info->bytes_str[g_info->bytes_index - 1] - '0';
+	g_info->position--;
+	g_info->bytes_index--;
 }
 
-void		left_arrow(char *buf, t_win *w)
+void		left_arrow(char *buf)
 {
-	if (buf[2] == LEFT && w->index > 0)
-		move_left(w);
-	else if (buf[3] == LEFT && w->index > 0)
+	if (buf[2] == LEFT && g_info->line_index > 0)
+		move_left();
+	else if (buf[3] == LEFT && g_info->line_index > 0)
 	{
-		while (g_line[w->index - 1] == ' ' && w->index > 0)
-			move_left(w);
-		while (g_line[w->index - 1] != ' ' && w->index > 0)
-			move_left(w);
+		while (g_info->line[g_info->line_index - 1] == ' ' &&
+			g_info->line_index > 0)
+			move_left();
+		while (g_info->line[g_info->line_index - 1] != ' ' &&
+			g_info->line_index > 0)
+			move_left();
 	}
-	else if (buf[2] == START && w->index > 0)
-		while (w->index > 0)
-			move_left(w);
+	else if (buf[2] == START && g_info->line_index > 0)
+		while (g_info->line_index > 0)
+			move_left();
 }
 
-void		right_arrow(char *buf, t_win *w)
+void		right_arrow(char *buf)
 {
-	if (buf[2] == RIGHT && g_line[w->index])
-		move_right(w);
-	else if (buf[3] == RIGHT && g_line[w->index])
+	if (buf[2] == RIGHT && g_info->line[g_info->line_index])
+		move_right();
+	else if (buf[3] == RIGHT && g_info->line[g_info->line_index])
 	{
-		while (g_line[w->index] != ' ' && w->index < (int)ft_strlen(g_line))
-			move_right(w);
-		while (g_line[w->index] == ' ' && w->index < (int)ft_strlen(g_line))
-			move_right(w);
+		while (g_info->line[g_info->line_index] != ' ' &&
+			g_info->line_index < (int)ft_strlen(g_info->line))
+			move_right();
+		while (g_info->line[g_info->line_index] == ' ' &&
+			g_info->line_index < (int)ft_strlen(g_info->line))
+			move_right();
 	}
-	else if (buf[2] == END && g_line[w->index])
-		while (g_line[w->index])
-			move_right(w);
+	else if (buf[2] == END && g_info->line[g_info->line_index])
+		while (g_info->line[g_info->line_index])
+			move_right();
 }

@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:50:42 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/22 17:22:22 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/22 20:31:30 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*current_dir(void)
 	return (dir);
 }
 
-int			write_prompt()
+int			write_prompt(void)
 {
 //	char			*host_name;
 //	char			*comp;

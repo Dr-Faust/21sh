@@ -22,6 +22,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/read_line.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/read_line.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/right_left_arrows.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/right_left_arrows.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/set_terminal.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/set_terminal.c.o"
+  "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/signals.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/signals.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/split_commands.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/split_commands.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/split_line.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/split_line.c.o"
   "/nfs/2016/o/opodolia/projects/GitHub/21sh/src/up_down_arrows.c" "/nfs/2016/o/opodolia/projects/GitHub/21sh/cmake-build-debug/CMakeFiles/21sh.dir/src/up_down_arrows.c.o"

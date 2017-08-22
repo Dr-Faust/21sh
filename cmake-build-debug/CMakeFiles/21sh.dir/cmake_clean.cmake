@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/21sh.dir/src/main.c.o"
+  "CMakeFiles/21sh.dir/src/signals.c.o"
   "CMakeFiles/21sh.dir/src/add_del_char.c.o"
   "CMakeFiles/21sh.dir/src/right_left_arrows.c.o"
   "CMakeFiles/21sh.dir/src/up_down_arrows.c.o"

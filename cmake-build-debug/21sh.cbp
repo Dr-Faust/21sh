@@ -142,6 +142,9 @@
 		<Unit filename="/nfs/2016/o/opodolia/projects/GitHub/21sh/src/set_terminal.c">
 			<Option target="21sh"/>
 		</Unit>
+		<Unit filename="/nfs/2016/o/opodolia/projects/GitHub/21sh/src/signals.c">
+			<Option target="21sh"/>
+		</Unit>
 		<Unit filename="/nfs/2016/o/opodolia/projects/GitHub/21sh/src/split_commands.c">
 			<Option target="21sh"/>
 		</Unit>

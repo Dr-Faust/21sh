@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:50:42 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/17 20:27:08 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/22 17:22:22 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,14 @@ int			write_prompt()
 //	char			*user;
 	char			*curr_dir;
 	int				prompt_len;
+//	int				prompt;
 
+//	prompt = prompt_flag(21);
+//	if (prompt == 42)
+//		ft_putchar('\n');
+//	ft_printf("flag_0 = %d\n", prompt);
+//	prompt_flag(21);
+//	ft_printf("flag_1 = %d\n", prompt);
 //	ioctl(0, TIOCGWINSZ, &win_size);
 	prompt_len = -1;
 //	g_win_size = win_size.ws_col;

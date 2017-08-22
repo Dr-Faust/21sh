@@ -6,16 +6,16 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 12:02:16 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/17 20:27:12 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/22 16:52:44 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	print_quotes(char **line, int *flag, int quote, t_win *w)
+static void	print_quotes(int *flag, int quote, t_win *w)
 {
-	char	*str;
 	int		j;
+	char	*str;
 
 	while (*flag)
 	{
@@ -30,39 +30,63 @@ static void	print_quotes(char **line, int *flag, int quote, t_win *w)
 			ft_printf("dquote> ");
 		}
 		str = read_line(w);
-		*line = ft_strjoin_free_first(*line, str);
+		g_quote_line = ft_strjoin_free_first(g_quote_line, str);
 		j = -1;
 		while (str[++j])
-			if (str[j] == quote)
+			if (str[j] == quote || !(ft_strcmp(g_quote_line, str)))
 				*flag = 0;
 		ft_memdel((void **)&str);
 	}
 }
 
-char		*parser(char *line, t_win *w)
+int			valid_quote(char *s, int i, char quote)
 {
-	int		flag;
+	while (s[i])
+	{
+		if (s[i] == quote)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+static void	check_quotes(t_win *w)
+{
 	int		i;
+	int		flag;
 
 	i = 0;
-	while (line[i])
+	while (g_quote_line[i])
 	{
-		if ((line[i] == 39 || line[i] == 34) &&
-			valid_quote(line, i + 1, line[i]) == -1)
+		if ((g_quote_line[i] == 39 || g_quote_line[i] == 34) &&
+			valid_quote(g_quote_line, i + 1, g_quote_line[i]) == -1)
 		{
 			flag = 1;
-			print_quotes(&line, &flag, line[i], w);
+			print_quotes(&flag, g_quote_line[i], w);
 		}
-		else if ((line[i] == 39 || line[i] == 34) &&
-				valid_quote(line, i + 1, line[i]) != -1)
+		else if ((g_quote_line[i] == 39 || g_quote_line[i] == 34) &&
+				valid_quote(g_quote_line, i + 1, g_quote_line[i]) != -1)
 		{
-			i = valid_quote(line, i + 1, line[i]);
+			i = valid_quote(g_quote_line, i + 1, g_quote_line[i]);
 			i++;
 		}
 		else
 			i++;
 	}
-	if (line[ft_strlen(line) - 1] == '\n')
-		line[ft_strlen(line) - 1] = '\0';
-	return (line);
+}
+
+char		*parse_quotes(char *line, t_win *w)
+{
+	char	*ret;
+
+	g_quote_line = line;
+	check_quotes(w);
+	if (g_quote_line[ft_strlen(g_quote_line) - 1] == '\n')
+	{
+		ft_printf("here\n");
+		g_quote_line[ft_strlen(g_quote_line) - 1] = '\0';
+	}
+	ret = ft_strdup(g_quote_line);
+	ft_memdel((void **)&g_quote_line);
+	return (ret);
 }

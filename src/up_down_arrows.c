@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:12:56 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/18 21:02:17 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/22 15:05:56 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void		down_arrow(char *buf, t_win *w)
 
 	i = 0;
 	if (buf[3] == DOWN &&
-		w->position - w->prompt_len + g_win_size <= (int)ft_strlen(w->bytes_str) &&
-		g_line)
+		w->position - w->prompt_len + g_win_size <= (int)ft_strlen(w->bytes_str)
+		&& g_line)
 		while (i++ < g_win_size)
 			move_right(w);
 }

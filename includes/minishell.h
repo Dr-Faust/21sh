@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/18 21:19:25 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/22 17:27:57 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,11 @@ typedef struct		s_win
 	int				bytes;
 }					t_win;
 
-//struct t_win		w;
-
 struct termios		default_term;
 struct winsize		win_size;
 int					g_win_size;
 char				*g_line;
+char				*g_quote_line;
 
 typedef enum
 {
@@ -105,7 +104,7 @@ char				*read_line(t_win *w);
 int					split_line(char *line, t_env **env_info, int status,
 					char ***args);
 char				**split_command(char *line);
-char				*parser(char *line, t_win *w);
+char				*parse_quotes(char * line, t_win *w);
 char				*parse_dollar(char *line, int i, t_env *env_info);
 char				*get_env_var(char *var, t_env *env_info);
 int					count_args(char *str);
@@ -124,25 +123,25 @@ int					ft_unsetenv(t_env *env_info, char *var);
 int					ft_help(void);
 
 /*
-**						== Cursor movement ==
+**						==[ Cursor movement ]==
 */
 
 void				left_arrow(char *buf, t_win *w);
 void				right_arrow(char *buf, t_win *w);
-void				move_left(t_win *w);
-void				move_right(t_win *w);
 void				up_arrow(char *buf, t_win *w);
 void				down_arrow(char *buf, t_win *w);
+void				move_left(t_win *w);
+void				move_right(t_win *w);
 
 /*
-**						 == Line edition ==
+**						  ==[ Line edition ]==
 */
 
 char				*add_char(char *buf, t_win *w);
 char				*del_char(char *buf, t_win *w);
 
 /*
-**						    == Errors ==
+**						    ==[ Errors ]==
 */
 
 void				error_exit(t_command command_type, t_err_exit error_type);
@@ -152,10 +151,10 @@ int					signal_error(t_command command_type, t_sig_err error_type,
 					char *arg);
 
 /*
-**						    == Sugnals ==
+**						    ==[ Signals ]==
 */
 
-void				manage_signal(void);
-int					singleton_prompt(int data);
+void				manage_signals(void);
+int					prompt_flag(int data);
 
 #endif

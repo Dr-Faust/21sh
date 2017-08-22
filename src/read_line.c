@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/18 21:19:37 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/22 17:28:00 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	check_print_position(char *buf, t_win *w)
 		while (g_line[w->index])
 			move_right(w);
 		ft_printf("\n");
-		g_line = ft_strjoin_free_first(g_line, "\n\0");
+		g_line = ft_strjoin_free_first(g_line, "\0");
 		return (1);
 	}
 	else if (w->index < (int)ft_strlen(g_line))
@@ -72,30 +72,39 @@ static void	read_buf(t_win *w, char *buf)
 	}
 }
 
-char		*read_line(t_win *w)
+static void	init_struct(t_win *w)
 {
-	char		*buffer;
-	char		buf[8];
-
+	if (!(g_line = ft_strnew(1)))
+		error_exit(sh, mem_alloc_err);
 	if (!(w->bytes_str = ft_strnew(1)))
 		error_exit(sh, mem_alloc_err);
 	w->position = w->prompt_len;
 	w->index = 0;
 	w->flag = 0;
 	w->i = 0;
+}
+
+char		*read_line(t_win *w)
+{
+	char		buf[8];
+	char		*ret;
+
+	init_struct(w);
 	while (42)
 	{
-	//	ft_printf("size = %d\n", g_win_size);
-	//	ft_printf("here\n");
 		ioctl(0, TIOCGWINSZ, &win_size);
 		g_win_size = win_size.ws_col;
-		singleton_prompt(1);
-		manage_signal();
+		prompt_flag(42);
+		manage_signals();
 		read_buf(w, buf);
 		parse_keys(buf, w);
-		buffer = ft_strdup(g_line);
-		singleton_prompt(2);
+		prompt_flag(21);
 		if (w->flag)
-			return (buffer);
+		{
+			ret = ft_strdup(g_line);
+			ft_memdel((void **)&g_line);
+			ft_memdel((void **)&w->bytes_str);
+			return (ret);
+		}
 	}
 }

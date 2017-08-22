@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:33:54 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/17 14:36:05 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/22 15:49:18 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	set_terminal(void)
 	struct termios	term;
 	char			*terminal;
 
-	tcgetattr(STDIN_FILENO, &default_term);
 	tcgetattr(STDIN_FILENO, &term);
 	term.c_lflag &= ~(ECHO | ICANON);
 	term.c_lflag |= ISIG | TOSTOP;

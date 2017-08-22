@@ -12,17 +12,6 @@
 
 #include "minishell.h"
 
-int			valid_quote(char *s, int i, char quote)
-{
-	while (s[i])
-	{
-		if (s[i] == quote)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
 int			count_args(char *str)
 {
 	int		i;

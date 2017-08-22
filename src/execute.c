@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 14:55:14 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/16 17:31:13 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/22 15:39:29 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,20 +93,15 @@ static int	treat_path(char **args, t_env *env_info)
 
 int			execute(char **args, t_env **env_info)
 {
-	if (args[0] == NULL)
-	{
-		ft_printf("here\n");
-		return (1);
-	}
 	if (!(ft_strcmp(args[0], "echo")))
 		return (ft_echo(args));
-	if (!ft_strcmp(args[0], "cd"))
+	else if (!ft_strcmp(args[0], "cd"))
 		return (ft_cd(args, env_info));
-	if (!ft_strcmp(args[0], "env"))
+	else if (!ft_strcmp(args[0], "env"))
 		return (ft_env(*env_info));
-	if (!ft_strcmp(args[0], "setenv"))
+	else if (!ft_strcmp(args[0], "setenv"))
 		return (ft_setenv(env_info, args[1], args[2], args));
-	if (!ft_strcmp(args[0], "unsetenv"))
+	else if (!ft_strcmp(args[0], "unsetenv"))
 		return (ft_unsetenv(*env_info, args[1]));
 	else if (!ft_strcmp(args[0], "help"))
 		return (ft_help());
@@ -116,5 +111,7 @@ int			execute(char **args, t_env **env_info)
 		tgetent(0, getenv("TERM"));
 		return (0);
 	}
+	else if (!ft_strcmp(args[0], "cat"))
+		tcsetattr(STDIN_FILENO, TCSADRAIN, &default_term);
 	return (treat_path(args, *env_info));
 }

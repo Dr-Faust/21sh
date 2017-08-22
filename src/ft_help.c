@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/18 16:41:19 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/14 15:32:35 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/22 15:36:27 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_help(void)
 	{"echo", "cd", "setenv", "unsetenv", "env", "help", "exit", 0};
 
 	i = -1;
-	ft_printf("\n%s%s%s%s%s\n", B_RED, "opodolia's ", B_BLUE, "minishell", DEF);
+	ft_printf("%s%s%s%s%s\n", B_RED, "opodolia's ", B_BLUE, "minishell", DEF);
 	ft_printf("Type program name and argument, and hit enter.\n");
 	ft_printf("The following are built in:\n");
 	while (str[++i])

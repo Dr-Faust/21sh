@@ -6,41 +6,49 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 16:01:08 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/18 21:10:26 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/22 16:23:32 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int			singleton_prompt(int flag)
+int			prompt_flag(int flag)
 {
-	static int    prompt;
+	static int	prompt;
 
+//	ft_printf("flag = %d\n", flag);
 	if (flag)
 		prompt = flag;
-//	ft_printf("flag = %d\n", flag);
 //	ft_printf("prompt = %d\n", prompt);
 	return (prompt);
 }
 
+static void	handle_sigint(int *signal)
+{
+	int		prompt;
+
+	prompt = prompt_flag(0);
+	if (prompt == 42)
+	{
+		ft_putchar('\n');
+		write_prompt();
+	}
+	*signal = 0;
+	ft_memdel((void **)&g_line);
+	if (!(g_line = ft_strnew(1)))
+		error_exit(sh, mem_alloc_err);
+	if (g_quote_line)
+	{
+		ft_memdel((void **)&g_quote_line);
+		if (!(g_quote_line = ft_strnew(1)))
+			error_exit(sh, mem_alloc_err);
+	}
+}
+
 static void	signal_handler(int signal)
 {
-	int    prompt;
-
-	prompt = singleton_prompt(0);
 	if (signal == SIGINT)
-	{
-	//	ft_printf("here\n");
-		if (prompt == 1)
-		{
-			ft_putchar('\n');
-			write_prompt();
-		}
-	//	kill(getpid(), SIGINT);
-		signal = 0;
-		ft_memdel((void **)&g_line);
-		g_line = ft_strnew(1);
-	}
+		handle_sigint(&signal);
 	else if (signal == SIGWINCH)
 	{
 		ioctl(0, TIOCGWINSZ, &win_size);
@@ -49,7 +57,7 @@ static void	signal_handler(int signal)
 	return ;
 }
 
-void		 manage_signal(void)
+void		manage_signals(void)
 {
 	struct sigaction	signal;
 
@@ -62,5 +70,4 @@ void		 manage_signal(void)
 //		signal_error(sh, err_sys, "SIGQUIT");
 	else if (sigaction(SIGWINCH, &signal, 0) < 0)
 		signal_error(sh, err_sys, "SIGWINCH");
-//	ft_printf("flag_0 = %d\n", g_sig_flag);
 }

@@ -3,6 +3,7 @@
 **Caution! This project fully works on MacOS only. There is no garanty that it will work correctly on any other UNIX/Linux system.**
 
 Extended version of minishell.
+
 ***The project must not leak in any manner. Memory management is crucial.***
 
 Within the mandatory part, we were allowed to use only the following libc functions:

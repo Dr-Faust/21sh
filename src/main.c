@@ -32,7 +32,6 @@ static void	minishell(t_env **env_info)
 		status = split_line(&(line[0]), env_info, status, args);
 		ft_memdel((void **)&args);
 		ft_memdel((void **)&line);
-	//	ft_putchar('\n');
 	}
 }
 
@@ -47,5 +46,6 @@ int			main(void)
 //	ft_putstr("\x1B[?7h");
 	env_info = get_env_info(environ);
 	minishell(&env_info);
+	clean_env_info(&env_info);
 	return (EXIT_SUCCESS);
 }

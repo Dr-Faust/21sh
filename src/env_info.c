@@ -12,6 +12,17 @@
 
 #include "minishell.h"
 
+void		clean_env_info(t_env **env_info)
+{
+	if (!(*env_info))
+		return ;
+	if ((*env_info)->next != NULL)
+		clean_env_info(&(*env_info)->next);
+	ft_memdel((void **)&((*env_info)->content));
+	ft_memdel((void **)&((*env_info)->name));
+	ft_memdel((void **)&(*env_info));
+}
+
 static void	set_clicolor(t_env **lst)
 {
 	if (*lst)
@@ -26,7 +37,7 @@ static void	set_clicolor(t_env **lst)
 	}
 }
 
-static void	create_lst(t_env **lst, char *arr)
+static void	create_lst(t_env **lst, char *arr, int *color_flag)
 {
 	if (!(*lst = (t_env *)malloc(sizeof(t_env))))
 		error_exit(sh, mem_alloc_err);
@@ -34,26 +45,31 @@ static void	create_lst(t_env **lst, char *arr)
 	(*lst)->content = ft_strdup(ft_strchr(arr, '=') + 1);
 	if (!ft_strcmp((*lst)->name, "SHLVL"))
 		(*lst)->content[0] += 1;
+	if (!ft_strcmp((*lst)->name, "CLICOLOR"))
+		*color_flag = 0;
 	(*lst)->next = 0;
 }
 
-static void	add_lst(t_env **lst, char *arr)
+static void	add_lst(t_env **lst, char *arr, int *color_flag)
 {
 	if (*lst)
-		add_lst(&((*lst)->next), arr);
+		add_lst(&((*lst)->next), arr, color_flag);
 	else
-		create_lst(lst, arr);
+		create_lst(lst, arr, color_flag);
 }
 
 t_env		*get_env_info(char **arr)
 {
 	t_env	*env_info;
 	int		i;
+	int		color_flag;
 
+	color_flag = 1;
 	i = -1;
 	env_info = 0;
 	while (arr[++i])
-		add_lst(&env_info, arr[i]);
-	set_clicolor(&env_info);
+		add_lst(&env_info, arr[i], &color_flag);
+	if (color_flag)
+		set_clicolor(&env_info);
 	return (env_info);
 }

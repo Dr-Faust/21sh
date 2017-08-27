@@ -97,6 +97,7 @@ typedef enum
 
 void				set_terminal();
 t_env				*get_env_info(char **arr);
+void				clean_env_info(t_env **env_info);
 int					check_prompt(int data);
 int					write_prompt(void);
 char				*read_line(void);

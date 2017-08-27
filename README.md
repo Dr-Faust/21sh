@@ -1,11 +1,11 @@
 # 21sh
 
-OSX Status: ![Build Status](https://travis-ci.org/m600x/minishell.svg?branch=master)
+**Caution! This project fully works on MacOS only. There is no garanty that it will work correctly on any other UNIX/Linux system.**
 
-As the name suggest, this project aim to produce a functional miniature version of a shell like bash, zsh and so on.  
+Extended version of minishell.
 ***The project must not leak in any manner. Memory management is crucial.***
 
-Authorized functions are restricted to these for the core functions:
+Within the mandatory part, we were allowed to use only the following libc functions:
  - *malloc, free*
  - *access*
  - *open, close, read, write*
@@ -14,31 +14,44 @@ Authorized functions are restricted to these for the core functions:
  - *stat, lstat, fstat*
  - *fork, execve*
  - *wait, waitpid, wait3, wait4*
- - *signal, kill*
+ - *signal, sigaction, kill*
  - *exit*
+ - *pipe*
+ - *dup, dup2*
+ - *isatty, ttyname, ttyslot*
+ - *ioctl*
+ - *getenv*
+ - *tcsetattr, tcgetattr*
+ - *tgetent, tgetflag, tgetnum, tgetstr, tgoto, tpurs*
 
-<p align="center">CORE FUNCTIONS STATUS</p>
+## Built in functions
 
-|Functions|Implemented|Leaks|Arguments|Comments
-|:-:|:-:|:-:|:-:|:--
-|exit|Done|No|[exit]<br>[exit 42]|Exit minishell<br>Exit with code 42
-|cd|Done|No|[cd]<br>[cd -]<br>[cd folder]<br>[cd .././folder]<br>[cd ~/folder]|Return to the home folder<br>Go to previous folder<br>Go to folder from current<br>Complex dots solved<br>Retrieve home path
-|pwd|Done|No|[pwd]|Give the current directory
-|echo|Done|No|[echo foo]<br>[echo "foo"]<br>[echo $var]|Echo standard<br>Echo foo as it's writed<br>Echo the var from env
-|env|Done|No|[env -i]<br>[env -u var]<br>[env -v]|Empty the env<br>Unset a var<br>Verbose mode
-|setenv|Done|No|[setenv foo=bar]|Add the var to the env
-|unsetenv|Done|No|[unsetenv foo]|Remove the var from env
-|fork()|Done|No|-|
+|Function|Implemented|Arguments|Comments
+|:-:|:-:|:-:|:--
+|exit|Done|[exit]|Exit minishell
+|cd|Done|[cd], [cd ~]<br>[cd -]<br>[cd folder]<br>[cd .././folder]<br>[cd ~/folder]|Return to the home folder<br>Go to previous folder<br>Go to folder from current<br>Complex dots solved<br>Retrieve home path
+|pwd|Done|[pwd]|Give the current directory path
+|echo|Done|[echo foo]<br>[echo "foo"]<br>[echo $var]|Echo standard<br>Echo foo as it's writed<br>Echo the var from env
+|env|Done|[env]|Shows environment info
+|setenv|Done|[setenv foo bar]|Add the var to the env
+|unsetenv|Done|[unsetenv foo]|Remove the var from env
 
-<p align="center">EXTRA FEATURE</p>
+## Line Editing
 
-|Functions|Status|Comments
-|:--|:-:|:--
-|Edition|Done|Command line edition (Arrows, Del, Return, Home and End)
-|Move per word|Done|Move per word through the command with Alt+Left or Alt+Right
-|Commands history|Done|Put back the previously executed commands
-|Chain commands with ;|Done|Chained as [cd ; ls ; cd / ; ls -l]
-|Autocompletion|Done|Browse the folder in the command and display the selection
-|Execution rights in path|Done|Check if the file is a binary and if the user can access it
-|Tilde support|Done|Solve a path input in the command with tilde or dots support
-|2 SIGINT (Ctrl + C)<br>3 SIGQUIT (Ctrl + D)<br>18 SIGTSTP (Ctrl + Z)<br>19 SIGCONT (fg)<br>28 SIGWINCH (Win resize)|Done<br>Done<br>Done<br>Done<br>Done|Interrupt minishell<br>Quit minishell after cleaning the memory<br>Pause minishell and put it in the background<br>Resume minishell and put it in the foreground<br>Retrieve the new window size upon resizing
+Key|Comments|
+:-:|:--
+<kbd>Cmd</kbd>+<kbd>C</kbd><br><kbd>Cmd</kbd>+<kbd>X</kbd><br><kbd>Cmd</kbd>+<kbd>V</kbd>|Copy<br>Cut<br>Paste
+<kbd><</kbd><br><kbd>></kbd>|Move the cursor left / right one character.
+<kbd>Alt</kbd>+<kbd><</kbd><br><kbd>Alt</kbd>+<kbd>></kbd>|Move the cursor per words.
+<kbd>Alt</kbd>+<kbd>^</kbd><br><kbd>Alt</kbd>+<kbd>v</kbd>|Move the currsor per line.
+<kbd>Home</kbd><br><kbd>End</kbd>|Move the cursor to the beginning / end of a line.
+
+## Signals management
+
+|Signal|Key|Comments
+|:-:|:-:|:--
+|SIGINT|<kbd>Ctrl</kbd>+<kbd>C</kbd>|Interrupt 21sh
+|SIGQUIT|<kbd>Ctrl</kbd>+<kbd>D</kbd>|Quit 21sh after cleaning the memory
+|SIGTSTP|<kbd>Ctrl</kbd>+<kbd>Z</kbd>|Pauses process running in 21sh and puts it in the background
+|SIGCONT|[fg]|Resumes suspended process and puts it in the foreground
+|SIGWINCH|win resize|Retrieve the new window size upon resizing

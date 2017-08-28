@@ -6,7 +6,7 @@
 #    By: opodolia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/20 18:23:48 by opodolia          #+#    #+#              #
-#    Updated: 2017/08/14 14:28:37 by opodolia         ###   ########.fr        #
+#    Updated: 2017/08/28 16:44:38 by opodolia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ L_FILES = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		  ft_strsplit.c ft_split_del.c ft_strrev.c ft_strchr_index.c \
 		  ft_strndup.c ft_isspace.c ft_put_my_char.c ft_wstrequ.c\
 		  ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
-		  ft_lstmap.c ft_lstsize.c ft_lstcount.c ft_lstrev.c \
+		  ft_lstmap.c ft_lstsize.c ft_lstcount.c ft_lstrev.c ft_isunprint.c \
 		  ft_atoi.c ft_itoa.c ft_uitoa_base.c ft_ftoa_base.c ft_isalpha.c \
 		  ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_toupper.c \
 		  ft_tolower.c ft_quicksort.c ft_swap.c ft_sqrt.c ft_ld_intpower.c \

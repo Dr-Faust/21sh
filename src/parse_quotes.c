@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 12:02:16 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/22 20:31:44 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/28 15:03:26 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ static void	print_quotes(int *flag, int quote)
 			ft_printf("%s%s%s", GREEN, "dquote> ", DEF);
 		}
 		str = read_line();
-	//	ft_printf("str = %s\n", str);
 		g_info->quote_line = ft_strjoin_free_first(g_info->quote_line, str);
 		j = -1;
-	//	ft_printf("line = %s\n", g_info->quote_line);
 		while (str[++j])
 			if (str[j] == quote || !(ft_strcmp(g_info->quote_line, str)))
 				*flag = 0;
@@ -69,7 +67,8 @@ static void	check_quotes(void)
 			print_quotes(&flag, g_info->quote_line[i]);
 		}
 		else if ((g_info->quote_line[i] == 39 || g_info->quote_line[i] == 34) &&
-				valid_quote(g_info->quote_line, i + 1, g_info->quote_line[i]) != -1)
+				valid_quote(g_info->quote_line, i + 1,
+				g_info->quote_line[i]) != -1)
 		{
 			i = valid_quote(g_info->quote_line, i + 1, g_info->quote_line[i]);
 			i++;

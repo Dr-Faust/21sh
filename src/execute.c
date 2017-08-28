@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/10 14:55:14 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/22 20:39:28 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/28 19:15:52 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,14 @@ static int	treat_path(char **args, t_env *env_info)
 		}
 		launch(args, env_info, path);
 	}
+	if (!ft_strcmp(args[0], "cat"))
+		ft_putchar('\n');
 	return (1);
 }
 
 int			execute(char **args, t_env **env_info)
 {
-	if (!(ft_strcmp(args[0], "echo")))
+	if (!ft_strcmp(args[0], "echo"))
 		return (ft_echo(args));
 	else if (!ft_strcmp(args[0], "cd"))
 		return (ft_cd(args, env_info));

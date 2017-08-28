@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/22 20:40:09 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/28 19:15:56 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define END				'F'
 # define DELETE				'~'
 # define BACKSPACE			127
+# define CTRL_D				4
 
 typedef struct		s_env
 {

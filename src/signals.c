@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 16:01:08 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/22 20:39:31 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/28 19:22:12 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ static void	handle_sigint(int *signal)
 	int		prompt;
 
 	prompt = prompt_flag(0);
-	ft_putchar('\n');
 	if (prompt == 42)
+	{
+		ft_putchar('\n');
 		g_info->prompt_len = write_prompt();
+	}
 	*signal = 0;
 	ft_memdel((void **)&g_info->line);
 	if (!(g_info->line = ft_strnew(1)))
@@ -62,18 +64,18 @@ static void	signal_handler(int signal)
 void		manage_signals(void)
 {
 	struct sigaction	signal;
-		
+
 	ft_bzero((void*)&signal, sizeof(struct sigaction));
 	sigemptyset(&signal.sa_mask);
 	signal.sa_handler = SIG_IGN;
+	if (sigaction(SIGQUIT, &signal, 0) < 0)
+		signal_error(sh, err_sys, "SIGQUIT");
 	if (sigaction(SIGTSTP, &signal, 0) < 0)
 		signal_error(sh, err_sys, "SIGTSTP");
 	signal.sa_handler = signal_handler;
 	signal.sa_flags = SA_RESTART;
 	if (sigaction(SIGINT, &signal, 0) < 0)
 		signal_error(sh, err_sys, "SIGINT");
-//	else if (signal(SIGQUIT, signal_handle) == SIG_ERR)
-//		signal_error(sh, err_sys, "SIGQUIT");
 	else if (sigaction(SIGWINCH, &signal, 0) < 0)
 		signal_error(sh, err_sys, "SIGWINCH");
 }

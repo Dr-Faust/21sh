@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/22 20:39:32 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/28 17:39:51 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,13 @@ static void	parse_keys(char *buf, int *flag)
 	else if ((buf[0] == BACKSPACE && g_info->line_index > 0) ||
 			(buf[3] == DELETE && g_info->line[g_info->line_index]))
 		g_info->line = del_char(buf);
-	else if (buf[0] != BACKSPACE && buf[3] != DELETE && !ft_strchr(buf, '\033'))
+	else if (buf[0] == CTRL_D && !g_info->line[0])
+	{
+		*flag = 1;
+		g_info->line = ft_strjoin_free_first(g_info->line, "exit");
+		ft_putchar('\n');
+	}
+	else if (buf[0] != BACKSPACE && buf[3] != DELETE && !ft_isunprint(buf[0]))
 		*flag = check_print_position(buf);
 }
 

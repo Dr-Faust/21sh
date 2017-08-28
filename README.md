@@ -53,7 +53,7 @@ Key|Comments|
 |Signal|Key|Comments
 |:-:|:-:|:--
 |SIGINT|<kbd>Ctrl</kbd>+<kbd>C</kbd>|Interrupt 21sh
-|SIGQUIT|<kbd>Ctrl</kbd>+<kbd>\</kbd>|Quit 21sh
+|SIGQUIT|<kbd>Ctrl</kbd>+<kbd>\\</kbd>|Quit 21sh
 |SIGTSTP|<kbd>Ctrl</kbd>+<kbd>Z</kbd>|Pauses process running in 21sh and puts it in the background
 |SIGCONT|[fg]|Resumes suspended process and puts it in the foreground
 |SIGWINCH|win resize|Retrieve the new window size upon resizing

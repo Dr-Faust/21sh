@@ -23,7 +23,7 @@ Within the mandatory part, we were allowed to use only the following libc functi
  - *ioctl*
  - *getenv*
  - *tcsetattr, tcgetattr*
- - *tgetent, tgetflag, tgetnum, tgetstr, tgoto, tpurs*
+ - *tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs*
 
 ## Built in functions
 

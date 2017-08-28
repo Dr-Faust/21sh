@@ -42,11 +42,11 @@ Within the mandatory part, we were allowed to use only the following libc functi
 Key|Comments|
 :-:|:--
 <kbd>Cmd</kbd>+<kbd>C</kbd><br><kbd>Cmd</kbd>+<kbd>X</kbd><br><kbd>Cmd</kbd>+<kbd>V</kbd>|Copy<br>Cut<br>Paste
-<kbd><</kbd><br><kbd>></kbd>|Move the cursor left / right one character.
-<kbd>Alt</kbd>+<kbd><</kbd><br><kbd>Alt</kbd>+<kbd>></kbd>|Move the cursor per words.
-<kbd>Alt</kbd>+<kbd>^</kbd><br><kbd>Alt</kbd>+<kbd>v</kbd>|Move the currsor per line.
-<kbd>Home</kbd><br><kbd>End</kbd>|Move the cursor to the beginning / end of a line.
-<kbd>Ctrl</kbd>+<kbd>D</kbd>|Exit 21sh after clearing the memory.
+<kbd><</kbd><br><kbd>></kbd>|Move the cursor left / right one character
+<kbd>Alt</kbd>+<kbd><</kbd><br><kbd>Alt</kbd>+<kbd>></kbd>|Move the cursor per words
+<kbd>Alt</kbd>+<kbd>^</kbd><br><kbd>Alt</kbd>+<kbd>v</kbd>|Move the currsor per line
+<kbd>Home</kbd><br><kbd>End</kbd>|Move the cursor to the beginning / end of a line
+<kbd>Ctrl</kbd>+<kbd>D</kbd>|Exit 21sh after clearing the memory
 
 ## Signals management
 

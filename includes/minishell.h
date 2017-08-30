@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/28 19:15:56 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/30 17:18:53 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ typedef struct		s_env
 	char			*content;
 	struct s_env	*next;
 }					t_env;
+
+typedef struct		s_hist
+{
+	int				id;
+	char			*line;
+	char			*bytes_str;
+	struct s_hist	*next;
+}					t_hist;
 
 typedef struct		s_glob_info
 {
@@ -101,7 +109,7 @@ t_env				*get_env_info(char **arr);
 void				clean_env_info(t_env **env_info);
 int					check_prompt(int data);
 int					write_prompt(void);
-char				*read_line(void);
+char				*read_line(t_hist **hist);
 int					split_line(char *line, t_env **env_info, int status,
 					char ***args);
 char				**split_command(char *line);
@@ -157,5 +165,11 @@ int					signal_error(t_command command_type, t_sig_err error_type,
 
 void				manage_signals(void);
 int					prompt_flag(int data);
+
+/*
+**						    ==[ History ]==
+*/
+
+void				add_to_history(t_hist *hist);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 17:56:13 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/28 17:39:51 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/08/30 17:18:49 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void	init_struct(void)
 	g_info->bytes_index = 0;
 }
 
-char		*read_line(void)
+char		*read_line(t_hist **hist)
 {
 	char		buf[8];
 	char		*ret;
@@ -112,6 +112,7 @@ char		*read_line(void)
 		if (flag)
 		{
 			ret = ft_strdup(g_info->line);
+			//add_to_history(hist);
 			ft_memdel((void **)&g_info->line);
 			ft_memdel((void **)&g_info->bytes_str);
 			return (ret);

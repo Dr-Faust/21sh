@@ -19,7 +19,7 @@ static int	check_print_position(char *buf)
 		while (g_info->line[g_info->line_index])
 			move_right();
 		ft_printf("\n");
-		g_info->line = ft_strjoin_free_first(g_info->line, "\0");
+		g_info->line = ft_strjoin_free_first(g_info->line, "\n\0");
 		return (1);
 	}
 	else if (g_info->line_index < (int)ft_strlen(g_info->line))
@@ -37,14 +37,14 @@ static int	check_print_position(char *buf)
 	return (0);
 }
 
-static void	parse_keys(char *buf, int *flag)
+static void	parse_keys(char *buf, int *flag, t_hist **hist)
 {
 	if (buf[2] == LEFT || buf[3] == LEFT || buf[2] == START)
 		left_arrow(buf);
 	else if (buf[2] == RIGHT || buf[3] == RIGHT || buf[2] == END)
 		right_arrow(buf);
 	else if (buf[2] == UP || buf[3] == UP)
-		up_arrow(buf);
+		up_arrow(buf, hist);
 	else if (buf[2] == DOWN || buf[3] == DOWN)
 		down_arrow(buf);
 	else if ((buf[0] == BACKSPACE && g_info->line_index > 0) ||
@@ -87,6 +87,9 @@ static void	init_struct(void)
 	if (!g_info->bytes_str)
 		if (!(g_info->bytes_str = ft_strnew(1)))
 			error_exit(sh, mem_alloc_err);
+	if (!g_info->bytes_quote_str)
+		if (!(g_info->bytes_quote_str = ft_strnew(1)))
+			error_exit(sh, mem_alloc_err);
 	g_info->position = g_info->prompt_len;
 	g_info->line_index = 0;
 	g_info->bytes_index = 0;
@@ -107,12 +110,12 @@ char		*read_line(t_hist **hist)
 		prompt_flag(42);
 		manage_signals();
 		read_buf(buf);
-		parse_keys(buf, &flag);
+		parse_keys(buf, &flag, hist);
 		prompt_flag(21);
 		if (flag)
 		{
 			ret = ft_strdup(g_info->line);
-			//add_to_history(hist);
+			g_info->bytes_quote_str = ft_strjoin_free_first(g_info->bytes_quote_str, g_info->bytes_str);
 			ft_memdel((void **)&g_info->line);
 			ft_memdel((void **)&g_info->bytes_str);
 			return (ret);

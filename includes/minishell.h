@@ -59,12 +59,14 @@ typedef struct		s_glob_info
 	int				prompt_len;
 	int				win_size;
 	char			*line;
-	char			*quote_line;
 	char			*bytes_str;
+	char			*quote_line;
+	char			*bytes_quote_str;
 	int				bytes;
 	int				position;
 	int				line_index;
 	int				bytes_index;
+	int				hist_counter;
 }					t_glob_info;
 
 extern t_glob_info	*g_info;
@@ -113,7 +115,7 @@ char				*read_line(t_hist **hist);
 int					split_line(char *line, t_env **env_info, int status,
 					char ***args);
 char				**split_command(char *line);
-char				*parse_quotes(char *line);
+char				*parse_quotes(char *line, t_hist **hist);
 char				*parse_dollar(char *line, int i, t_env *env_info);
 char				*get_env_var(char *var, t_env *env_info);
 int					count_args(char *str);
@@ -137,7 +139,7 @@ int					ft_help(void);
 
 void				left_arrow(char *buf);
 void				right_arrow(char *buf);
-void				up_arrow(char *buf);
+void				up_arrow(char *buf, t_hist **hist);
 void				down_arrow(char *buf);
 void				move_left(void);
 void				move_right(void);
@@ -170,6 +172,7 @@ int					prompt_flag(int data);
 **						    ==[ History ]==
 */
 
-void				add_to_history(t_hist *hist);
+void				add_to_history(char *line, t_hist **hist, int id);
+void				print_prev_hist(t_hist *hist);
 
 #endif

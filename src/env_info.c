@@ -16,7 +16,7 @@ void		clean_env_info(t_env **env_info)
 {
 	if (!(*env_info))
 		return ;
-	if ((*env_info)->next != NULL)
+	if ((*env_info)->next != 0)
 		clean_env_info(&(*env_info)->next);
 	ft_memdel((void **)&((*env_info)->content));
 	ft_memdel((void **)&((*env_info)->name));

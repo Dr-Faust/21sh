@@ -12,42 +12,42 @@
 
 #include "minishell.h"
 
-static void	create_history(t_hist *hist)
+void		print_prev_hist(t_hist *hist)
 {
-	if (!(hist = (t_hist *)malloc(sizeof(t_hist))))
+	t_hist	*prev;
+
+	while (g_info->line_index > 0)
+		move_left();
+	tputs(tgetstr("cd", 0), 1, &ft_put_my_char);
+	prev = hist;
+	while (prev->id != g_info->hist_counter)
+		prev = prev->next;
+	g_info->hist_counter--;
+	ft_memdel((void **)&g_info->line);
+	ft_memdel((void **)&g_info->bytes_str);
+	g_info->line = ft_strdup(prev->line);
+	g_info->bytes_str = ft_strdup(prev->bytes_str);
+	g_info->bytes_index = ft_strlen(g_info->bytes_str);
+	g_info->position = g_info->prompt_len + g_info->bytes_index;
+	g_info->line_index = g_info->bytes_index;
+	ft_printf("%s", g_info->line);
+}
+
+static void	create_history(char *line, t_hist **hist, int id)
+{
+	if (!(*hist = (t_hist *)malloc(sizeof(t_hist))))
 		error_exit(sh, mem_alloc_err);
-
+	(*hist)->id = id;
+	(*hist)->line = ft_strdup(line);
+	(*hist)->bytes_str = ft_strdup(g_info->bytes_quote_str);
+	(*hist)->next = 0;
+	g_info->hist_counter++;
 }
 
-void		add_to_history(t_hist *hist)
-{
-		
-	if (hist)
-		add_to_history(&(hist->next));
+void		add_to_history(char *line, t_hist **hist, int id)
+{	
+	if (*hist)
+		add_to_history(line, &((*hist)->next), ++id);
 	else
-		create_history(hist);
+		create_history(line, hist, id);
 }
-
-t_hist	*p_hist;
-	t_hist	*new;
-	int		last_id;
-
-	if (!(s->rcmd))
-		return (s);
-	p_hist = s->history;
-	last_id = p_hist->id;
-	if (last_id == 0)
-	{
-		p_hist->cmd = ft_strdup(s->rcmd);
-		p_hist->id = 1;
-		s->index = 1;
-		return (s);
-	}
-	if (!(new = (t_hist *)malloc(sizeof(t_hist))))
-		return (NULL);
-	new->id = last_id + 1;
-	new->cmd = ft_strdup(s->rcmd);
-	new->next = p_hist;
-	s->history = new;
-	s->index = new->id;
-	return (s);

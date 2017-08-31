@@ -12,15 +12,21 @@
 
 #include "minishell.h"
 
-void		up_arrow(char *buf)
+void		up_arrow(char *buf, t_hist **hist)
 {
 	int		i;
 
 	i = 0;
+//	ft_printf("id = %d\n", (*hist)->id);
 	if (buf[3] == UP && g_info->position >= g_info->win_size +
 		g_info->prompt_len && g_info->line[g_info->line_index - 1])
 		while (i++ < g_info->win_size)
 			move_left();
+	else if (buf[2] == UP && *hist && g_info->hist_counter > 0)
+	{
+//		ft_printf("here\n");
+		print_prev_hist(*hist);
+	}
 }
 
 void		down_arrow(char *buf)

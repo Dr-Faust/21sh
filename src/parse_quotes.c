@@ -12,24 +12,29 @@
 
 #include "minishell.h"
 
-static void	print_quotes(int *flag, int quote)
+static void	print_quote_prompt(int quote)
+{
+	if (quote == 39)
+	{
+		g_info->prompt_len = 7;
+		ft_printf("%s%s%s", YELLOW, "quote> ", DEF);
+	}
+	else if (quote == 34)
+	{
+		g_info->prompt_len = 8;
+		ft_printf("%s%s%s", GREEN, "dquote> ", DEF);
+	}
+}
+
+static void	print_quotes(int *flag, int quote, t_hist **hist)
 {
 	int		j;
 	char	*str;
 
 	while (*flag)
 	{
-		if (quote == 39)
-		{
-			g_info->prompt_len = 7;
-			ft_printf("%s%s%s", YELLOW, "quote> ", DEF);
-		}
-		else if (quote == 34)
-		{
-			g_info->prompt_len = 8;
-			ft_printf("%s%s%s", GREEN, "dquote> ", DEF);
-		}
-		str = read_line();
+		print_quote_prompt(quote);
+		str = read_line(hist);
 		g_info->quote_line = ft_strjoin_free_first(g_info->quote_line, str);
 		j = -1;
 		while (str[++j])
@@ -52,7 +57,7 @@ int			valid_quote(char *s, int i, char quote)
 	return (-1);
 }
 
-static void	check_quotes(void)
+static void	check_quotes(t_hist **hist)
 {
 	int		i;
 	int		flag;
@@ -64,7 +69,7 @@ static void	check_quotes(void)
 			valid_quote(g_info->quote_line, i + 1, g_info->quote_line[i]) == -1)
 		{
 			flag = 1;
-			print_quotes(&flag, g_info->quote_line[i]);
+			print_quotes(&flag, g_info->quote_line[i], hist);
 		}
 		else if ((g_info->quote_line[i] == 39 || g_info->quote_line[i] == 34) &&
 				valid_quote(g_info->quote_line, i + 1,
@@ -78,17 +83,14 @@ static void	check_quotes(void)
 	}
 }
 
-char		*parse_quotes(char *line)
+char		*parse_quotes(char *line, t_hist **hist)
 {
 	char	*ret;
 
 	g_info->quote_line = line;
-	check_quotes();
-//	if (g_info->quote_line[ft_strlen(g_info->quote_line) - 2] == '\n')
-//	{
-//		ft_printf("here\n");
-//		g_info->quote_line[ft_strlen(g_info->quote_line) - 2] = '\0';
-//	}
+	check_quotes(hist);
+	if (g_info->quote_line[ft_strlen(g_info->quote_line) - 1] == '\n')
+		g_info->quote_line[ft_strlen(g_info->quote_line) - 1] = '\0';
 	ret = ft_strdup(g_info->quote_line);
 	ft_memdel((void **)&g_info->quote_line);
 	return (ret);

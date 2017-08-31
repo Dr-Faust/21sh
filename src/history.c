@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void		print_prev_hist(t_hist *hist)
+void		print_prev_hist(t_hist *hist, int *hist_counter)
 {
 	t_hist	*prev;
 
@@ -20,9 +20,9 @@ void		print_prev_hist(t_hist *hist)
 		move_left();
 	tputs(tgetstr("cd", 0), 1, &ft_put_my_char);
 	prev = hist;
-	while (prev->id != g_info->hist_counter)
+	while (prev->id != *hist_counter)
 		prev = prev->next;
-	g_info->hist_counter--;
+	*hist_counter = *hist_counter - 1;
 	ft_memdel((void **)&g_info->line);
 	ft_memdel((void **)&g_info->bytes_str);
 	g_info->line = ft_strdup(prev->line);

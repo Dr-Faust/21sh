@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void		up_arrow(char *buf, t_hist **hist)
+void		up_arrow(char *buf, t_hist **hist, int *hist_counter)
 {
 	int		i;
 
@@ -22,10 +22,10 @@ void		up_arrow(char *buf, t_hist **hist)
 		g_info->prompt_len && g_info->line[g_info->line_index - 1])
 		while (i++ < g_info->win_size)
 			move_left();
-	else if (buf[2] == UP && *hist && g_info->hist_counter > 0)
+	else if (buf[2] == UP && *hist && *hist_counter > 0)
 	{
 //		ft_printf("here\n");
-		print_prev_hist(*hist);
+		print_prev_hist(*hist, hist_counter);
 	}
 }
 

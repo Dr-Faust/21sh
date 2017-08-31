@@ -139,7 +139,7 @@ int					ft_help(void);
 
 void				left_arrow(char *buf);
 void				right_arrow(char *buf);
-void				up_arrow(char *buf, t_hist **hist);
+void				up_arrow(char *buf, t_hist **hist, int *hist_counter);
 void				down_arrow(char *buf);
 void				move_left(void);
 void				move_right(void);
@@ -173,6 +173,6 @@ int					prompt_flag(int data);
 */
 
 void				add_to_history(char *line, t_hist **hist, int id);
-void				print_prev_hist(t_hist *hist);
+void				print_prev_hist(t_hist *hist, int *hist_counter);
 
 #endif

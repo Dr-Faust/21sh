@@ -44,9 +44,9 @@ static void	parse_keys(char *buf, int *flag, t_hist **hist, int *hist_counter)
 	else if (buf[2] == RIGHT || buf[3] == RIGHT || buf[2] == END)
 		right_arrow(buf);
 	else if (buf[2] == UP || buf[3] == UP)
-		up_arrow(buf, hist, hist_counter);
+		up_arrow(buf, *hist, hist_counter);
 	else if (buf[2] == DOWN || buf[3] == DOWN)
-		down_arrow(buf);
+		down_arrow(buf, hist, hist_counter);
 	else if ((buf[0] == BACKSPACE && g_info->line_index > 0) ||
 			(buf[3] == DELETE && g_info->line[g_info->line_index]))
 		g_info->line = del_char(buf);
@@ -93,7 +93,7 @@ static void	init_struct(int *hist_counter)
 	g_info->position = g_info->prompt_len;
 	g_info->line_index = 0;
 	g_info->bytes_index = 0;
-	*hist_counter = g_info->hist_counter;
+	*hist_counter = g_info->hist_counter + 1;
 }
 
 char		*read_line(t_hist **hist)

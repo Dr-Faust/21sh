@@ -27,6 +27,9 @@ void		move_left(void)
 {
 	int		tmp;
 
+//	ft_printf("\npos = %d\n", g_info->position);
+//	ft_printf("line_ind = %d\n", g_info->line_index);
+//	ft_printf("bytes_ind = %d\n", g_info->bytes_index);
 	if (g_info->position % g_info->win_size != 0)
 		tputs(tgetstr("le", 0), 1, &ft_put_my_char);
 	if (g_info->position % g_info->win_size == 0)

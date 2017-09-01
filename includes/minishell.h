@@ -50,6 +50,7 @@ typedef struct		s_hist
 	char			*line;
 	char			*bytes_str;
 	struct s_hist	*next;
+	struct s_hist	*prev;
 }					t_hist;
 
 typedef struct		s_glob_info
@@ -67,6 +68,9 @@ typedef struct		s_glob_info
 	int				line_index;
 	int				bytes_index;
 	int				hist_counter;
+	int				hist_search_flag;
+	char			*hist_start_line;
+	char			*hist_start_line_bytes;
 }					t_glob_info;
 
 extern t_glob_info	*g_info;
@@ -139,8 +143,8 @@ int					ft_help(void);
 
 void				left_arrow(char *buf);
 void				right_arrow(char *buf);
-void				up_arrow(char *buf, t_hist **hist, int *hist_counter);
-void				down_arrow(char *buf);
+void				up_arrow(char *buf, t_hist *hist, int *hist_counter);
+void				down_arrow(char *buf, t_hist **hist, int *hist_counter);
 void				move_left(void);
 void				move_right(void);
 
@@ -174,5 +178,6 @@ int					prompt_flag(int data);
 
 void				add_to_history(char *line, t_hist **hist, int id);
 void				print_prev_hist(t_hist *hist, int *hist_counter);
+void				print_next_hist(t_hist *hist, int *hist_counter);
 
 #endif

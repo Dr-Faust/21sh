@@ -116,7 +116,9 @@ void				clean_env_info(t_env **env_info);
 int					check_prompt(int data);
 int					write_prompt(void);
 char				*read_line(t_hist **hist);
-int					split_line(char *line, t_env **env_info, int status,
+void				parse_keys(char *buf, int *flag, t_hist **hist,
+					int *hist_counter);
+int					split_line(char *line, t_env **env_info, t_hist *hist,
 					char ***args);
 char				**split_command(char *line);
 char				*parse_quotes(char *line, t_hist **hist);
@@ -125,7 +127,7 @@ char				*get_env_var(char *var, t_env *env_info);
 int					count_args(char *str);
 int					count_commands(char *str);
 int					valid_quote(char *s, int i, char quote);
-int					execute(char **args, t_env **env_info);
+int					execute(char **args, t_env **env_info, t_hist *hist);
 char				**env_to_arr(t_env *env_info);
 char				*verif_access(char *command, t_env *env_info);
 int					lsh_num_builtins();
@@ -177,7 +179,9 @@ int					prompt_flag(int data);
 */
 
 void				add_to_history(char *line, t_hist **hist, int id);
+void				add_prev_elem(t_hist **hist);
 void				print_prev_hist(t_hist *hist, int *hist_counter);
 void				print_next_hist(t_hist *hist, int *hist_counter);
+int					print_history(t_hist *hist);
 
 #endif

@@ -27,7 +27,7 @@ SH_FILES = main.c env_info.c prompt.c read_line.c split_line.c execute.c \
 		   env_to_arr.c access.c ft_echo.c ft_cd.c ft_setenv.c ft_unsetenv.c \
 		   ft_help.c parse_dollar.c split_commands.c errors.c parse_quotes.c \
 		   set_terminal.c add_del_char.c right_left_arrows.c up_down_arrows.c \
-		   signals.c navigate_history.c
+		   signals.c manage_history.c navigate_history.c parse_keys.c
 
 SH_OBJ = $(addprefix $(SH_OBJ_DIR), $(SH_FILES:.c=.o))
 

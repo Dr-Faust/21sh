@@ -25,6 +25,15 @@ static void	clean_history(t_hist **hist)
 	ft_memdel((void **)&(*hist));
 }
 
+static void	clean_info(char **line, char ***args)
+{
+	ft_memdel((void **)&args);
+	ft_memdel((void **)&(*line));
+	ft_memdel((void **)&g_info->bytes_quote_str);
+	ft_memdel((void **)&g_info->hist_start_line);
+	ft_memdel((void **)&g_info->hist_start_line_bytes);
+}
+
 static void	minishell(t_env **env_info)
 {
 	char	*line;
@@ -37,19 +46,19 @@ static void	minishell(t_env **env_info)
 	g_info->hist_counter = 0;
 	while (status)
 	{
-		g_info->hist_search_flag = 1;
 		set_terminal();
 		g_info->prompt_len = write_prompt();
 		line = read_line(&hist);
 		line = parse_quotes(line, &hist);
-		if (line[0])
-			add_to_history(line, &hist, 1);
 		if (!(args = ft_memalloc(sizeof(char **) * (count_commands(line) + 1))))
 			error_exit(sh, mem_alloc_err);
-		status = split_line(&(line[0]), env_info, status, args);
-		ft_memdel((void **)&args);
-		ft_memdel((void **)&line);
-		ft_memdel((void **)&g_info->bytes_quote_str);
+		status = split_line(&(line[0]), env_info, hist, args);
+		if (line[0])
+		{
+			add_to_history(line, &hist, 1);
+			add_prev_elem(&hist);
+		}
+		clean_info(&line, args);
 	}
 	clean_history(&hist);
 }

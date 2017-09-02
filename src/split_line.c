@@ -51,7 +51,8 @@ int			count_commands(char *str)
 	return (count);
 }
 
-int			split_line(char *line, t_env **env_info, int status, char ***args)
+int			split_line(char *line, t_env **env_info, t_hist *hist,
+			char ***args)
 {
 	char			*cmd;
 	int				i;
@@ -74,8 +75,8 @@ int			split_line(char *line, t_env **env_info, int status, char ***args)
 			if (cmd[j] == '$' && cmd[j + 1] && ft_isalnum(cmd[j + 1]))
 				cmd = parse_dollar(cmd, j, *env_info);
 		args[numb] = split_command(cmd);
-		status = execute(args[numb], env_info);
+		j = execute(args[numb], env_info, hist);
 		clean_up(args[numb], cmd);
 	}
-	return (status);
+	return (j);
 }

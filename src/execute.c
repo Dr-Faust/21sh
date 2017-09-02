@@ -93,7 +93,7 @@ static int	treat_path(char **args, t_env *env_info)
 	return (1);
 }
 
-int			execute(char **args, t_env **env_info)
+int			execute(char **args, t_env **env_info, t_hist *hist)
 {
 	if (!ft_strcmp(args[0], "echo"))
 		return (ft_echo(args));
@@ -107,6 +107,8 @@ int			execute(char **args, t_env **env_info)
 		return (ft_unsetenv(*env_info, args[1]));
 	else if (!ft_strcmp(args[0], "help"))
 		return (ft_help());
+	else if (!ft_strcmp(args[0], "history"))
+		return (print_history(hist));
 	else if (!ft_strcmp(args[0], "exit"))
 	{
 		tcsetattr(STDIN_FILENO, TCSADRAIN, &g_info->default_term);

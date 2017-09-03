@@ -8,6 +8,7 @@ static int	check_print_position(char *buf)
 			move_right();
 		ft_printf("\n");
 		g_info->line = ft_strjoin_free_first(g_info->line, "\n\0");
+		g_info->bytes_str = ft_strjoin_free_first(g_info->bytes_str, "1\0");
 		return (1);
 	}
 	else if (g_info->line_index < (int)ft_strlen(g_info->line))

@@ -29,6 +29,7 @@ static void	get_new_line(t_hist *hist)
 	while (i < g_info->bytes_index)
 		g_info->line_index += g_info->bytes_str[i++] - '0';
 	ft_printf("%s", g_info->line);
+//	ft_printf("\nbytes = %s\n", g_info->bytes_str);
 }
 
 static void	get_start_line(void)

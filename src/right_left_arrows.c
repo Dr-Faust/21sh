@@ -14,9 +14,11 @@
 
 void		move_right(void)
 {
-	if ((g_info->position + 1) % g_info->win_size == 0)
+	if ((g_info->position + 1) % g_info->win_size == 0 ||
+		g_info->line[g_info->line_index] == '\n')
 		ft_putchar('\n');
-	if ((g_info->position + 1) % g_info->win_size != 0)
+	if ((g_info->position + 1) % g_info->win_size != 0 &&
+		g_info->line[g_info->line_index] != '\n')
 		tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 	g_info->line_index += g_info->bytes_str[g_info->bytes_index] - '0';
 	g_info->position++;
@@ -26,18 +28,42 @@ void		move_right(void)
 void		move_left(void)
 {
 	int		tmp;
+	int		flag;
 
-//	ft_printf("\npos = %d\n", g_info->position);
-//	ft_printf("line_ind = %d\n", g_info->line_index);
-//	ft_printf("bytes_ind = %d\n", g_info->bytes_index);
-	if (g_info->position % g_info->win_size != 0)
+	if (g_info->position % g_info->win_size != 0 &&
+		g_info->line[g_info->line_index - 1] != '\n')
 		tputs(tgetstr("le", 0), 1, &ft_put_my_char);
-	if (g_info->position % g_info->win_size == 0)
+	if (g_info->position % g_info->win_size == 0 ||
+		g_info->line[g_info->line_index - 1] == '\n')
 	{
 		ft_putstr("\033M");
 		tmp = 0;
-		while (tmp++ < g_info->win_size - 1)
-			tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
+		if (g_info->line[g_info->line_index - 1] == '\n')
+		{
+			flag = 0;
+			tmp = g_info->line_index - 1;
+			while (g_info->line[tmp--])
+				if (g_info->line[tmp] == '\n')
+					flag = 1;
+			if (!flag)
+			{
+				tmp = g_info->line_index - 1 + g_info->prompt_len;
+				while (tmp-- > 0)
+					tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
+			}
+			else
+			{
+				tmp = g_info->line_index - 2;
+				while (g_info->line[tmp] && g_info->line[tmp] != '\n')
+				{
+					tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
+					tmp--;
+				}
+			}
+		}
+		else
+			while (tmp++ < g_info->win_size - 1)
+				tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 	}
 	g_info->line_index -= g_info->bytes_str[g_info->bytes_index - 1] - '0';
 	g_info->position--;
@@ -64,7 +90,8 @@ void		left_arrow(char *buf)
 
 void		right_arrow(char *buf)
 {
-	if (buf[2] == RIGHT && g_info->line[g_info->line_index])
+	if (buf[2] == RIGHT && g_info->line[g_info->line_index] &&
+		g_info->bytes_str[g_info->bytes_index])
 		move_right();
 	else if (buf[3] == RIGHT && g_info->line[g_info->line_index])
 	{

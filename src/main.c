@@ -50,6 +50,7 @@ static void	minishell(t_env **env_info)
 		g_info->prompt_len = write_prompt();
 		line = read_line(&hist);
 		line = parse_quotes(line, &hist);
+		//ft_printf("\nline = %s\n", line);
 		if (!(args = ft_memalloc(sizeof(char **) * (count_commands(line) + 1))))
 			error_exit(sh, mem_alloc_err);
 		status = split_line(&(line[0]), env_info, hist, args);

@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/30 17:18:53 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/09/03 20:09:08 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ void				right_arrow(char *buf);
 void				up_arrow(char *buf, t_hist *hist, int *hist_counter);
 void				down_arrow(char *buf, t_hist **hist, int *hist_counter);
 void				move_left(void);
+void				extended_move_left(void);
 void				move_right(void);
 
 /*

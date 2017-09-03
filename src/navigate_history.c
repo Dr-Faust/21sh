@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/30 16:19:21 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/30 17:15:46 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/09/03 19:56:55 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	get_new_line(t_hist *hist)
 	while (i < g_info->bytes_index)
 		g_info->line_index += g_info->bytes_str[i++] - '0';
 	ft_printf("%s", g_info->line);
-//	ft_printf("\nbytes = %s\n", g_info->bytes_str);
 }
 
 static void	get_start_line(void)
@@ -47,7 +46,7 @@ static void	get_start_line(void)
 	ft_printf("%s", g_info->line);
 }
 
-static void	clear_line(int	*hist_counter)
+static void	clear_line(int *hist_counter)
 {
 	while (g_info->line_index > 0)
 		move_left();

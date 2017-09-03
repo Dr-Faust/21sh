@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:12:56 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/22 19:19:01 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/09/03 19:54:41 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,7 @@ void		up_arrow(char *buf, t_hist *hist, int *hist_counter)
 		while (i++ < g_info->win_size)
 			move_left();
 	else if (buf[2] == UP && hist && *hist_counter >= 1)
-	{
-	/*	if (g_info->hist_search_flag)
-		{
-			g_info->hist_start_line = ft_strdup(g_info->line);
-			g_info->hist_start_line_bytes = ft_strdup(g_info->bytes_str);
-			g_info->hist_search_flag = 0;
-		}*/
-/*		if (*hist_counter > 1)
-			*hist_counter -= 1;
-		while (hist->id != *hist_counter)
-		{
-	//		ft_printf("\nhere\n");
-			hist = hist->next;
-	//		ft_printf("line = %s\n", hist->line);
-		}*/
-	//	if (!g_info->hist_start_line[0])
-			print_prev_hist(hist, hist_counter);
-	}
+		print_prev_hist(hist, hist_counter);
 }
 
 void		down_arrow(char *buf, t_hist **hist, int *hist_counter)

@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:10:03 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/30 17:18:50 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/09/03 19:55:51 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static void	minishell(t_env **env_info)
 		g_info->prompt_len = write_prompt();
 		line = read_line(&hist);
 		line = parse_quotes(line, &hist);
-		//ft_printf("\nline = %s\n", line);
 		if (!(args = ft_memalloc(sizeof(char **) * (count_commands(line) + 1))))
 			error_exit(sh, mem_alloc_err);
 		status = split_line(&(line[0]), env_info, hist, args);

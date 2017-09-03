@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:01:30 by opodolia          #+#    #+#             */
-/*   Updated: 2017/09/03 19:27:55 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/09/03 20:09:05 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ void		move_right(void)
 
 void		move_left(void)
 {
-	int		flag;
 	int		line_indx;
-	int		byte_indx;
 
 	if (g_info->position % g_info->win_size != 0 &&
 		g_info->line[g_info->line_index - 1] != '\n')
@@ -40,46 +38,13 @@ void		move_left(void)
 		ft_putstr("\033M");
 		line_indx = 0;
 		if (g_info->line[g_info->line_index - 1] == '\n')
-		{
-			flag = 0;
-			line_indx = g_info->line_index - 2;
-			byte_indx = g_info->bytes_index - 1;
-			while (g_info->line[line_indx])
-			{
-				if (g_info->line[line_indx - 1] == '\n')
-					flag = 1;
-				line_indx -= g_info->bytes_str[byte_indx] - '0';
-				byte_indx--;
-			}
-			if (!flag)
-			{
-				line_indx = g_info->line_index - 1;
-				byte_indx = g_info->bytes_index - 2;
-				while (line_indx > 0)
-				{
-					tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
-					line_indx -= g_info->bytes_str[byte_indx] - '0';
-					byte_indx--;
-				}
-				line_indx = 0;
-				while (line_indx++ < g_info->prompt_len)
-					tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
-			}
-			else
-			{
-				line_indx = g_info->line_index - 2;
-				byte_indx = g_info->bytes_index - 2;
-				while (g_info->line[line_indx] && g_info->line[line_indx] != '\n')
-				{
-					tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
-					line_indx -= g_info->bytes_str[byte_indx] - '0';
-					byte_indx--;
-				}
-			}
-		}
+			extended_move_left();
 		else
+		{
+			ft_printf("\nhere_3\n");
 			while (line_indx++ < g_info->win_size - 1)
 				tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
+		}
 	}
 	g_info->line_index -= g_info->bytes_str[g_info->bytes_index - 1] - '0';
 	g_info->position--;

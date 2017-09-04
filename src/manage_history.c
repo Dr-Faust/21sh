@@ -27,8 +27,15 @@ int			get_position(int line_indx, int byte_indx)
 	{
 		if (g_info->line[line_indx] == '\n')
 		{
-		//	ft_printf("\nhere\n");
-			position += g_info->win_size;
+			if (counter > g_info->win_size)
+			{
+				position += counter;
+				counter %= g_info->win_size;
+				counter = g_info->win_size - counter;
+				position += counter;
+			}
+			else
+				position += g_info->win_size;
 			counter = 0;
 			flag = 1;
 		}

@@ -29,9 +29,10 @@ static void	get_new_line(t_hist *hist)
 		g_info->line_index += g_info->bytes_str[i++] - '0';
 	g_info->position = get_position(g_info->line_index, g_info->bytes_index);
 //	ft_printf("\nbytes_str = %s\n", g_info->bytes_str);
-//	ft_printf("\nbytes_index_1 = %d\n", g_info->bytes_index);
-//	ft_printf("\nline_index_1 = %d\n", g_info->line_index);
-//	ft_printf("\nposition = %d\n", g_info->position);
+//	ft_printf("\nwin_size = %d\n", g_info->win_size);
+//	ft_printf("bytes_index_1 = %d\n", g_info->bytes_index);
+//	ft_printf("line_index_1 = %d\n", g_info->line_index);
+//	ft_printf("position = %d\n", g_info->position);
 	//g_info->position = g_info->prompt_len + g_info->bytes_index;
 	ft_printf("%s", g_info->line);
 }

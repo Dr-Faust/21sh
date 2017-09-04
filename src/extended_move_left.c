@@ -16,24 +16,27 @@ void		extended_move_right(int line_indx, int byte_indx)
 {
 	int		counter;
 	int		flag;
+	int		line_indx_1;
+	int		byte_indx_1;
 
 	flag = 0;
 	counter = 0;
-	line_indx = g_info->line_index - 1;
-	byte_indx = g_info->bytes_index - 1;
+	line_indx -= g_info->bytes_str[byte_indx] - '0';
+	line_indx_1 = line_indx;
+	byte_indx_1 = byte_indx;
 	while (g_info->line[line_indx])
 	{
 		if (g_info->line[line_indx] == '\n')
 			flag = 1;
 		line_indx -= g_info->bytes_str[byte_indx--] - '0';
 	}
-	line_indx = g_info->line_index - 1;
-	byte_indx = g_info->bytes_index - 1;
-	while (g_info->line[line_indx] && g_info->line[line_indx] != '\n')
+	while (g_info->line[line_indx_1] && g_info->line[line_indx_1] != '\n')
 	{
 		counter++;
-		line_indx -= g_info->bytes_str[byte_indx--] - '0';
+		line_indx_1 -= g_info->bytes_str[byte_indx_1--] - '0';
 	}
+	if (counter > g_info->win_size)
+		counter %= g_info->win_size;
 	if (flag)
 		g_info->position = g_info->position - counter + g_info->win_size - 1;
 	else
@@ -41,27 +44,12 @@ void		extended_move_right(int line_indx, int byte_indx)
 			+ g_info->win_size;
 }
 
-/*void		extended_move_right(int line_indx, int byte_indx)
-{
-	int		flag;
-	
-	flag = 0;
-	while (g_info->line[line_indx])
-	{
-		if (g_info->line[line_indx + 1] == '\n')
-			flag = 1;
-		line_indx += g_info->bytes_str[byte_indx++] - '0';
-	}
-	correct_position_right(line_indx, byte_indx, flag);
-}*/
-
-static void	correct_position_left(int line_indx, int byte_indx, int flag)
+static int	correct_position_left(int line_indx, int byte_indx, int flag)
 {
 	int		counter;
 
 	counter = 0;
-	line_indx = g_info->line_index - 2;
-	byte_indx = g_info->bytes_index - 2;
+	line_indx -= (g_info->bytes_str[byte_indx--] - '0');
 	if (!flag)
 		while (line_indx > 0)
 		{
@@ -69,61 +57,57 @@ static void	correct_position_left(int line_indx, int byte_indx, int flag)
 			line_indx -= g_info->bytes_str[byte_indx--] - '0';
 		}
 	else
+	{
 		while (g_info->line[line_indx] != '\n')
 		{
 			counter++;
 			line_indx -= g_info->bytes_str[byte_indx--] - '0';
 		}
+		if (counter > g_info->win_size)
+			counter %= g_info->win_size;
+	}
 	if (!flag)
 		g_info->position = (g_info->position - g_info->win_size)
 			+ counter + 1 + g_info->prompt_len;
 	else
 		g_info->position = (g_info->position - g_info->win_size) + counter + 1;
+	return (counter);
 }
 
 static void	move_left_till_new_line(int flag, int line_indx, int byte_indx)
 {
+	int		counter;
+
 	if (!flag)
 	{
-		correct_position_left(line_indx, byte_indx, flag);
-		line_indx = g_info->line_index - 1;
-		byte_indx = g_info->bytes_index - 2;
-		while (line_indx > 0)
-		{
+		counter = correct_position_left(line_indx, byte_indx, flag);
+		while (counter-- > 0)
 			tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
-			line_indx -= g_info->bytes_str[byte_indx--] - '0';
-		}
-		line_indx = 0;
-		while (line_indx++ < g_info->prompt_len)
+		while (counter++ < g_info->prompt_len)
 			tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 	}
 	else
 	{
-		correct_position_left(line_indx, byte_indx, flag);
-		line_indx = g_info->line_index - 2;
-		byte_indx = g_info->bytes_index - 2;
-		while (g_info->line[line_indx] && g_info->line[line_indx] != '\n')
-		{
+		counter = correct_position_left(line_indx, byte_indx, flag);
+		while (counter-- > 0)
 			tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
-			line_indx -= g_info->bytes_str[byte_indx--] - '0';
-		}
 	}
 }
 
-void		extended_move_left(void)
+void		extended_move_left(int line_indx, int byte_indx)
 {
 	int		flag;
-	int		line_indx;
-	int		byte_indx;
+	int		copy_byte_indx;
+	int		copy_line_indx;
 
 	flag = 0;
-	line_indx = g_info->line_index - 2;
-	byte_indx = g_info->bytes_index - 1;
+	copy_line_indx = line_indx;
+	copy_byte_indx = byte_indx;
 	while (g_info->line[line_indx])
 	{
-		if (g_info->line[line_indx - 1] == '\n')
-			flag = 1;
 		line_indx -= g_info->bytes_str[byte_indx--] - '0';
+		if (g_info->line[line_indx] == '\n')
+			flag = 1;
 	}
-	move_left_till_new_line(flag, line_indx, byte_indx);
+	move_left_till_new_line(flag, copy_line_indx, copy_byte_indx);
 }

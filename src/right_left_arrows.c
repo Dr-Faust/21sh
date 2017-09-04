@@ -14,19 +14,17 @@
 
 void		move_right(void)
 {
-	if ((g_info->position + 1) % g_info->win_size == 0 ||
+	if ((g_info->position) % g_info->win_size == 0 ||
 		g_info->line[g_info->line_index] == '\n')
 	{
 		ft_putchar('\n');
 		if (g_info->line[g_info->line_index] == '\n')
 			extended_move_right(g_info->line_index, g_info->bytes_index);
 	}
-	if ((g_info->position + 1) % g_info->win_size != 0 &&
-		g_info->line[g_info->line_index] != '\n')
+	else
 		tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
-	g_info->line_index += g_info->bytes_str[g_info->bytes_index] - '0';
+	g_info->line_index += g_info->bytes_str[g_info->bytes_index++] - '0';
 	g_info->position++;
-	g_info->bytes_index++;
 //	ft_printf("\npos_1 = %d\n", g_info->position);
 //	ft_printf("line_indx = %d\n", g_info->line_index);
 //	ft_printf("byte_indx = %d\n", g_info->bytes_index);
@@ -34,28 +32,30 @@ void		move_right(void)
 
 void		move_left(void)
 {
+	int		tmp;
 	int		line_indx;
+	int		byte_indx;
 
-	if (g_info->position % g_info->win_size != 0 &&
-		g_info->line[g_info->line_index - 1] != '\n')
-		tputs(tgetstr("le", 0), 1, &ft_put_my_char);
-	if (g_info->position % g_info->win_size == 0 ||
-		g_info->line[g_info->line_index - 1] == '\n')
+	byte_indx = g_info->bytes_index - 1;
+	line_indx = g_info->line_index - (g_info->bytes_str[byte_indx] - '0');
+	if ((g_info->position - 1) % g_info->win_size == 0 ||
+		g_info->line[line_indx] == '\n')
 	{
 		ft_putstr("\033M");
-		line_indx = 0;
-		if (g_info->line[g_info->line_index - 1] == '\n')
-			extended_move_left();
+		if (g_info->line[line_indx] == '\n')
+			extended_move_left(line_indx, byte_indx);
 		else
 		{
-		//	ft_printf("\nhere_3\n");
-			while (line_indx++ < g_info->win_size - 1)
+		//	ft_printf("\nhere\n");
+			tmp = 0;
+			while (tmp++ < g_info->win_size - 1)
 				tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 		}
 	}
-	g_info->line_index -= g_info->bytes_str[g_info->bytes_index - 1] - '0';
+	else
+		tputs(tgetstr("le", 0), 1, &ft_put_my_char);
+	g_info->line_index -= g_info->bytes_str[--g_info->bytes_index] - '0';
 	g_info->position--;
-	g_info->bytes_index--;
 //	ft_printf("\npos_1 = %d\n", g_info->position);
 //	ft_printf("line_indx = %d\n", g_info->line_index);
 //	ft_printf("byte_indx = %d\n", g_info->bytes_index);

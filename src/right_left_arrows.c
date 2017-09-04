@@ -16,13 +16,20 @@ void		move_right(void)
 {
 	if ((g_info->position + 1) % g_info->win_size == 0 ||
 		g_info->line[g_info->line_index] == '\n')
+	{
 		ft_putchar('\n');
+		if (g_info->line[g_info->line_index] == '\n')
+			extended_move_right(g_info->line_index, g_info->bytes_index);
+	}
 	if ((g_info->position + 1) % g_info->win_size != 0 &&
 		g_info->line[g_info->line_index] != '\n')
 		tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 	g_info->line_index += g_info->bytes_str[g_info->bytes_index] - '0';
 	g_info->position++;
 	g_info->bytes_index++;
+//	ft_printf("\npos_1 = %d\n", g_info->position);
+//	ft_printf("line_indx = %d\n", g_info->line_index);
+//	ft_printf("byte_indx = %d\n", g_info->bytes_index);
 }
 
 void		move_left(void)
@@ -41,7 +48,7 @@ void		move_left(void)
 			extended_move_left();
 		else
 		{
-			ft_printf("\nhere_3\n");
+		//	ft_printf("\nhere_3\n");
 			while (line_indx++ < g_info->win_size - 1)
 				tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 		}
@@ -49,6 +56,9 @@ void		move_left(void)
 	g_info->line_index -= g_info->bytes_str[g_info->bytes_index - 1] - '0';
 	g_info->position--;
 	g_info->bytes_index--;
+//	ft_printf("\npos_1 = %d\n", g_info->position);
+//	ft_printf("line_indx = %d\n", g_info->line_index);
+//	ft_printf("byte_indx = %d\n", g_info->bytes_index);
 }
 
 void		left_arrow(char *buf)

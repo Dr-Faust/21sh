@@ -12,6 +12,41 @@
 
 #include "minishell.h"
 
+int			get_position(int line_indx, int byte_indx)
+{
+	int		position;
+	int		counter;
+	int		flag;
+
+	line_indx = 0;
+	byte_indx = 0;
+	position = 0;
+	counter = 0;
+	flag = 0;
+	while (g_info->line[line_indx])
+	{
+		if (g_info->line[line_indx] == '\n')
+		{
+		//	ft_printf("\nhere\n");
+			position += g_info->win_size;
+			counter = 0;
+			flag = 1;
+		}
+		line_indx += g_info->bytes_str[byte_indx++] - '0';
+		counter++;
+	//	ft_printf("\ncounter = %d\n", counter);
+	}
+	if (flag)
+		position += counter;
+	else
+		position += counter + g_info->prompt_len;
+//	ft_printf("\nbytes_str = %s\n", g_info->bytes_str);
+//	ft_printf("\nwin_size = %d\n", g_info->win_size);
+//	ft_printf("\nprompt_len = %d\n", g_info->prompt_len);
+//	ft_printf("\npos = %d\n", position);
+	return (position);
+}
+
 int			print_history(t_hist *hist)
 {
 	while (hist)

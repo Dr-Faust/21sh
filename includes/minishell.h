@@ -150,6 +150,7 @@ void				down_arrow(char *buf, t_hist **hist, int *hist_counter);
 void				move_left(void);
 void				extended_move_left(void);
 void				move_right(void);
+void				extended_move_right(int line_indx, int byte_indx);
 
 /*
 **						  ==[ Line edition ]==
@@ -184,5 +185,6 @@ void				add_prev_elem(t_hist **hist);
 void				print_prev_hist(t_hist *hist, int *hist_counter);
 void				print_next_hist(t_hist *hist, int *hist_counter);
 int					print_history(t_hist *hist);
+int					get_position(int line_indx, int byte_indx);
 
 #endif

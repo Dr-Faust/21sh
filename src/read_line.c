@@ -25,10 +25,7 @@ static void	read_buf(char *buf)
 		ft_strcat(&buf[0], &tmp[0]);
 	}
 	else if (!ft_isascii(buf[0]))
-	{
-		g_info->bytes += read(0, tmp, 1);
-		ft_strcat(&buf[0], &tmp[0]);
-	}
+		ft_bzero(buf, 8);
 }
 
 static void	init_struct(void)
@@ -36,24 +33,14 @@ static void	init_struct(void)
 	if (!g_info->line)
 		if (!(g_info->line = ft_strnew(1)))
 			error_exit(sh, mem_alloc_err);
-	if (!g_info->bytes_str)
-		if (!(g_info->bytes_str = ft_strnew(1)))
-			error_exit(sh, mem_alloc_err);
-	if (!g_info->bytes_quote_str)
-		if (!(g_info->bytes_quote_str = ft_strnew(1)))
-			error_exit(sh, mem_alloc_err);
-	g_info->position = g_info->prompt_len;
+	g_info->position = g_info->prompt_len + 1;
 	g_info->line_index = 0;
-	g_info->bytes_index = 0;
 }
 
 static char	*manage_ret(char **ret)
 {
 	*ret = ft_strdup(g_info->line);
-	g_info->bytes_quote_str = ft_strjoin_free_first(
-		g_info->bytes_quote_str, g_info->bytes_str);
 	ft_memdel((void **)&g_info->line);
-	ft_memdel((void **)&g_info->bytes_str);
 	return (*ret);
 }
 

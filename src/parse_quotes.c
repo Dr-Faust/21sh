@@ -90,10 +90,7 @@ char		*parse_quotes(char *line, t_hist **hist)
 	g_info->quote_line = line;
 	check_quotes(hist);
 	if (g_info->quote_line[ft_strlen(g_info->quote_line) - 1] == '\n')
-	{
 		g_info->quote_line[ft_strlen(g_info->quote_line) - 1] = '\0';
-		g_info->bytes_quote_str[ft_strlen(g_info->bytes_quote_str) - 1] = '\0';
-	}
 	ret = ft_strdup(g_info->quote_line);
 	ft_memdel((void **)&g_info->quote_line);
 	return (ret);

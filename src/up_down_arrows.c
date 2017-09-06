@@ -31,7 +31,7 @@ void		down_arrow(char *buf, t_hist **hist, int *hist_counter)
 
 	i = 0;
 	if (buf[3] == DOWN && g_info->position - g_info->prompt_len +
-		g_info->win_size <= (int)ft_strlen(g_info->bytes_str) && g_info->line)
+		g_info->win_size <= (int)ft_strlen(g_info->line) && g_info->line)
 		while (i++ < g_info->win_size)
 			move_right();
 	else if (buf[2] == DOWN && *hist && *hist_counter <= g_info->hist_counter)

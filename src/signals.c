@@ -35,12 +35,8 @@ static void	handle_sigint(int *signal)
 	ft_memdel((void **)&g_info->line);
 	if (!(g_info->line = ft_strnew(1)))
 		error_exit(sh, mem_alloc_err);
-	ft_memdel((void **)&g_info->bytes_str);
-	if (!(g_info->bytes_str = ft_strnew(1)))
-		error_exit(sh, mem_alloc_err);
 	g_info->position = g_info->prompt_len;
 	g_info->line_index = 0;
-	g_info->bytes_index = 0;
 	if (g_info->quote_line)
 	{
 		ft_memdel((void **)&g_info->quote_line);

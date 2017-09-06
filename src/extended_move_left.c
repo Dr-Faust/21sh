@@ -12,30 +12,31 @@
 
 #include "minishell.h"
 
-void		extended_move_right(int line_indx, int byte_indx)
+void		extended_move_right(int line_indx)
 {
 	int		counter;
 	int		flag;
-	int		line_indx_1;
-	int		byte_indx_1;
 
 	flag = 0;
 	counter = 0;
-	line_indx -= g_info->bytes_str[byte_indx] - '0';
-	line_indx_1 = line_indx;
-	byte_indx_1 = byte_indx;
-	while (g_info->line[line_indx])
-	{
+	while (line_indx--)
 		if (g_info->line[line_indx] == '\n')
 			flag = 1;
-		line_indx -= g_info->bytes_str[byte_indx--] - '0';
-	}
-	while (g_info->line[line_indx_1] && g_info->line[line_indx_1] != '\n')
+	line_indx = g_info->line_index - 1;
+/*	if (!flag)
+		while (--line_indx > 0)
+			counter++;
+	else
+	{
+		while (g_info->line[--line_indx] != '\n')
+			counter++;
+	}*/
+	while (g_info->line[line_indx] && g_info->line[line_indx] != '\n')
 	{
 		counter++;
-		line_indx_1 -= g_info->bytes_str[byte_indx_1--] - '0';
+		line_indx--;
 	}
-	if (counter > g_info->win_size)
+	if (counter >= g_info->win_size)
 		counter %= g_info->win_size;
 	if (flag)
 		g_info->position = g_info->position - counter + g_info->win_size - 1;
@@ -44,43 +45,41 @@ void		extended_move_right(int line_indx, int byte_indx)
 			+ g_info->win_size;
 }
 
-static int	correct_position_left(int line_indx, int byte_indx, int flag)
+static int	correct_position_left(int flag, int line_indx)
 {
 	int		counter;
 
 	counter = 0;
-	line_indx -= (g_info->bytes_str[byte_indx--] - '0');
 	if (!flag)
-		while (line_indx > 0)
-		{
+	{
+		ft_printf("\nhere_1\n");
+		while (--line_indx > 0)
 			counter++;
-			line_indx -= g_info->bytes_str[byte_indx--] - '0';
-		}
+	}
 	else
 	{
-		while (g_info->line[line_indx] != '\n')
-		{
+//		ft_printf("\nhere_2\n");
+		while (g_info->line[--line_indx] != '\n')
 			counter++;
-			line_indx -= g_info->bytes_str[byte_indx--] - '0';
-		}
-		if (counter > g_info->win_size)
-			counter %= g_info->win_size;
 	}
+	if (counter >= g_info->win_size)
+			counter %= g_info->win_size;
+	ft_printf("\nconter = %d\n", counter);
 	if (!flag)
 		g_info->position = (g_info->position - g_info->win_size)
-			+ counter + 1 + g_info->prompt_len;
+			+ counter + g_info->prompt_len + 1;
 	else
 		g_info->position = (g_info->position - g_info->win_size) + counter + 1;
 	return (counter);
 }
 
-static void	move_left_till_new_line(int flag, int line_indx, int byte_indx)
+static void	move_left_till_new_line(int flag, int line_indx)
 {
 	int		counter;
 
 	if (!flag)
 	{
-		counter = correct_position_left(line_indx, byte_indx, flag);
+		counter = correct_position_left(flag, line_indx);
 		while (counter-- > 0)
 			tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 		while (counter++ < g_info->prompt_len)
@@ -88,26 +87,19 @@ static void	move_left_till_new_line(int flag, int line_indx, int byte_indx)
 	}
 	else
 	{
-		counter = correct_position_left(line_indx, byte_indx, flag);
+		counter = correct_position_left(flag, line_indx);
 		while (counter-- > 0)
 			tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 	}
 }
 
-void		extended_move_left(int line_indx, int byte_indx)
+void		extended_move_left(int line_indx)
 {
 	int		flag;
-	int		copy_byte_indx;
-	int		copy_line_indx;
 
 	flag = 0;
-	copy_line_indx = line_indx;
-	copy_byte_indx = byte_indx;
-	while (g_info->line[line_indx])
-	{
-		line_indx -= g_info->bytes_str[byte_indx--] - '0';
+	while (--line_indx)
 		if (g_info->line[line_indx] == '\n')
 			flag = 1;
-	}
-	move_left_till_new_line(flag, copy_line_indx, copy_byte_indx);
+	move_left_till_new_line(flag, g_info->line_index - 1);
 }

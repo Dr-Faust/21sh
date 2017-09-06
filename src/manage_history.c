@@ -12,46 +12,42 @@
 
 #include "minishell.h"
 
-int			get_position(int line_indx, int byte_indx)
+int			get_position(int index)
 {
-	int		position;
-	int		counter;
-	int		flag;
+	int		ret_position;
+	int		curr_position;
 
-	line_indx = 0;
-	byte_indx = 0;
-	position = 0;
-	counter = 0;
-	flag = 0;
-	while (g_info->line[line_indx])
+	index = 0;
+	ret_position = 0;
+	curr_position = g_info->prompt_len + 1;
+	while (g_info->line[index])
 	{
-		if (g_info->line[line_indx] == '\n')
+		if (g_info->line[index] == '\n')
 		{
-			if (counter > g_info->win_size)
+			if (curr_position > g_info->win_size)
 			{
-				position += counter;
-				counter %= g_info->win_size;
-				counter = g_info->win_size - counter;
-				position += counter;
+				//	ft_printf("\ncurr_pos_1 = %d\n", curr_position);
+				ret_position += curr_position;
+				curr_position %= g_info->win_size;
+				curr_position = g_info->win_size - curr_position;
+				ret_position += curr_position;
+				//	ft_printf("\nret)_pos = %d\n", ret_position);
 			}
 			else
-				position += g_info->win_size;
-			counter = 0;
-			flag = 1;
+			{
+				ret_position += curr_position;
+				curr_position = g_info->win_size - curr_position;
+				ret_position += curr_position;
+				//	ft_printf("\ncounter_2 = %d\n", counter);
+				//	ft_printf("\nposit_2 = %d\n", position);
+			}
+			curr_position = 0;
 		}
-		line_indx += g_info->bytes_str[byte_indx++] - '0';
-		counter++;
-	//	ft_printf("\ncounter = %d\n", counter);
+		index++;
+		curr_position++;
 	}
-	if (flag)
-		position += counter;
-	else
-		position += counter + g_info->prompt_len;
-//	ft_printf("\nbytes_str = %s\n", g_info->bytes_str);
-//	ft_printf("\nwin_size = %d\n", g_info->win_size);
-//	ft_printf("\nprompt_len = %d\n", g_info->prompt_len);
-//	ft_printf("\npos = %d\n", position);
-	return (position);
+	ret_position += curr_position;
+	return (ret_position);
 }
 
 int			print_history(t_hist *hist)
@@ -83,7 +79,6 @@ void		add_to_history(char *line, t_hist **hist, int id)
 			error_exit(sh, mem_alloc_err);
 		(*hist)->id = id;
 		(*hist)->line = ft_strdup(line);
-		(*hist)->bytes_str = ft_strdup(g_info->bytes_quote_str);
 		(*hist)->next = 0;
 		(*hist)->prev = 0;
 		g_info->hist_counter++;

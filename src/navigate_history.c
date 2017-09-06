@@ -14,40 +14,24 @@
 
 static void	get_new_line(t_hist *hist)
 {
-	int		i;
-
-	i = 0;
 	while (g_info->line_index > 0)
 		move_left();
 	tputs(tgetstr("cd", 0), 1, &ft_put_my_char);
 	ft_memdel((void **)&g_info->line);
-	ft_memdel((void **)&g_info->bytes_str);
 	g_info->line = ft_strdup(hist->line);
-	g_info->bytes_str = ft_strdup(hist->bytes_str);
-	g_info->bytes_index = ft_strlen(g_info->bytes_str);
-	while (i < g_info->bytes_index)
-		g_info->line_index += g_info->bytes_str[i++] - '0';
-	g_info->position = get_position(g_info->line_index, g_info->bytes_index);
-//	ft_printf("\nbytes_str = %s\n", g_info->bytes_str);
-//	ft_printf("\nwin_size = %d\n", g_info->win_size);
-//	ft_printf("bytes_index_1 = %d\n", g_info->bytes_index);
-//	ft_printf("line_index_1 = %d\n", g_info->line_index);
-//	ft_printf("position = %d\n", g_info->position);
-	//g_info->position = g_info->prompt_len + g_info->bytes_index;
+	g_info->line_index = (int)ft_strlen(g_info->line);
+	g_info->position = get_position(g_info->line_index);
+	ft_printf("\nwin_size = %d\n", g_info->win_size);
+	ft_printf("position = %d\n", g_info->position);
+	ft_printf("line_index = %d\n", g_info->line_index);
 	ft_printf("%s", g_info->line);
 }
 
 static void	get_start_line(void)
 {
-	int		i;
-
-	i = 0;
 	g_info->line = ft_strdup(g_info->hist_start_line);
-	g_info->bytes_str = ft_strdup(g_info->hist_start_line_bytes);
-	g_info->bytes_index = ft_strlen(g_info->bytes_str);
-	g_info->position = g_info->prompt_len + g_info->bytes_index;
-	while (i < g_info->bytes_index)
-		g_info->line_index += g_info->bytes_str[i++] - '0';
+	g_info->position = g_info->prompt_len + ft_strlen(g_info->line) + 1;
+	g_info->line_index = (int)ft_strlen(g_info->line);
 	g_info->hist_search_flag = 1;
 	ft_printf("%s", g_info->line);
 }
@@ -58,14 +42,11 @@ static void	clear_line(int *hist_counter)
 		move_left();
 	tputs(tgetstr("cd", 0), 1, &ft_put_my_char);
 	ft_memdel((void **)&g_info->line);
-	ft_memdel((void **)&g_info->bytes_str);
 	if (!g_info->hist_search_flag)
 		get_start_line();
 	else
 	{
 		g_info->line = ft_strnew(1);
-		g_info->bytes_str = ft_strnew(1);
-		g_info->bytes_index = 0;
 		g_info->position = g_info->prompt_len;
 		g_info->line_index = 0;
 	}
@@ -77,12 +58,8 @@ void		print_prev_hist(t_hist *hist, int *hist_counter)
 	if (g_info->hist_search_flag)
 	{
 		if (g_info->hist_start_line)
-		{
 			ft_memdel((void **)&g_info->hist_start_line);
-			ft_memdel((void **)&g_info->hist_start_line_bytes);
-		}
 		g_info->hist_start_line = ft_strdup(g_info->line);
-		g_info->hist_start_line_bytes = ft_strdup(g_info->bytes_str);
 		g_info->hist_search_flag = 0;
 	}
 	if (*hist_counter > 1)
@@ -101,12 +78,8 @@ void		print_next_hist(t_hist *hist, int *hist_counter)
 	if (g_info->hist_search_flag)
 	{
 		if (g_info->hist_start_line)
-		{
 			ft_memdel((void **)&g_info->hist_start_line);
-			ft_memdel((void **)&g_info->hist_start_line_bytes);
-		}
 		g_info->hist_start_line = ft_strdup(g_info->line);
-		g_info->hist_start_line_bytes = ft_strdup(g_info->bytes_str);
 		g_info->hist_search_flag = 0;
 	}
 	if (*hist_counter == g_info->hist_counter)

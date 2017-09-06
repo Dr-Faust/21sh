@@ -48,7 +48,6 @@ typedef struct		s_hist
 {
 	int				id;
 	char			*line;
-	char			*bytes_str;
 	struct s_hist	*next;
 	struct s_hist	*prev;
 }					t_hist;
@@ -60,17 +59,13 @@ typedef struct		s_glob_info
 	int				prompt_len;
 	int				win_size;
 	char			*line;
-	char			*bytes_str;
 	char			*quote_line;
-	char			*bytes_quote_str;
 	int				bytes;
 	int				position;
 	int				line_index;
-	int				bytes_index;
 	int				hist_counter;
 	int				hist_search_flag;
 	char			*hist_start_line;
-	char			*hist_start_line_bytes;
 }					t_glob_info;
 
 extern t_glob_info	*g_info;
@@ -148,9 +143,9 @@ void				right_arrow(char *buf);
 void				up_arrow(char *buf, t_hist *hist, int *hist_counter);
 void				down_arrow(char *buf, t_hist **hist, int *hist_counter);
 void				move_left(void);
-void				extended_move_left(int line_indx, int byte_indx);
+void				extended_move_left(int line_indx);
 void				move_right(void);
-void				extended_move_right(int line_indx, int byte_indx);
+void				extended_move_right(int line_indx);
 
 /*
 **						  ==[ Line edition ]==
@@ -185,6 +180,6 @@ void				add_prev_elem(t_hist **hist);
 void				print_prev_hist(t_hist *hist, int *hist_counter);
 void				print_next_hist(t_hist *hist, int *hist_counter);
 int					print_history(t_hist *hist);
-int					get_position(int line_indx, int byte_indx);
+int					get_position(int line_indx);
 
 #endif

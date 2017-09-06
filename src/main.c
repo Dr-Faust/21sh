@@ -21,7 +21,6 @@ static void	clean_history(t_hist **hist)
 	if ((*hist)->next != 0)
 		clean_history(&(*hist)->next);
 	ft_memdel((void **)&(*hist)->line);
-	ft_memdel((void **)&(*hist)->bytes_str);
 	ft_memdel((void **)&(*hist));
 }
 
@@ -29,9 +28,7 @@ static void	clean_info(char **line, char ***args)
 {
 	ft_memdel((void **)&args);
 	ft_memdel((void **)&(*line));
-	ft_memdel((void **)&g_info->bytes_quote_str);
 	ft_memdel((void **)&g_info->hist_start_line);
-	ft_memdel((void **)&g_info->hist_start_line_bytes);
 }
 
 static void	minishell(t_env **env_info)

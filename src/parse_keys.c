@@ -20,21 +20,17 @@ static int	check_print_position(char *buf)
 			move_right();
 		ft_printf("\n");
 		g_info->line = ft_strjoin_free_first(g_info->line, "\n\0");
-		g_info->bytes_str = ft_strjoin_free_first(g_info->bytes_str, "1\0");
 		return (1);
 	}
 	else if (g_info->line_index < (int)ft_strlen(g_info->line))
 		g_info->line = add_char(buf);
 	else
 	{
-		g_info->bytes_str = ft_strjoin_free(g_info->bytes_str,
-				ft_itoa(g_info->bytes));
 		g_info->line = ft_strjoin_free_first(g_info->line, buf);
 		ft_printf("%s", buf);
 	}
-	g_info->line_index += g_info->bytes_str[g_info->bytes_index] - '0';
+	g_info->line_index++;;
 	g_info->position++;
-	g_info->bytes_index++;
 	return (0);
 }
 

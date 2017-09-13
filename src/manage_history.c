@@ -26,20 +26,16 @@ int			get_position(int index)
 		{
 			if (curr_position > g_info->win_size)
 			{
-				//	ft_printf("\ncurr_pos_1 = %d\n", curr_position);
 				ret_position += curr_position;
 				curr_position %= g_info->win_size;
 				curr_position = g_info->win_size - curr_position;
 				ret_position += curr_position;
-				//	ft_printf("\nret)_pos = %d\n", ret_position);
 			}
 			else
 			{
 				ret_position += curr_position;
 				curr_position = g_info->win_size - curr_position;
 				ret_position += curr_position;
-				//	ft_printf("\ncounter_2 = %d\n", counter);
-				//	ft_printf("\nposit_2 = %d\n", position);
 			}
 			curr_position = 0;
 		}

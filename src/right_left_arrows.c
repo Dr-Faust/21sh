@@ -14,17 +14,26 @@
 
 void		move_right(void)
 {
+	int		pos_diff;
+	int		line_counter;
+
 	if ((g_info->position) % g_info->win_size == 0 ||
 		g_info->line[g_info->line_index] == '\n')
 	{
 		ft_putchar('\n');
 		if (g_info->line[g_info->line_index] == '\n')
-			extended_move_right(g_info->line_index);
+		{
+			line_counter = g_info->position / g_info->win_size;
+			pos_diff = g_info->position - (line_counter * g_info->win_size);
+			g_info->position = g_info->position - pos_diff + g_info->win_size;
+		}
 	}
 	else
 		tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 	g_info->line_index++;
 	g_info->position++;
+//	ft_printf("\npos = %d\n", g_info->position);
+//	ft_printf("\nindx = %d\n", g_info->line_index);
 }
 
 void		move_left(void)

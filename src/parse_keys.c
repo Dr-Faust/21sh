@@ -29,7 +29,7 @@ static int	check_print_position(char *buf)
 		g_info->line = ft_strjoin_free_first(g_info->line, buf);
 		ft_printf("%s", buf);
 	}
-	g_info->line_index++;;
+	g_info->line_index++;
 	g_info->position++;
 	return (0);
 }

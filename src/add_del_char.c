@@ -31,17 +31,14 @@ static char	*reprint_str_add(char *buf)
 char		*add_char(char *buf)
 {
 	char	*ret;
-	int		start;
 
-	start = 0;
-	ret = ft_strsub(g_info->line, start, g_info->line_index - start);
+	ret = ft_strsub(g_info->line, 0, g_info->line_index);
 	ret = ft_strjoin_free(ret, reprint_str_add(buf));
 	if (((int)ft_strlen(g_info->line) + g_info->prompt_len) %
 		g_info->win_size == 0)
 		tputs(tgetstr("up", 0), 1, &ft_put_my_char);
 	if ((g_info->position) % g_info->win_size == 0)
 		ft_putchar('\n');
-	start = 0;
 	ft_memdel((void **)&g_info->line);
 	return (ret);
 }
@@ -74,5 +71,6 @@ char		*del_char(char *buf)
 	ret = ft_strjoin_free(ret, ft_strsub(g_info->line, start,
 		ft_strlen(g_info->line) - start));
 	ft_memdel((void **)&g_info->line);
+	//ft_printf("\npos = %d\n", g_info->position);
 	return (ret);
 }

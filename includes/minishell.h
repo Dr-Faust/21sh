@@ -145,7 +145,6 @@ void				down_arrow(char *buf, t_hist **hist, int *hist_counter);
 void				move_left(void);
 void				extended_move_left(int line_indx);
 void				move_right(void);
-void				extended_move_right(int line_indx);
 
 /*
 **						  ==[ Line edition ]==

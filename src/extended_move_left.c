@@ -21,16 +21,16 @@ static int	correct_position_left(int flag, int line_indx)
 	if (!flag)
 	{
 		line_indx += g_info->prompt_len;
-		line_counter = line_indx / g_info->win_size;
-		while (line_indx-- > (g_info->win_size * line_counter))
+		line_counter = line_indx / g_info->win_width;
+		while (line_indx-- > (g_info->win_width * line_counter))
 			counter++;
 	}
 	else
 		while (g_info->line[--line_indx] != '\n')
 			counter++;
-	if (counter >= g_info->win_size)
-			counter %= g_info->win_size;
-	g_info->position = (g_info->position - g_info->win_size) + counter + 1;
+	if (counter >= g_info->win_width)
+			counter %= g_info->win_width;
+	g_info->position = (g_info->position - g_info->win_width) + counter + 1;
 	return (counter);
 }
 

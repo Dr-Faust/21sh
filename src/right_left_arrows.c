@@ -17,15 +17,15 @@ void		move_right(void)
 	int		pos_diff;
 	int		line_counter;
 
-	if ((g_info->position) % g_info->win_size == 0 ||
+	if ((g_info->position) % g_info->win_width == 0 ||
 		g_info->line[g_info->line_index] == '\n')
 	{
 		ft_putchar('\n');
 		if (g_info->line[g_info->line_index] == '\n')
 		{
-			line_counter = g_info->position / g_info->win_size;
-			pos_diff = g_info->position - (line_counter * g_info->win_size);
-			g_info->position = g_info->position - pos_diff + g_info->win_size;
+			line_counter = g_info->position / g_info->win_width;
+			pos_diff = g_info->position - (line_counter * g_info->win_width);
+			g_info->position = g_info->position - pos_diff + g_info->win_width;
 		}
 	}
 	else
@@ -40,7 +40,7 @@ void		move_left(void)
 {
 	int		tmp;
 	
-	if ((g_info->position - 1) % g_info->win_size == 0 ||
+	if ((g_info->position - 1) % g_info->win_width == 0 ||
 		g_info->line[g_info->line_index - 1] == '\n')
 	{
 		ft_putstr("\033M");
@@ -49,7 +49,7 @@ void		move_left(void)
 		else
 		{
 			tmp = 0;
-			while (tmp++ < g_info->win_size - 1)
+			while (tmp++ < g_info->win_width - 1)
 				tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 		}
 	}

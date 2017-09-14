@@ -57,7 +57,8 @@ typedef struct		s_glob_info
 	struct termios	default_term;
 	struct winsize	win;
 	int				prompt_len;
-	int				win_size;
+	int				win_width;
+	int				win_height;
 	char			*line;
 	char			*quote_line;
 	int				bytes;

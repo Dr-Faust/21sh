@@ -24,17 +24,17 @@ int			get_position(int index)
 	{
 		if (g_info->line[index] == '\n')
 		{
-			if (curr_position > g_info->win_size)
+			if (curr_position > g_info->win_width)
 			{
 				ret_position += curr_position;
-				curr_position %= g_info->win_size;
-				curr_position = g_info->win_size - curr_position;
+				curr_position %= g_info->win_width;
+				curr_position = g_info->win_width - curr_position;
 				ret_position += curr_position;
 			}
 			else
 			{
 				ret_position += curr_position;
-				curr_position = g_info->win_size - curr_position;
+				curr_position = g_info->win_width - curr_position;
 				ret_position += curr_position;
 			}
 			curr_position = 0;

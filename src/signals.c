@@ -52,7 +52,8 @@ static void	signal_handler(int signal)
 	else if (signal == SIGWINCH)
 	{
 		ioctl(0, TIOCGWINSZ, &g_info->win);
-		g_info->win_size = g_info->win.ws_col;
+		g_info->win_width = g_info->win.ws_col;
+		g_info->win_height = g_info->win.ws_row;
 	}
 	return ;
 }

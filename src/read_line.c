@@ -61,7 +61,8 @@ char		*read_line(t_hist **hist)
 		}
 		flag = 0;
 		ioctl(0, TIOCGWINSZ, &g_info->win);
-		g_info->win_size = g_info->win.ws_col;
+		g_info->win_width = g_info->win.ws_col;
+		g_info->win_height = g_info->win.ws_row;
 		prompt_flag(42);
 		manage_signals();
 		read_buf(buf);

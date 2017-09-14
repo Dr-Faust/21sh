@@ -6,7 +6,7 @@
 #    By: opodolia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/20 16:00:27 by opodolia          #+#    #+#              #
-#    Updated: 2017/09/03 19:49:27 by opodolia         ###   ########.fr        #
+#    Updated: 2017/09/14 20:22:25 by opodolia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SH_OBJ = $(addprefix $(SH_OBJ_DIR), $(SH_FILES:.c=.o))
 LIB_DIR = ./libft_printf/
 LIB = $(addprefix $(LIB_DIR), libftprintf.a)
 LIB_INC = -I ./libft_printf
-LIB_LNK = -L ./libft_printf -lftprintf
+LIB_LNK = -L ./libft_printf -lftprintf -lncurses
 
 .SILENT:
 

@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:10:03 by opodolia          #+#    #+#             */
-/*   Updated: 2017/09/03 19:55:51 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/09/14 15:28:26 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int			main(void)
 	if (!(g_info = (t_glob_info *)ft_memalloc(sizeof(t_glob_info))))
 		error_exit(sh, mem_alloc_err);
 	tcgetattr(STDIN_FILENO, &g_info->default_term);
-//	ft_putstr("\x1B[?7h");
 	env_info = get_env_info(environ);
 	minishell(&env_info);
 	clean_env_info(&env_info);

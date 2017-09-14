@@ -6,11 +6,29 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/03 19:57:11 by opodolia          #+#    #+#             */
-/*   Updated: 2017/09/03 19:57:13 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/09/14 16:00:46 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void		modify_ret_position(int *curr_position, int *ret_position)
+{
+	if (*curr_position > g_info->win_width)
+	{
+		*ret_position += *curr_position;
+		*curr_position %= g_info->win_width;
+		*curr_position = g_info->win_width - *curr_position;
+		*ret_position += *curr_position;
+	}
+	else
+	{
+		*ret_position += *curr_position;
+		*curr_position = g_info->win_width - *curr_position;
+		*ret_position += *curr_position;
+	}
+	*curr_position = 0;
+}
 
 int			get_position(int index)
 {
@@ -23,22 +41,7 @@ int			get_position(int index)
 	while (g_info->line[index])
 	{
 		if (g_info->line[index] == '\n')
-		{
-			if (curr_position > g_info->win_width)
-			{
-				ret_position += curr_position;
-				curr_position %= g_info->win_width;
-				curr_position = g_info->win_width - curr_position;
-				ret_position += curr_position;
-			}
-			else
-			{
-				ret_position += curr_position;
-				curr_position = g_info->win_width - curr_position;
-				ret_position += curr_position;
-			}
-			curr_position = 0;
-		}
+			modify_ret_position(&curr_position, &ret_position);
 		index++;
 		curr_position++;
 	}
@@ -68,7 +71,12 @@ void		add_prev_elem(t_hist **hist)
 void		add_to_history(char *line, t_hist **hist, int id)
 {
 	if (*hist)
+	{
+		if (((*hist)->next) == 0)
+			if (!ft_strcmp(line, (*hist)->line))
+				return ;
 		add_to_history(line, &((*hist)->next), ++id);
+	}
 	else
 	{
 		if (!(*hist = (t_hist *)malloc(sizeof(t_hist))))

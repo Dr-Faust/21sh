@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/03 19:37:43 by opodolia          #+#    #+#             */
-/*   Updated: 2017/09/03 20:09:10 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/09/14 15:27:37 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	correct_position_left(int flag, int line_indx)
 		while (g_info->line[--line_indx] != '\n')
 			counter++;
 	if (counter >= g_info->win_width)
-			counter %= g_info->win_width;
+		counter %= g_info->win_width;
 	g_info->position = (g_info->position - g_info->win_width) + counter + 1;
 	return (counter);
 }

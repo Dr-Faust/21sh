@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:01:30 by opodolia          #+#    #+#             */
-/*   Updated: 2017/09/03 20:09:05 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/09/14 15:29:20 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,12 @@ void		move_right(void)
 		tputs(tgetstr("nd", 0), 1, &ft_put_my_char);
 	g_info->line_index++;
 	g_info->position++;
-//	ft_printf("\npos = %d\n", g_info->position);
-//	ft_printf("\nindx = %d\n", g_info->line_index);
 }
 
 void		move_left(void)
 {
 	int		tmp;
-	
+
 	if ((g_info->position - 1) % g_info->win_width == 0 ||
 		g_info->line[g_info->line_index - 1] == '\n')
 	{
@@ -57,8 +55,6 @@ void		move_left(void)
 		tputs(tgetstr("le", 0), 1, &ft_put_my_char);
 	g_info->line_index--;
 	g_info->position--;
-//	ft_printf("\npos = %d\n", g_info->position);
-//	ft_printf("\nindx = %d\n", g_info->line_index);
 }
 
 void		left_arrow(char *buf)

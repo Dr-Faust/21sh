@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:33:54 by opodolia          #+#    #+#             */
-/*   Updated: 2017/08/22 19:45:14 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/09/14 21:12:12 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	set_terminal(void)
 	char			*terminal;
 
 	tcgetattr(STDIN_FILENO, &term);
-	term.c_lflag &= ~(ECHO | ICANON);
+	term.c_lflag &= ~(ECHO | ICANON | CREAD);
 	term.c_lflag |= ISIG | TOSTOP;
 	term.c_cc[VMIN] = 1;
 	term.c_cc[VTIME] = 0;
@@ -26,7 +26,7 @@ void	set_terminal(void)
 		(term.c_lflag & (ECHO | ICANON)) || term.c_cc[VMIN] != 1 ||
 		term.c_cc[VTIME] != 0 || !(terminal = getenv("TERM")))
 	{
-		tcsetattr(STDIN_FILENO, TCSADRAIN, &g_info->default_term);
+		tcsetattr(STDIN_FILENO, TCSANOW, &g_info->default_term);
 		tgetent(0, getenv("TERM"));
 		error_exit(sh, setup_term_err);
 	}

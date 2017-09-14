@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/30 16:19:21 by opodolia          #+#    #+#             */
-/*   Updated: 2017/09/03 19:56:55 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/09/14 15:28:06 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ static void	get_new_line(t_hist *hist)
 	g_info->line = ft_strdup(hist->line);
 	g_info->line_index = (int)ft_strlen(g_info->line);
 	g_info->position = get_position(g_info->line_index);
-//	ft_printf("\nwin_size = %d\n", g_info->win_size);
-//	ft_printf("position = %d\n", g_info->position);
-//	ft_printf("line_index = %d\n", g_info->line_index);
 	ft_printf("%s", g_info->line);
 }
 

@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:09:50 by opodolia          #+#    #+#             */
-/*   Updated: 2017/09/03 20:09:08 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/09/14 21:12:25 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/stat.h>
 # include <termcap.h>
 # include <signal.h>
+# include <ncurses.h>
 
 # define PATH_LEN			1024
 

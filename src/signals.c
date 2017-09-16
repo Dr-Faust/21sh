@@ -12,12 +12,12 @@
 
 #include "minishell.h"
 
-int			prompt_flag(int flag)
+int			prompt_flag(short data)
 {
 	static int	prompt;
 
-	if (flag)
-		prompt = flag;
+	if (data)
+		prompt = data;
 	return (prompt);
 }
 
@@ -36,7 +36,7 @@ static void	handle_sigint(int *signal)
 	if (!(g_info->line = ft_strnew(1)))
 		error_exit(sh, mem_alloc_err);
 	g_info->position = g_info->prompt_len;
-	g_info->line_index = 0;
+	g_info->index = 0;
 	if (g_info->quote_line)
 	{
 		ft_memdel((void **)&g_info->quote_line);

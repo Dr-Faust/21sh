@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static void	print_quote_prompt(int quote)
+static void	print_quote_prompt(unsigned short quote)
 {
 	if (quote == 39)
 	{
@@ -26,7 +26,7 @@ static void	print_quote_prompt(int quote)
 	}
 }
 
-static void	print_quotes(int *flag, int quote, t_hist **hist)
+static void	print_quotes(bool *flag, unsigned short quote, t_hist **hist)
 {
 	int		j;
 	char	*str;
@@ -46,7 +46,7 @@ static void	print_quotes(int *flag, int quote, t_hist **hist)
 	}
 }
 
-int			valid_quote(char *s, int i, char quote)
+int			valid_quote(char *s, unsigned int i, char quote)
 {
 	while (s[i])
 	{
@@ -59,8 +59,8 @@ int			valid_quote(char *s, int i, char quote)
 
 static void	check_quotes(t_hist **hist)
 {
-	int		i;
-	int		flag;
+	unsigned int	i;
+	bool			flag;
 
 	i = 0;
 	while (g_info->quote_line[i])

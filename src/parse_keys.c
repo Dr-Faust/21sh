@@ -16,25 +16,25 @@ static int	check_print_position(char *buf)
 {
 	if (buf[0] == '\n')
 	{
-		while (g_info->line[g_info->line_index])
+		while (g_info->line[g_info->index])
 			move_right();
 		ft_printf("\n");
 		g_info->line = ft_strjoin_free_first(g_info->line, "\n\0");
 		return (1);
 	}
-	else if (g_info->line_index < (int)ft_strlen(g_info->line))
+	else if (g_info->index < (unsigned int)ft_strlen(g_info->line))
 		g_info->line = add_char(buf);
 	else
 	{
 		g_info->line = ft_strjoin_free_first(g_info->line, buf);
 		ft_printf("%s", buf);
 	}
-	g_info->line_index++;
+	g_info->index++;
 	g_info->position++;
 	return (0);
 }
 
-void		parse_keys(char *buf, int *flag, t_hist **hist, int *hist_counter)
+void		parse_keys(char *buf, bool *flag, t_hist **hist, unsigned int *hist_counter)
 {
 	if (buf[2] == LEFT || buf[3] == LEFT || buf[2] == START)
 		left_arrow(buf);
@@ -44,12 +44,12 @@ void		parse_keys(char *buf, int *flag, t_hist **hist, int *hist_counter)
 		up_arrow(buf, *hist, hist_counter);
 	else if (buf[2] == DOWN || buf[3] == DOWN)
 		down_arrow(buf, hist, hist_counter);
-	else if ((buf[0] == BACKSPACE && g_info->line_index > 0) ||
-			(buf[3] == DELETE && g_info->line[g_info->line_index]))
+	else if ((buf[0] == BACKSPACE && g_info->index > 0) ||
+			(buf[3] == DELETE && g_info->line[g_info->index]))
 		g_info->line = del_char(buf);
 	else if (buf[0] == CTRL_D && !g_info->line[0])
 	{
-		*flag = 1;
+		*flag = true;
 		g_info->line = ft_strjoin_free_first(g_info->line, "exit");
 		ft_putchar('\n');
 	}

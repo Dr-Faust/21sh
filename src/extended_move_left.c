@@ -12,10 +12,10 @@
 
 #include "minishell.h"
 
-static int	correct_position_left(int flag, int line_indx)
+static int	correct_position_left(bool flag, unsigned int line_indx)
 {
-	int		counter;
-	int		line_counter;
+	unsigned int	counter;
+	unsigned int	line_counter;
 
 	counter = 0;
 	if (!flag)
@@ -34,16 +34,16 @@ static int	correct_position_left(int flag, int line_indx)
 	return (counter);
 }
 
-void		extended_move_left(int line_indx)
+void		extended_move_left(unsigned int line_indx)
 {
-	int		flag;
-	int		counter;
+	bool			flag;
+	unsigned int	counter;
 
 	flag = 0;
 	while (--line_indx)
 		if (g_info->line[line_indx] == '\n')
 			flag = 1;
-	line_indx = g_info->line_index - 1;
+	line_indx = g_info->index - 1;
 	counter = correct_position_left(flag, line_indx);
 	while (counter-- > 0)
 		tputs(tgetstr("nd", 0), 1, &ft_put_my_char);

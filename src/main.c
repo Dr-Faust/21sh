@@ -14,7 +14,7 @@
 
 t_glob_info	*g_info;
 
-static void	clean_history(t_hist **hist)
+static void		clean_history(t_hist **hist)
 {
 	if (!(*hist))
 		return ;
@@ -24,27 +24,46 @@ static void	clean_history(t_hist **hist)
 	ft_memdel((void **)&(*hist));
 }
 
-static void	clean_info(char **line, char ***args)
+static void		clean_info(char **line, char ***args)
 {
 	ft_memdel((void **)&args);
 	ft_memdel((void **)&(*line));
 	ft_memdel((void **)&g_info->hist_start_line);
 }
 
-static void	minishell(t_env **env_info)
+unsigned short	get_curr_row_position(void)
+{
+	char			*buf;
+	char			*tmp;
+	unsigned short	position;
+	
+	if (isatty(fileno(stdin)))
+	{
+		buf = ft_strnew(20);
+		ft_putstr("\033[6n");
+		read (0, buf, 20);
+		tmp = ft_strchr(buf, '[');
+		position = ft_atoi(tmp + 1);
+		ft_memdel((void *)&buf);
+	}
+	return (position);
+}
+
+static void		minishell(t_env **env_info)
 {
 	char	*line;
-	int		status;
+	bool	status;
 	char	***args;
 	t_hist	*hist;
 
-	status = 1;
+	status = true;
 	hist = 0;
 	g_info->hist_counter = 0;
 	while (status)
 	{
 		set_terminal();
 		g_info->prompt_len = write_prompt();
+		g_info->row_position = get_curr_row_position();
 		line = read_line(&hist);
 		line = parse_quotes(line, &hist);
 		if (!(args = ft_memalloc(sizeof(char **) * (count_commands(line) + 1))))
@@ -60,7 +79,7 @@ static void	minishell(t_env **env_info)
 	clean_history(&hist);
 }
 
-int			main(void)
+int				main(void)
 {
 	extern char	**environ;
 	t_env		*env_info;

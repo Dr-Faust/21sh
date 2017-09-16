@@ -12,7 +12,8 @@
 
 #include "minishell.h"
 
-void		modify_ret_position(int *curr_position, int *ret_position)
+void		modify_ret_position(unsigned int *curr_position,
+			unsigned int *ret_position)
 {
 	if (*curr_position > g_info->win_width)
 	{
@@ -30,10 +31,10 @@ void		modify_ret_position(int *curr_position, int *ret_position)
 	*curr_position = 0;
 }
 
-int			get_position(int index)
+unsigned int	get_position(unsigned int index)
 {
-	int		ret_position;
-	int		curr_position;
+	unsigned int	ret_position;
+	unsigned int	curr_position;
 
 	index = 0;
 	ret_position = 0;
@@ -49,7 +50,7 @@ int			get_position(int index)
 	return (ret_position);
 }
 
-int			print_history(t_hist *hist)
+bool			print_history(t_hist *hist)
 {
 	while (hist)
 	{
@@ -68,7 +69,7 @@ void		add_prev_elem(t_hist **hist)
 	}
 }
 
-void		add_to_history(char *line, t_hist **hist, int id)
+void		add_to_history(char *line, t_hist **hist, unsigned int id)
 {
 	if (*hist)
 	{

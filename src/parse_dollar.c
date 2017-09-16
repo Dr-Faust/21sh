@@ -37,17 +37,16 @@ static int	ft_isenv(t_env *env_info, char *var)
 	return (0);
 }
 
-char		*parse_dollar(char *line, int i, t_env *env_info)
+char		*parse_dollar(char *line, unsigned int i, t_env *env_info)
 {
-	char	*var;
-	char	*new_line;
-	int		tmp;
+	char			*var;
+	char			*new_line;
+	unsigned int	tmp;
 
 	tmp = i + 1;
 	while (ft_isalnum(line[tmp]) || line[tmp] == '_')
 		tmp++;
-	if (!(var = ft_strsub(line, (unsigned int)(i + 1),
-					(size_t)(tmp - i - 1))))
+	if (!(var = ft_strsub(line, i + 1, (size_t)(tmp - i - 1))))
 		return (0);
 	line[i] = '\0';
 	new_line = ft_strdup(&(line[0]));

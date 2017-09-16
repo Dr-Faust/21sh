@@ -14,13 +14,14 @@
 
 static void	get_new_line(t_hist *hist)
 {
-	while (g_info->line_index > 0)
+	while (g_info->index > 0)
 		move_left();
 	tputs(tgetstr("cd", 0), 1, &ft_put_my_char);
 	ft_memdel((void **)&g_info->line);
 	g_info->line = ft_strdup(hist->line);
-	g_info->line_index = (int)ft_strlen(g_info->line);
-	g_info->position = get_position(g_info->line_index);
+	g_info->index = (int)ft_strlen(g_info->line);
+	g_info->position = get_position(g_info->index);
+//	g_info->row_position = get_curr_row_position();
 	ft_printf("%s", g_info->line);
 }
 
@@ -28,14 +29,15 @@ static void	get_start_line(void)
 {
 	g_info->line = ft_strdup(g_info->hist_start_line);
 	g_info->position = g_info->prompt_len + ft_strlen(g_info->line) + 1;
-	g_info->line_index = (int)ft_strlen(g_info->line);
+	g_info->index = (int)ft_strlen(g_info->line);
+//	g_info->row_position = get_curr_row_position();
 	g_info->hist_search_flag = 1;
 	ft_printf("%s", g_info->line);
 }
 
-static void	clear_line(int *hist_counter)
+static void	clear_line(unsigned int *hist_counter)
 {
-	while (g_info->line_index > 0)
+	while (g_info->index > 0)
 		move_left();
 	tputs(tgetstr("cd", 0), 1, &ft_put_my_char);
 	ft_memdel((void **)&g_info->line);
@@ -45,12 +47,12 @@ static void	clear_line(int *hist_counter)
 	{
 		g_info->line = ft_strnew(1);
 		g_info->position = g_info->prompt_len;
-		g_info->line_index = 0;
+		g_info->index = 0;
 	}
 	*hist_counter += 1;
 }
 
-void		print_prev_hist(t_hist *hist, int *hist_counter)
+void		print_prev_hist(t_hist *hist, unsigned int *hist_counter)
 {
 	if (g_info->hist_search_flag)
 	{
@@ -70,7 +72,7 @@ void		print_prev_hist(t_hist *hist, int *hist_counter)
 		print_prev_hist(hist->prev, hist_counter);
 }
 
-void		print_next_hist(t_hist *hist, int *hist_counter)
+void		print_next_hist(t_hist *hist, unsigned int *hist_counter)
 {
 	if (g_info->hist_search_flag)
 	{

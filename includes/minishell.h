@@ -25,6 +25,7 @@
 # include <termcap.h>
 # include <signal.h>
 # include <ncurses.h>
+# include <stdbool.h>
 
 # define PATH_LEN			1024
 
@@ -47,7 +48,7 @@ typedef struct		s_env
 
 typedef struct		s_hist
 {
-	int				id;
+	unsigned int	id;
 	char			*line;
 	struct s_hist	*next;
 	struct s_hist	*prev;
@@ -57,16 +58,17 @@ typedef struct		s_glob_info
 {
 	struct termios	default_term;
 	struct winsize	win;
-	int				prompt_len;
-	int				win_width;
-	int				win_height;
+	unsigned short	prompt_len;
+	unsigned short	win_width;
+	unsigned short	win_height;
 	char			*line;
 	char			*quote_line;
-	int				bytes;
-	int				position;
-	int				line_index;
-	int				hist_counter;
-	int				hist_search_flag;
+	unsigned short	bytes;
+	unsigned short	row_position;
+	unsigned int	position;
+	unsigned int	index;
+	unsigned int	hist_counter;
+	short			hist_search_flag;
 	char			*hist_start_line;
 }					t_glob_info;
 
@@ -108,22 +110,23 @@ typedef enum
 }	t_command;
 
 void				set_terminal();
+unsigned short		get_curr_row_position(void);
 t_env				*get_env_info(char **arr);
 void				clean_env_info(t_env **env_info);
-int					check_prompt(int data);
+int					check_prompt(short data);
 int					write_prompt(void);
 char				*read_line(t_hist **hist);
-void				parse_keys(char *buf, int *flag, t_hist **hist,
-					int *hist_counter);
+void				parse_keys(char *buf, bool *flag, t_hist **hist,
+					unsigned int *hist_counter);
 int					split_line(char *line, t_env **env_info, t_hist *hist,
 					char ***args);
 char				**split_command(char *line);
 char				*parse_quotes(char *line, t_hist **hist);
-char				*parse_dollar(char *line, int i, t_env *env_info);
+char				*parse_dollar(char *line, unsigned int i, t_env *env_info);
 char				*get_env_var(char *var, t_env *env_info);
 int					count_args(char *str);
 int					count_commands(char *str);
-int					valid_quote(char *s, int i, char quote);
+int					valid_quote(char *s, unsigned int i, char quote);
 int					execute(char **args, t_env **env_info, t_hist *hist);
 char				**env_to_arr(t_env *env_info);
 char				*verif_access(char *command, t_env *env_info);
@@ -142,10 +145,12 @@ int					ft_help(void);
 
 void				left_arrow(char *buf);
 void				right_arrow(char *buf);
-void				up_arrow(char *buf, t_hist *hist, int *hist_counter);
-void				down_arrow(char *buf, t_hist **hist, int *hist_counter);
+void				up_arrow(char *buf, t_hist *hist,
+					unsigned int *hist_counter);
+void				down_arrow(char *buf, t_hist **hist,
+					unsigned int *hist_counter);
 void				move_left(void);
-void				extended_move_left(int line_indx);
+void				extended_move_left(unsigned int line_indx);
 void				move_right(void);
 
 /*
@@ -170,17 +175,17 @@ int					signal_error(t_command command_type, t_sig_err error_type,
 */
 
 void				manage_signals(void);
-int					prompt_flag(int data);
+int					prompt_flag(short data);
 
 /*
 **						    ==[ History ]==
 */
 
-void				add_to_history(char *line, t_hist **hist, int id);
+void				add_to_history(char *line, t_hist **hist, unsigned int id);
 void				add_prev_elem(t_hist **hist);
-void				print_prev_hist(t_hist *hist, int *hist_counter);
-void				print_next_hist(t_hist *hist, int *hist_counter);
-int					print_history(t_hist *hist);
-int					get_position(int line_indx);
+void				print_prev_hist(t_hist *hist, unsigned int *hist_counter);
+void				print_next_hist(t_hist *hist, unsigned int *hist_counter);
+bool				print_history(t_hist *hist);
+unsigned int		get_position(unsigned int line_indx);
 
 #endif

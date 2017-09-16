@@ -24,7 +24,7 @@ static void	clean_up(char **args, char *cmd)
 	ft_memdel((void **)&cmd);
 }
 
-static void	check_quote(char *str, int *i)
+static void	check_quote(char *str, unsigned int *i)
 {
 	if ((str[*i] == 34 || str[*i] == 39) &&
 			valid_quote(str, *i + 1, str[*i]) != -1)
@@ -34,8 +34,8 @@ static void	check_quote(char *str, int *i)
 
 int			count_commands(char *str)
 {
-	int		i;
-	int		count;
+	unsigned int	i;
+	unsigned int	count;
 
 	i = 0;
 	count = 0;
@@ -52,10 +52,10 @@ int			count_commands(char *str)
 }
 
 int			split_line(char *line, t_env **env_info, t_hist *hist,
-			char ***args)
+				char ***args)
 {
 	char			*cmd;
-	int				i;
+	unsigned int	i;
 	int				numb;
 	unsigned int	start;
 	int				j;
@@ -66,7 +66,7 @@ int			split_line(char *line, t_env **env_info, t_hist *hist,
 	{
 		while (line[i] && line[i] == ';')
 			i++;
-		start = (unsigned int)i;
+		start = i;
 		while (line[i] && line[i] != ';')
 			check_quote(line, &i);
 		cmd = ft_strsub(line, start, (size_t)(i - start));

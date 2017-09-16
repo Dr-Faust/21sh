@@ -34,7 +34,7 @@ static void	init_struct(void)
 		if (!(g_info->line = ft_strnew(1)))
 			error_exit(sh, mem_alloc_err);
 	g_info->position = g_info->prompt_len + 1;
-	g_info->line_index = 0;
+	g_info->index = 0;
 }
 
 static char	*manage_ret(char **ret)
@@ -46,10 +46,10 @@ static char	*manage_ret(char **ret)
 
 char		*read_line(t_hist **hist)
 {
-	char		buf[8];
-	char		*ret;
-	int			flag;
-	int			hist_counter;
+	char			buf[8];
+	char			*ret;
+	bool			flag;
+	unsigned int	hist_counter;
 
 	init_struct();
 	while (42)

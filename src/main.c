@@ -49,14 +49,12 @@ unsigned short	get_curr_row_position(void)
 	return (position);
 }
 
-static void		minishell(t_env **env_info)
+static void		minishell(t_env **env_info, bool status)
 {
 	char	*line;
-	bool	status;
 	char	***args;
 	t_hist	*hist;
 
-	status = true;
 	hist = 0;
 	g_info->hist_counter = 0;
 	while (status)
@@ -73,6 +71,7 @@ static void		minishell(t_env **env_info)
 		{
 			add_to_history(line, &hist, 1);
 			add_prev_elem(&hist);
+		//	add_line_to_history_file(line);
 		}
 		clean_info(&line, args);
 	}
@@ -83,12 +82,14 @@ int				main(void)
 {
 	extern char	**environ;
 	t_env		*env_info;
+	bool		status;
 
+	status = true;
 	if (!(g_info = (t_glob_info *)ft_memalloc(sizeof(t_glob_info))))
 		error_exit(sh, mem_alloc_err);
 	tcgetattr(STDIN_FILENO, &g_info->default_term);
 	env_info = get_env_info(environ);
-	minishell(&env_info);
+	minishell(&env_info, status);
 	clean_env_info(&env_info);
 	return (EXIT_SUCCESS);
 }

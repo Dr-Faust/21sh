@@ -19,10 +19,10 @@ static void	get_new_line(t_hist *hist)
 	tputs(tgetstr("cd", 0), 1, &ft_put_my_char);
 	ft_memdel((void **)&g_info->line);
 	g_info->line = ft_strdup(hist->line);
-	g_info->index = (int)ft_strlen(g_info->line);
 	g_info->position = get_position(g_info->index);
-//	g_info->row_position = get_curr_row_position();
+	g_info->index = (int)ft_strlen(g_info->line);
 	ft_printf("%s", g_info->line);
+	g_info->row_position = get_curr_row_position();
 }
 
 static void	get_start_line(void)
@@ -30,9 +30,9 @@ static void	get_start_line(void)
 	g_info->line = ft_strdup(g_info->hist_start_line);
 	g_info->position = g_info->prompt_len + ft_strlen(g_info->line) + 1;
 	g_info->index = (int)ft_strlen(g_info->line);
-//	g_info->row_position = get_curr_row_position();
 	g_info->hist_search_flag = 1;
 	ft_printf("%s", g_info->line);
+	g_info->row_position = get_curr_row_position();
 }
 
 static void	clear_line(unsigned int *hist_counter)

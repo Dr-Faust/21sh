@@ -28,6 +28,12 @@ static int	check_print_position(char *buf)
 	{
 		g_info->line = ft_strjoin_free_first(g_info->line, buf);
 		ft_printf("%s", buf);
+		if (g_info->position % g_info->win_width == 0)
+		{
+			ft_putchar('a');
+			tputs(tgetstr("le", 0), 1, &ft_put_my_char);
+			tputs(tgetstr("dc", 0), 1, &ft_put_my_char);
+		}
 	}
 	g_info->index++;
 	g_info->position++;
@@ -40,9 +46,9 @@ void		parse_keys(char *buf, bool *flag, t_hist **hist, unsigned int *hist_counte
 		left_arrow(buf);
 	else if (buf[2] == RIGHT || buf[3] == RIGHT || buf[2] == END)
 		right_arrow(buf);
-	else if (buf[2] == UP || buf[3] == UP)
+	else if (buf[2] == UP || buf[5] == UP)
 		up_arrow(buf, *hist, hist_counter);
-	else if (buf[2] == DOWN || buf[3] == DOWN)
+	else if (buf[2] == DOWN || buf[5] == DOWN)
 		down_arrow(buf, hist, hist_counter);
 	else if ((buf[0] == BACKSPACE && g_info->index > 0) ||
 			(buf[3] == DELETE && g_info->line[g_info->index]))

@@ -29,6 +29,10 @@
 
 # define PATH_LEN			1024
 
+/*
+**							    ==[ Keys definition ]==
+*/
+
 # define LEFT				'D'
 # define RIGHT				'C'
 # define UP					'A'
@@ -39,12 +43,20 @@
 # define BACKSPACE			127
 # define CTRL_D				4
 
+/*
+**							 ==[ Environment structure ]==
+*/
+
 typedef struct		s_env
 {
 	char			*name;
 	char			*content;
 	struct s_env	*next;
 }					t_env;
+
+/*
+**							   ==[ History structure ]==
+*/
 
 typedef struct		s_hist
 {
@@ -53,6 +65,10 @@ typedef struct		s_hist
 	struct s_hist	*next;
 	struct s_hist	*prev;
 }					t_hist;
+
+/*
+**							 ==[ Global info structure ]==
+*/
 
 typedef struct		s_glob_info
 {
@@ -74,11 +90,19 @@ typedef struct		s_glob_info
 
 extern t_glob_info	*g_info;
 
+/*
+**							   ==[ Error with exit  ]==
+*/
+
 typedef enum
 {
 	mem_alloc_err,
 	setup_term_err,
 }	t_err_exit;
+
+/*
+**							  ==[ Errors with return 1 ]==
+*/
 
 typedef	enum
 {
@@ -95,11 +119,19 @@ typedef	enum
 	err_cal_fork,
 }	t_err_ret;
 
+/*
+**						 ==[ Errors in setting up terminal ]==
+*/
+
 typedef enum
 {
 	err_sys,
 	err_dump,
 }	t_sig_err;
+
+/*
+**					   ==[ Commands list for printing errors ]==
+*/
 
 typedef enum
 {
@@ -109,28 +141,62 @@ typedef enum
 	unset_env,
 }	t_command;
 
+/*
+**									==[ Main ]==
+*/
+
 void				set_terminal();
 unsigned short		get_curr_row_position(void);
+
+
+/*
+**								 ==[ Environment ]==
+*/
+
 t_env				*get_env_info(char **arr);
 void				clean_env_info(t_env **env_info);
+char				*get_env_var(char *var, t_env *env_info);
+char				**env_to_arr(t_env *env_info);
+
+/*
+**								   ==[ Prompt ]==
+*/
+
 int					check_prompt(short data);
 int					write_prompt(void);
+
+/*
+**								 ==[ Line reader ]==
+*/
+
 char				*read_line(t_hist **hist);
 void				parse_keys(char *buf, bool *flag, t_hist **hist,
 					unsigned int *hist_counter);
+
+/*
+**								   ==[ Parser ]==
+*/
+
 int					split_line(char *line, t_env **env_info, t_hist *hist,
 					char ***args);
 char				**split_command(char *line);
 char				*parse_quotes(char *line, t_hist **hist);
+int					valid_quote(char *s, unsigned int i, char quote);
 char				*parse_dollar(char *line, unsigned int i, t_env *env_info);
-char				*get_env_var(char *var, t_env *env_info);
 int					count_args(char *str);
 int					count_commands(char *str);
-int					valid_quote(char *s, unsigned int i, char quote);
+
+/*
+**								 ==[ Execution ]==
+*/
+
 int					execute(char **args, t_env **env_info, t_hist *hist);
-char				**env_to_arr(t_env *env_info);
 char				*verif_access(char *command, t_env *env_info);
-int					lsh_num_builtins();
+
+/*
+**							 ==[ Built in functions ]==
+*/
+
 int					ft_echo(char **args);
 int					ft_cd(char **args, t_env **env_info);
 int					ft_env(t_env *env_info);
@@ -139,8 +205,9 @@ int					ft_setenv(t_env **env_info, char *var, char *value,
 int					ft_unsetenv(t_env *env_info, char *var);
 int					ft_help(void);
 
+
 /*
-**						==[ Cursor movement ]==
+**							  ==[ Cursor movement ]==
 */
 
 void				left_arrow(char *buf);
@@ -154,14 +221,14 @@ void				extended_move_left(unsigned int line_indx);
 void				move_right(void);
 
 /*
-**						  ==[ Line edition ]==
+**							   ==[ Line edition ]==
 */
 
 char				*add_char(char *buf);
 char				*del_char(char *buf);
 
 /*
-**						    ==[ Errors ]==
+**								  ==[ Errors ]==
 */
 
 void				error_exit(t_command command_type, t_err_exit error_type);
@@ -171,14 +238,14 @@ int					signal_error(t_command command_type, t_sig_err error_type,
 					char *arg);
 
 /*
-**						    ==[ Signals ]==
+**								  ==[ Signals ]==
 */
 
 void				manage_signals(void);
 int					prompt_flag(short data);
 
 /*
-**						    ==[ History ]==
+**								  ==[ History ]==
 */
 
 void				add_to_history(char *line, t_hist **hist, unsigned int id);

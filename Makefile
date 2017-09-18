@@ -39,7 +39,8 @@ SH_FILES += parser/parse_quotes.c \
 SH_FILES += execution/execute.c \
 			execution/access.c
 SH_FILES += history/manage_history.c \
-			history/navigate_history.c
+			history/navigate_history.c \
+			history/add_to_history_file.c
 SH_FILES += builtins/ft_cd.c \
 			builtins/ft_echo.c \
 			builtins/ft_help.c \

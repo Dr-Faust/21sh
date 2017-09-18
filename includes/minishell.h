@@ -26,6 +26,7 @@
 # include <signal.h>
 # include <ncurses.h>
 # include <stdbool.h>
+# include <fcntl.h>
 
 # define PATH_LEN			1024
 
@@ -248,11 +249,13 @@ int					prompt_flag(short data);
 **								  ==[ History ]==
 */
 
-void				add_to_history(char *line, t_hist **hist, unsigned int id);
+void				add_to_history(char *line, t_hist **hist, t_env *env_info,
+					unsigned int id);
 void				add_prev_elem(t_hist **hist);
 void				print_prev_hist(t_hist *hist, unsigned int *hist_counter);
 void				print_next_hist(t_hist *hist, unsigned int *hist_counter);
 bool				print_history(t_hist *hist);
 unsigned int		get_position(unsigned int line_indx);
+void				add_line_to_history_file(char *line, t_env *env_info);
 
 #endif

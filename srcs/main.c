@@ -69,9 +69,8 @@ static void		minishell(t_env **env_info, bool status)
 		status = split_line(&(line[0]), env_info, hist, args);
 		if (line[0])
 		{
-			add_to_history(line, &hist, 1);
+			add_to_history(line, &hist, *env_info, 1);
 			add_prev_elem(&hist);
-		//	add_line_to_history_file(line);
 		}
 		clean_info(&line, args);
 	}

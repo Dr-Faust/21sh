@@ -69,14 +69,15 @@ void		add_prev_elem(t_hist **hist)
 	}
 }
 
-void		add_to_history(char *line, t_hist **hist, unsigned int id)
+void		add_to_history(char *line, t_hist **hist, t_env *env_info,
+			unsigned int id)
 {
 	if (*hist)
 	{
 		if (((*hist)->next) == 0)
 			if (!ft_strcmp(line, (*hist)->line))
 				return ;
-		add_to_history(line, &((*hist)->next), ++id);
+		add_to_history(line, &((*hist)->next), env_info, ++id);
 	}
 	else
 	{
@@ -87,5 +88,6 @@ void		add_to_history(char *line, t_hist **hist, unsigned int id)
 		(*hist)->next = 0;
 		(*hist)->prev = 0;
 		g_info->hist_counter++;
+		add_line_to_history_file(line, env_info);
 	}
 }

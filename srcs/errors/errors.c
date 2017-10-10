@@ -25,26 +25,41 @@ void	error_exit(t_command command_type, t_err_exit error_type)
 	exit(EXIT_FAILURE);
 }
 
-int		error_return(t_command command_type, t_err_ret error_type, char *arg)
+static void	set_commands_and_errors_arr(char *command[], char *error[])
 {
-	char	*error[11];
-	char	*command[4];
-
 	command[0] = "21sh: ";
 	command[1] = "cd: ";
-	command[2] = "setenv: ";
-	command[3] = "unsetenv: ";
+	command[2] = "env: ";
+	command[3] = "setenv: ";
+	command[4] = "unsetenv: ";
 	error[0] = "HOME doesn't set\n";
 	error[1] = "OLDPWD doesn't set\n";
 	error[2] = "no such file or directory: ";
 	error[3] = "permission denied: ";
 	error[4] = "command not found: ";
-	error[5] = "too few arguments: setenv var_name value\n";
-	error[6] = "too much arguments: setenv var_name value\n";
+	error[5] = "too few arguments: ";
+	error[6] = "too much arguments: ";
 	error[7] = "not an identifier: ";
-	error[8] = "too few arguments: unsetenv var_name\n";
-	error[9] = "there is no such variable: ";
-	error[10] = "error calling fork";
+	error[8] = "there is no such variable: ";
+	error[9] = "error calling fork";
+	error[10] = "incorrect parameter: ";
+	error[11] = "child process couldn't be created\n";
+}
+
+int		error_return(t_command command_type, t_err_ret error_type, char *arg)
+{
+	char	*error[12];
+	char	*command[5];
+	
+	if (command_type == 3 && (error_type == 5 || error_type == 6))
+		arg = "usage: [setenv var_name value]";
+	else if (command_type == 4 && error_type == 5)
+		arg = "usage: [unsetenv var_name]";
+	else if (command_type == 2 && error_type == 5)
+		arg = "usage: [env > arg]";
+	else if (command_type == 0 && error_type == 5)
+		arg = "usage: [command > arg]";
+	set_commands_and_errors_arr(command, error);
 	ft_printf("%s%s%s%s%s", CYAN, command[command_type],
 		RED, error[error_type], DEF);
 	if (arg)

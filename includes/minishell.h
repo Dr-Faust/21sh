@@ -92,7 +92,32 @@ typedef struct		s_glob_info
 extern t_glob_info	*g_info;
 
 /*
-**							   ==[ Error with exit  ]==
+**							   ==[ Redirections type ]==
+*/
+
+typedef enum
+{
+	input,
+	single_output,
+	double_output,
+	heredoc,
+}	t_redirect_type;
+
+/*
+**							 ==[ Redirections structure ]==
+*/
+
+typedef struct		s_redirect
+{
+	char			**args;
+	char			*input_file;
+	char			*output_file;
+	t_redirect_type	type;
+}					t_redirect;
+
+
+/*
+**							   ==[ Errors with exit ]==
 */
 
 typedef enum
@@ -115,9 +140,10 @@ typedef	enum
 	too_few_args,
 	too_much_args,
 	not_an_id,
-	too_few_args_u,
 	no_such_var,
 	err_cal_fork,
+	incorrect_param,
+	chld_proc_not_crtd,
 }	t_err_ret;
 
 /*
@@ -138,6 +164,7 @@ typedef enum
 {
 	sh,
 	cd,
+	env,
 	set_env,
 	unset_env,
 }	t_command;
@@ -191,8 +218,20 @@ int					count_commands(char *str);
 **								 ==[ Execution ]==
 */
 
-int					execute(char **args, t_env **env_info, t_hist *hist);
+int					cmd_handler(char **args, t_env **env_info, t_hist *hist);
+int					treat_path(char **args, t_env *env_info);
 char				*verif_access(char *command, t_env *env_info);
+
+/*
+**							    ==[ Redirections ]==
+*/
+
+int					check_redirections(char *args[], t_env *env_info,
+					char *path);
+int					redirect_output(t_env *env_info, t_redirect *info,
+					char *path);
+int					redirect_input(t_env *env_info, t_redirect *info,
+					char *path);
 
 /*
 **							 ==[ Built in functions ]==
@@ -200,7 +239,7 @@ char				*verif_access(char *command, t_env *env_info);
 
 int					ft_echo(char **args);
 int					ft_cd(char **args, t_env **env_info);
-int					ft_env(t_env *env_info);
+int					ft_env(char **args, t_env *env_info);
 int					ft_setenv(t_env **env_info, char *var, char *value,
 					char **args);
 int					ft_unsetenv(t_env *env_info, char *var);

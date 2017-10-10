@@ -37,13 +37,16 @@ SH_FILES += parser/parse_quotes.c \
 			parser/split_line.c \
 			parser/split_commands.c
 SH_FILES += execution/execute.c \
-			execution/access.c
+			execution/access.c \
+			execution/cmd_handler.c
+SH_FILES += redirections/redirections.c			
 SH_FILES += history/manage_history.c \
 			history/navigate_history.c \
 			history/add_to_history_file.c
 SH_FILES += builtins/ft_cd.c \
 			builtins/ft_echo.c \
 			builtins/ft_help.c \
+			builtins/ft_env.c \
 			builtins/ft_setenv.c \
 			builtins/ft_unsetenv.c
 SH_FILES += environment/env_info.c \
@@ -52,8 +55,8 @@ SH_FILES += signals/signals.c
 SH_FILES += errors/errors.c
 
 SH_SRCS_DIRS = terminal_settings/ prompt/ line_reader/ line_editing/ \
-			   cursor_movement/ parser/ execution/ history/ builtins/ \
-			   environment/ signals/ errors/
+			   cursor_movement/ parser/ execution/ redirections/ history/ \
+			   builtins/ environment/ signals/ errors/
 
 SH_OBJS_DIRS = $(addprefix $(SH_OBJ_DIR), $(SH_SRCS_DIRS))
 SH_OBJ = $(addprefix $(SH_OBJ_DIR), $(OBJ_NAME))

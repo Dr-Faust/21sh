@@ -79,13 +79,3 @@ int			ft_setenv(t_env **env_info, char *var, char *value, char **args)
 	}
 	return (add_to_env(env_info, var, value));
 }
-
-int			ft_env(t_env *env_info)
-{
-	while (env_info != 0)
-	{
-		ft_printf("%s=%s\n", env_info->name, env_info->content);
-		env_info = env_info->next;
-	}
-	return (1);
-}

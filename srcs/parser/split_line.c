@@ -75,7 +75,7 @@ int			split_line(char *line, t_env **env_info, t_hist *hist,
 			if (cmd[j] == '$' && cmd[j + 1] && ft_isalnum(cmd[j + 1]))
 				cmd = parse_dollar(cmd, j, *env_info);
 		args[numb] = split_command(cmd);
-		j = execute(args[numb], env_info, hist);
+		j = cmd_handler(args[numb], env_info, hist);
 		clean_up(args[numb], cmd);
 	}
 	return (j);

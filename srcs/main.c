@@ -86,6 +86,8 @@ int				main(void)
 	status = true;
 	if (!(g_info = (t_glob_info *)ft_memalloc(sizeof(t_glob_info))))
 		error_exit(sh, mem_alloc_err);
+	g_info->stdin_fd_copy = dup(STDIN_FILENO);
+	g_info->stdout_fd_copy = dup(STDOUT_FILENO);
 	tcgetattr(STDIN_FILENO, &g_info->default_term);
 	env_info = get_env_info(environ);
 	minishell(&env_info, status);

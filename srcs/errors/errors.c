@@ -57,8 +57,15 @@ int		error_return(t_command command_type, t_err_ret error_type, char *arg)
 		arg = "usage: [unsetenv var_name]";
 	else if (command_type == 2 && error_type == 5)
 		arg = "usage: [env > arg]";
-	else if (command_type == 0 && error_type == 5)
+	else if (command_type == 0 && error_type == 5 &&
+		!ft_strcmp(arg, "single_output"))
 		arg = "usage: [command > arg]";
+	else if (command_type == 0 && error_type == 5 &&
+		!ft_strcmp(arg, "double_output"))
+		arg = "usage: [command >> arg]";
+	else if (command_type == 0 && error_type == 5 &&
+		!ft_strcmp(arg, "input"))
+		arg = "usage: [command < arg]";
 	set_commands_and_errors_arr(command, error);
 	ft_printf("%s%s%s%s%s", CYAN, command[command_type],
 		RED, error[error_type], DEF);

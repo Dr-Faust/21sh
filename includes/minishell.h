@@ -87,6 +87,8 @@ typedef struct		s_glob_info
 	unsigned int	hist_counter;
 	short			hist_search_flag;
 	char			*hist_start_line;
+	int				stdin_fd_copy;
+	int				stdout_fd_copy;
 }					t_glob_info;
 
 extern t_glob_info	*g_info;
@@ -221,17 +223,21 @@ int					count_commands(char *str);
 int					cmd_handler(char **args, t_env **env_info, t_hist *hist);
 int					treat_path(char **args, t_env *env_info);
 char				*verif_access(char *command, t_env *env_info);
+int					launch(char **args, t_env *env_info, char *path);
 
 /*
 **							    ==[ Redirections ]==
 */
 
-int					check_redirections(char *args[], t_env *env_info,
+int					check_redirections(char **args, t_env *env_info,
 					char *path);
-int					redirect_output(t_env *env_info, t_redirect *info,
+int					set_single_otuput_fd(char **args, int *i);
+int					set_double_otuput_fd(char **args, int *i);
+int					set_input_fd(char **args, int *i);
+/*int					redirect_output(t_env *env_info, t_redirect *info,
 					char *path);
 int					redirect_input(t_env *env_info, t_redirect *info,
-					char *path);
+					char *path);*/
 
 /*
 **							 ==[ Built in functions ]==

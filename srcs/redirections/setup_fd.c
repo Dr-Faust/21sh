@@ -1,5 +1,19 @@
 #include "minishell.h"
 
+void 	set_pipe_fd(int *input, int *output)
+{
+	if (*input != STDIN_FILENO)
+	{
+		dup2(*input, STDIN_FILENO);
+		close(*input);
+	}
+	if (*output != STDOUT_FILENO)
+	{
+		dup2(*output, STDOUT_FILENO);
+		close(*output);
+	}
+}
+
 int 	set_single_otuput_fd(char **args, int *i)
 {
 	int		fd;

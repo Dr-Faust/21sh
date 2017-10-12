@@ -89,34 +89,10 @@ typedef struct		s_glob_info
 	char			*hist_start_line;
 	int				stdin_fd_copy;
 	int				stdout_fd_copy;
+	int 			stderr_fd_copy;
 }					t_glob_info;
 
 extern t_glob_info	*g_info;
-
-/*
-**							   ==[ Redirections type ]==
-*/
-
-typedef enum
-{
-	input,
-	single_output,
-	double_output,
-	heredoc,
-}	t_redirect_type;
-
-/*
-**							 ==[ Redirections structure ]==
-*/
-
-typedef struct		s_redirect
-{
-	char			**args;
-	char			*input_file;
-	char			*output_file;
-	t_redirect_type	type;
-}					t_redirect;
-
 
 /*
 **							   ==[ Errors with exit ]==
@@ -177,6 +153,7 @@ typedef enum
 
 void				set_terminal();
 unsigned short		get_curr_row_position(void);
+void				restore_fds(void);
 
 
 /*
@@ -207,23 +184,30 @@ void				parse_keys(char *buf, bool *flag, t_hist **hist,
 **								   ==[ Parser ]==
 */
 
-int					split_line(char *line, t_env **env_info, t_hist *hist,
-					char ***args);
+int					split_line(char *line, t_env **env_info, t_hist *hist);
 char				**split_command(char *line);
 char				*parse_quotes(char *line, t_hist **hist);
 int					valid_quote(char *s, unsigned int i, char quote);
 char				*parse_dollar(char *line, unsigned int i, t_env *env_info);
 int					count_args(char *str);
-int					count_commands(char *str);
+int					count_commands(char *str, char sign);
 
 /*
 **								 ==[ Execution ]==
 */
 
-int					cmd_handler(char **args, t_env **env_info, t_hist *hist);
-int					treat_path(char **args, t_env *env_info);
+int					builtins_handler(char **args, t_env **env_info, t_hist *hist);
+char				*treat_path(char **args, t_env *env_info);
 char				*verif_access(char *command, t_env *env_info);
-int					launch(char **args, t_env *env_info, char *path);
+int					main_execute(char **pipe_cmds, int n, t_env	**env_info,
+					t_hist *hist, bool pipe_exist);
+int 				pipe_execute(char **pipe_cmds, int n, t_env **env_info,
+					t_hist *hist, bool pipe_exist);
+int					main_launch(char **args, t_env *env_info, char *path);
+int					pipe_launch(char **args, t_env *env_info, int input,
+					int output);
+void				set_pipe_fd(int *input, int *output);
+void				clean_up(char **args);
 
 /*
 **							    ==[ Redirections ]==

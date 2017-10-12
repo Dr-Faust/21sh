@@ -46,17 +46,18 @@ static void	set_commands_and_errors_arr(char *command[], char *error[])
 	error[11] = "child process couldn't be created\n";
 }
 
-int		error_return(t_command command_type, t_err_ret error_type, char *arg)
+char	*correct_errors(t_command command_type, t_err_ret error_type, char *arg)
 {
-	char	*error[12];
-	char	*command[5];
-	
 	if (command_type == 3 && (error_type == 5 || error_type == 6))
 		arg = "usage: [setenv var_name value]";
 	else if (command_type == 4 && error_type == 5)
 		arg = "usage: [unsetenv var_name]";
-	else if (command_type == 2 && error_type == 5)
+	else if (command_type == 2 && error_type == 5 &&
+		!ft_strcmp(arg, "single_output"))
 		arg = "usage: [env > arg]";
+	else if (command_type == 2 && error_type == 5 &&
+		!ft_strcmp(arg, "double_output"))
+		arg = "usage: [env >> arg]";
 	else if (command_type == 0 && error_type == 5 &&
 		!ft_strcmp(arg, "single_output"))
 		arg = "usage: [command > arg]";
@@ -66,6 +67,15 @@ int		error_return(t_command command_type, t_err_ret error_type, char *arg)
 	else if (command_type == 0 && error_type == 5 &&
 		!ft_strcmp(arg, "input"))
 		arg = "usage: [command < arg]";
+	return (arg);
+}
+
+int		error_return(t_command command_type, t_err_ret error_type, char *arg)
+{
+	char	*error[12];
+	char	*command[5];
+	
+	arg = correct_errors(command_type, error_type, arg);
 	set_commands_and_errors_arr(command, error);
 	ft_printf("%s%s%s%s%s", CYAN, command[command_type],
 		RED, error[error_type], DEF);

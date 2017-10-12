@@ -38,7 +38,8 @@ SH_FILES += parser/parse_quotes.c \
 			parser/split_commands.c
 SH_FILES += execution/execute.c \
 			execution/access.c \
-			execution/cmd_handler.c
+			execution/cmd_handler.c \
+			execution/path_treatment.c
 SH_FILES += redirections/redirections.c	\
 			redirections/setup_fd.c
 SH_FILES += history/manage_history.c \

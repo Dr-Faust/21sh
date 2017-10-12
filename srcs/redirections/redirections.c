@@ -19,7 +19,8 @@ bool	find_redirection(char **args)
 	while (args[i])
 	{
 		if (!ft_strcmp(args[i], ">") || !ft_strcmp(args[i], "<")
-			|| !ft_strcmp(args[i], ">>") || !ft_strcmp(args[i], "<<"))
+			|| !ft_strcmp(args[i], ">>") || !ft_strcmp(args[i], "<<")
+			|| !ft_strcmp(args[i], "|"))
 			return (true);
 		i++;
 	}
@@ -43,9 +44,7 @@ int		check_redirections(char **args, t_env *env_info, char *path)
 				break ;
 			}
 		if (error == false)
-			launch(args, env_info, path);
-		dup2(g_info->stdin_fd_copy, STDIN_FILENO);
-		dup2(g_info->stdout_fd_copy, STDOUT_FILENO);
+			main_launch(args, env_info, path);
 		return (1);
 	}
 	return (0);

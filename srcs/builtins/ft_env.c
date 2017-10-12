@@ -1,12 +1,10 @@
 #include "minishell.h"
 
-static void	redirrect(char **args, t_env *env_info, int i)
+void	double_output(char **args, t_env *env_info, int i)
 {
 	int		fd;
-	int		std_out;
 	
-	fd = open(args[i + 1], O_CREAT | O_TRUNC | O_WRONLY, 0600); 
-	std_out = dup(STDOUT_FILENO);
+	fd = open(args[i + 1], O_APPEND | O_RDWR | O_CREAT, 0664); 
 	dup2(fd, STDOUT_FILENO); 
 	close(fd);
 	while (env_info != 0)
@@ -14,10 +12,25 @@ static void	redirrect(char **args, t_env *env_info, int i)
 		ft_printf("%s=%s\n", env_info->name, env_info->content);
 		env_info = env_info->next;
 	}
-	dup2(std_out, STDOUT_FILENO);
+	dup2(g_info->stdout_fd_copy, STDOUT_FILENO);
 }
 
-int			ft_env(char **args, t_env *env_info)
+void	single_output(char **args, t_env *env_info, int i)
+{
+	int		fd;
+	
+	fd = open(args[i + 1], O_CREAT | O_TRUNC | O_WRONLY, 0664);
+	dup2(fd, STDOUT_FILENO); 
+	close(fd);
+	while (env_info != 0)
+	{
+		ft_printf("%s=%s\n", env_info->name, env_info->content);
+		env_info = env_info->next;
+	}
+	dup2(g_info->stdout_fd_copy, STDOUT_FILENO);
+}
+
+int		ft_env(char **args, t_env *env_info)
 {
 	int		i;
 	
@@ -25,9 +38,13 @@ int			ft_env(char **args, t_env *env_info)
 	if (args[i])
 	{
 		if (!(ft_strcmp(args[i], ">")) && (args[i + 1]))
-			redirrect(args, env_info, i);
+			single_output(args, env_info, i);
+		else if (!(ft_strcmp(args[i], ">>")) && (args[i + 1]))
+			double_output(args, env_info, i);
 		else if (!(ft_strcmp(args[i], ">")) && (!args[i + 1]))
-			return (error_return(env, too_few_args, 0));
+			return (error_return(env, too_few_args, "single_output"));
+		else if (!(ft_strcmp(args[i], ">>")) && (!args[i + 1]))
+			return (error_return(env, too_few_args, "double_output"));
 		else
 			return (error_return(env, incorrect_param, args[1]));
 	}

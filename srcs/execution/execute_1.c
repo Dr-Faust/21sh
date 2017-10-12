@@ -33,7 +33,6 @@ int			main_launch(char **args, t_env *env_info, char *path)
 		while (env[++i])
 			ft_memdel((void **)&(env[i]));
 		ft_memdel((void **)&env);
-		ft_memdel((void **)&path);
 	}
 	return (1);
 }
@@ -45,24 +44,31 @@ int			pipe_launch(char **args, t_env *env_info, int input, int output)
 	int		j;
 	char 	*path;
 
-	pid = 1;
 	path = treat_path(args, env_info);
 	if (path && !check_redirections(args, env_info, path))
 	{
 		if ((pid = fork()) == 0)
 		{
-			set_pipe_fd(&input, &output);
+			if(input != STDIN_FILENO)
+			{
+				dup2(input, STDIN_FILENO);
+				close(input);
+			}
+			if(output != STDOUT_FILENO)
+			{
+				dup2(output, STDOUT_FILENO);
+				close(output);
+			}
 			env = env_to_arr(env_info);
 			execve(path, args, env);
 			j = -1;
 			while (env[++j])
 				ft_memdel((void **)&(env[j]));
+			ft_memdel((void **)&path);
 		}
-		else if (pid < 0)
-			error_return(sh, err_cal_fork, NULL);
+		return pid;
 	}
-	ft_memdel((void **)&path);
-	return pid;
+	return (1);
 }
 
 int			main_execute(char **pipe_cmds, int n, t_env	**env_info,
@@ -78,6 +84,7 @@ int			main_execute(char **pipe_cmds, int n, t_env	**env_info,
 		{
 			tcsetattr(STDIN_FILENO, TCSADRAIN, &g_info->default_term);
 			tgetent(0, getenv("TERM"));
+			ft_memdel((void **)&path);
 			clean_up(args);
 			return (0);
 		}
@@ -91,6 +98,7 @@ int			main_execute(char **pipe_cmds, int n, t_env	**env_info,
 		if (!ft_strcmp(args[0], "cat") && !args[1] && pipe_exist == false)
 			ft_putchar('\n');
 	}
+	ft_memdel((void **)&path);
 	clean_up(args);
 	return (1);
 }
@@ -103,6 +111,7 @@ int 		pipe_execute(char **pipe_cmds, int n, t_env **env_info,
 	int 	input;
 	int 	fds[2];
 	char 	**args;
+	char	*path;
 	bool	builtin_found;
 	char 	*builtins_str[] = {"cd", "env", "setenv", "unsetenv", "help",
 								"history"};
@@ -112,8 +121,8 @@ int 		pipe_execute(char **pipe_cmds, int n, t_env **env_info,
 	builtin_found = false;
 	while (++i < n)
 	{
-		pipe(fds);
 		args = split_command(pipe_cmds[i]);
+		pipe(fds);
 		j = -1;
 		while (++j < 6)
 			if (!ft_strcmp(args[0], builtins_str[j]))
@@ -128,18 +137,32 @@ int 		pipe_execute(char **pipe_cmds, int n, t_env **env_info,
 			}
 		if (builtin_found == false)
 		{
-			if (!ft_strcmp(args[0], "cat"))
-				tcsetattr(STDIN_FILENO, TCSADRAIN, &g_info->default_term);
-			if (!pipe_launch(args, *env_info, input, fds[1]))
-				return (0);
+			// path = treat_path(args, *env_info);
+			// if (path && !check_redirections(args, *env_info, path))
+			// {
+			// 	if(input != STDIN_FILENO)
+			// 	{
+			// 		dup2(input, STDIN_FILENO);
+			// 		close(input);
+			// 	}
+			// 	if(output != STDOUT_FILENO)
+			// 	{
+			// 		dup2(output, STDOUT_FILENO);
+			// 		close(output);
+			// 	}
+				if (!ft_strcmp(args[0], "cat"))
+					tcsetattr(input, TCSADRAIN, &g_info->default_term);
+				if (pipe_launch(args, *env_info, input, fds[1]))
+					return (1);
+			// }
 			if (!ft_strcmp(args[0], "cat") && !args[1] && pipe_exist == false)
 				ft_putchar('\n');
+			ft_memdel((void **)&path);
+			close(fds[1]);
+			input = fds[0];
 		}
-		close(fds[1]);
-		input = fds[0];
 		clean_up(args);
 	}
-	restore_fds();
 	if (input != STDIN_FILENO)
 		dup2(input, STDIN_FILENO);
 	return (1);

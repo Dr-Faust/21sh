@@ -14,6 +14,13 @@
 
 t_glob_info	*g_info;
 
+void		restore_fds(void)
+{
+	dup2(g_info->stdin_fd_copy, STDIN_FILENO);
+	dup2(g_info->stdout_fd_copy, STDOUT_FILENO);
+	dup2(g_info->stderr_fd_copy, STDERR_FILENO);
+}
+
 static void		clean_history(t_hist **hist)
 {
 	if (!(*hist))
@@ -22,13 +29,6 @@ static void		clean_history(t_hist **hist)
 		clean_history(&(*hist)->next);
 	ft_memdel((void **)&(*hist)->line);
 	ft_memdel((void **)&(*hist));
-}
-
-static void		clean_info(char **line, char ***args)
-{
-	ft_memdel((void **)&args);
-	ft_memdel((void **)&(*line));
-	ft_memdel((void **)&g_info->hist_start_line);
 }
 
 unsigned short	get_curr_row_position(void)
@@ -42,9 +42,10 @@ unsigned short	get_curr_row_position(void)
 		buf = ft_strnew(20);
 		ft_putstr("\033[6n");
 		read (0, buf, 20);
-		tmp = ft_strchr(buf, '[');
-		position = ft_atoi(tmp + 1);
+		tmp = ft_strsub(buf, 2, 2);
+		position = ft_atoi(tmp);
 		ft_memdel((void *)&buf);
+		ft_memdel((void *)&tmp);
 	}
 	return (position);
 }
@@ -52,7 +53,6 @@ unsigned short	get_curr_row_position(void)
 static void		minishell(t_env **env_info, bool status)
 {
 	char	*line;
-	char	***args;
 	t_hist	*hist;
 
 	hist = 0;
@@ -64,15 +64,14 @@ static void		minishell(t_env **env_info, bool status)
 		g_info->row_position = get_curr_row_position();
 		line = read_line(&hist);
 		line = parse_quotes(line, &hist);
-		if (!(args = ft_memalloc(sizeof(char **) * (count_commands(line) + 1))))
-			error_exit(sh, mem_alloc_err);
-		status = split_line(&(line[0]), env_info, hist, args);
+		status = split_line(line, env_info, hist);
 		if (line[0])
 		{
 			add_to_history(line, &hist, *env_info, 1);
 			add_prev_elem(&hist);
 		}
-		clean_info(&line, args);
+		ft_memdel((void **)&line);
+		ft_memdel((void **)&g_info->hist_start_line);
 	}
 	clean_history(&hist);
 }
@@ -88,6 +87,7 @@ int				main(void)
 		error_exit(sh, mem_alloc_err);
 	g_info->stdin_fd_copy = dup(STDIN_FILENO);
 	g_info->stdout_fd_copy = dup(STDOUT_FILENO);
+	g_info->stderr_fd_copy = dup(STDERR_FILENO);
 	tcgetattr(STDIN_FILENO, &g_info->default_term);
 	env_info = get_env_info(environ);
 	minishell(&env_info, status);

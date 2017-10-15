@@ -59,7 +59,7 @@ void	separate_pipes(t_pipe *p, char *cmd)
 
 	i = -1;
 	j = 0;
-	p->i = -1;
+	p->index = -1;
 	if (!(p->pipe_cmds = (char **)ft_memalloc(sizeof(char *) *
 		(count_commands(cmd, '|') + 1))))
 			error_exit(sh, mem_alloc_err);
@@ -67,12 +67,20 @@ void	separate_pipes(t_pipe *p, char *cmd)
 	{
 		sub_cmd = separate_line(cmd, &j, '|');
 		if(sub_cmd != NULL && ft_strlen(sub_cmd) > 0)
-			p->pipe_cmds[++(p->i)] = ft_strdup(sub_cmd);
+			p->pipe_cmds[++(p->index)] = ft_strdup(sub_cmd);
 		ft_memdel((void **)&sub_cmd);
 	}
 	ft_memdel((void **)&cmd);
-	if (p->i > 0)
+	if (p->index > 0)
 		p->pipe_found = true;
+}
+
+void	reset_flags(t_pipe *p)
+{
+	p->r->single_output_found = false;
+	p->r->double_output_found = false;
+	p->r->input_found = false;
+	p->r->heredoc_found = false;
 }
 
 int		split_line(char *line, t_env **env_info, t_hist **hist, t_pipe *p)
@@ -88,16 +96,19 @@ int		split_line(char *line, t_env **env_info, t_hist **hist, t_pipe *p)
 	status = 1;
 	while (++numb < count_commands(line, ';'))
 	{
+		p->pipe_found = false;
 		cmd = separate_line(line, &i, ';');
 		j = -1;
 		while (cmd[++j])
 			if (cmd[j] == '$' && cmd[j + 1] && ft_isalnum(cmd[j + 1]))
 				cmd = parse_dollar(cmd, j, *env_info);
 		separate_pipes(p, cmd);
+		reset_flags(p);
 		status = pipe_execute(p, env_info, hist);
+		reset_flags(p);
 		status = main_execute(p, env_info, hist);
 		clean_up(p->pipe_cmds);
+		// restore_fds();
 	}
-	restore_fds();
 	return (status);
 }

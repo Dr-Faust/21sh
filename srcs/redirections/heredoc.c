@@ -28,15 +28,12 @@ char	*get_heredoc(char *marker, t_hist **hist)
 	return (line);
 }
 
-
-
-int		manage_heredoc(char **args, int *i, t_hist **hist, t_pipe *p)
+int		manage_heredoc(char **args, t_hist **hist, t_pipe *p)
 {
-	ft_memdel((void **)&args[*i]);
-	(*i)++;
-	if (!args[*i])
+	ft_memdel((void **)&args[p->r->index]);
+	p->r->index++;
+	if (!args[p->r->index])
 		return (error_return(sh, too_few_args, "heredoc"));
-	p->heredoc_line = get_heredoc(args[*i], hist);
-	p->heredoc_found = true;
+	p->r->heredoc_line = get_heredoc(args[p->r->index], hist);
 	return (0);
 }

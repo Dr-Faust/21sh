@@ -17,8 +17,9 @@ int		parse_line(char *line, t_env **env_info, t_hist **hist)
 	int		status;
 
 	if (!(p = (t_pipe *)ft_memalloc(sizeof(t_pipe))))
-			error_exit(sh, mem_alloc_err);
-	p->pipe_found = false;
+		error_exit(sh, mem_alloc_err);
+	if (!(p->r = (t_redirect *)ft_memalloc(sizeof(t_redirect))))
+		error_exit(sh, mem_alloc_err);
 	status = split_line(line, env_info, hist, p);
 	ft_memdel((void **)&p);
 	return (status);

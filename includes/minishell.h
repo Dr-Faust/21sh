@@ -45,6 +45,20 @@
 # define CTRL_D				4
 
 /*
+**							  ==[ Redirection structure ]==
+*/
+
+typedef struct		s_redirect
+{
+	bool			single_output_found;
+	bool			double_output_found;
+	bool			input_found;
+	bool			heredoc_found;
+	char 			*heredoc_line;
+	int 			index;
+}					t_redirect;
+
+/*
 **								 ==[ Pipe structure ]==
 */
 
@@ -52,11 +66,10 @@ typedef struct		s_pipe
 {
 	char			**pipe_cmds;
 	bool			pipe_found;
-	bool			heredoc_found;
-	char 			*heredoc_line;
-	int 			i;
+	int 			index;
 	int 			fds[2];
-	int 			input;
+	// int 			input;
+	t_redirect		*r;
 }					t_pipe;
 
 /*
@@ -221,8 +234,7 @@ char				*treat_path(char **args, t_env *env_info);
 char				*verif_access(char *command, t_env *env_info);
 int					main_execute(t_pipe *p, t_env **env_info, t_hist **hist);
 int 				pipe_execute(t_pipe *p, t_env **env_info, t_hist **hist);
-int					main_launch(char **args, t_env *env_info, char *path);
-int					pipe_launch(char **args, t_env *env_info, t_pipe *p, char *path);
+int					launch(char **args, t_env *env_info, t_pipe *p, char *path);
 int					heredoc_launch(char **args, t_env *env_info, t_pipe *p);
 void				clean_up(char **args);
 
@@ -230,14 +242,13 @@ void				clean_up(char **args);
 **							    ==[ Redirections ]==
 */
 
-int					check_redirections(char **args, /*t_env *env_info,
-					char *path,*/ t_hist **hist, t_pipe *p);
-int					set_single_otuput_fd(char **args, int *i);
-int					set_double_otuput_fd(char **args, int *i);
-int					set_input_fd(char **args, int *i);
-void				set_pipe_fd(int *input, int *output);
+int					check_redirections(char **args, t_hist **hist, t_pipe *p);
+int					manage_heredoc(char **args, t_hist **hist, t_pipe *p);
+int 				set_single_otuput_fd(char **args, int index);
+int					set_double_otuput_fd(char **args, int index);
+int					set_input_fd(char **args, int index);
+void				set_pipe_fd(t_pipe *p);
 void				set_heredoc_fd(t_pipe *p);
-int					manage_heredoc(char **args, int *i, t_hist **hist, t_pipe *p);
 
 /*
 **							 ==[ Built in functions ]==

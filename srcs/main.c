@@ -37,6 +37,7 @@ unsigned short	get_curr_row_position(void)
 	char			*tmp;
 	unsigned short	position;
 	
+	position = 0;
 	if (isatty(fileno(stdin)))
 	{
 		buf = ft_strnew(20);

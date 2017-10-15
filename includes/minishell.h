@@ -219,7 +219,7 @@ char				*verif_access(char *command, t_env *env_info);
 int					main_execute(t_pipe *p, t_env **env_info, t_hist **hist);
 int 				pipe_execute(t_pipe *p, t_env **env_info, t_hist **hist);
 int					main_launch(char **args, t_env *env_info, char *path);
-int					pipe_launch(char **args, t_env *env_info, t_pipe *p, char *path);
+int					pipe_launch(char **args, t_env *env_info, t_pipe *p, char *path, t_hist **hist);
 int					heredoc_launch(char **args, t_env *env_info, t_pipe *p);
 void				set_pipe_fd(int *input, int *output);
 void				clean_up(char **args);

@@ -67,6 +67,9 @@ char	*correct_errors(t_command command_type, t_err_ret error_type, char *arg)
 	else if (command_type == 0 && error_type == 5 &&
 		!ft_strcmp(arg, "input"))
 		arg = "usage: [command < arg]";
+	else if (command_type == 0 && error_type == 5 &&
+		!ft_strcmp(arg, "heredoc"))
+		arg = "usage: [command << marker]";
 	return (arg);
 }
 

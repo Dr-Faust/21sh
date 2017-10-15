@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static void	clean_up(char **arr)
+static void	clean(char **arr)
 {
 	int		i;
 
@@ -67,6 +67,6 @@ char		*verif_access(char *command, t_env *env_info)
 	}
 	if (!path)
 		err_no_path(ret, command);
-	clean_up(arr);
+	clean(arr);
 	return (path);
 }

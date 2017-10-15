@@ -34,14 +34,17 @@ SH_FILES += cursor_movement/up_down_arrows.c \
 			cursor_movement/extended_move_left.c
 SH_FILES += parser/parse_quotes.c \
 			parser/parse_dollar.c \
+			parser/line_parser.c \
 			parser/split_line.c \
 			parser/split_commands.c
-SH_FILES += execution/execute.c \
+SH_FILES += execution/main_execute.c \
+			execution/pipe_execute.c \
 			execution/access.c \
-			execution/cmd_handler.c \
+			execution/builtins_handler.c \
 			execution/path_treatment.c
 SH_FILES += redirections/redirections.c	\
-			redirections/setup_fd.c
+			redirections/setup_fd.c \
+			redirections/heredoc.c
 SH_FILES += history/manage_history.c \
 			history/navigate_history.c \
 			history/add_to_history_file.c

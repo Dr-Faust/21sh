@@ -64,7 +64,7 @@ static void		minishell(t_env **env_info, bool status)
 		g_info->row_position = get_curr_row_position();
 		line = read_line(&hist);
 		line = parse_quotes(line, &hist);
-		status = split_line(line, env_info, hist);
+		status = parse_line(line, env_info, &hist);
 		if (line[0])
 		{
 			add_to_history(line, &hist, *env_info, 1);

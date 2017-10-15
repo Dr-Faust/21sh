@@ -52,9 +52,10 @@ typedef struct		s_pipe
 {
 	char			**pipe_cmds;
 	bool			pipe_found;
+	bool			heredoc_found;
+	char 			*heredoc_line;
 	int 			i;
 	int 			fds[2];
-	int 			fds_2[2];
 	int 			input;
 }					t_pipe;
 
@@ -198,6 +199,8 @@ void				parse_keys(char *buf, bool *flag, t_hist **hist,
 **								   ==[ Parser ]==
 */
 
+size_t				ft_putstr_fds(char const *const str, const int fd);
+
 int					parse_line(char *line, t_env **env_info, t_hist **hist);
 int					split_line(char *line, t_env **env_info, t_hist **hist,
 					t_pipe *p);
@@ -219,9 +222,8 @@ char				*verif_access(char *command, t_env *env_info);
 int					main_execute(t_pipe *p, t_env **env_info, t_hist **hist);
 int 				pipe_execute(t_pipe *p, t_env **env_info, t_hist **hist);
 int					main_launch(char **args, t_env *env_info, char *path);
-int					pipe_launch(char **args, t_env *env_info, t_pipe *p, char *path, t_hist **hist);
+int					pipe_launch(char **args, t_env *env_info, t_pipe *p, char *path);
 int					heredoc_launch(char **args, t_env *env_info, t_pipe *p);
-void				set_pipe_fd(int *input, int *output);
 void				clean_up(char **args);
 
 /*
@@ -233,6 +235,8 @@ int					check_redirections(char **args, /*t_env *env_info,
 int					set_single_otuput_fd(char **args, int *i);
 int					set_double_otuput_fd(char **args, int *i);
 int					set_input_fd(char **args, int *i);
+void				set_pipe_fd(int *input, int *output);
+void				set_heredoc_fd(t_pipe *p);
 int					manage_heredoc(char **args, int *i, t_hist **hist, t_pipe *p);
 
 /*

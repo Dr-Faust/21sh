@@ -1,5 +1,24 @@
 #include "minishell.h"
 
+// size_t	ft_putstr_fds(char const *const str, const int fd)
+// {
+// 	return (write(fd, str, ft_strlen(str) * sizeof(char)));
+// }
+
+void	set_heredoc_fd(t_pipe *p)
+{
+	pipe(p->fds);
+	write(p->fds[STDOUT_FILENO], p->heredoc_line, ft_strlen(p->heredoc_line) * sizeof(char));
+	// ft_putstr_fd(p->heredoc_line, p->fds[STDOUT_FILENO]);
+	close(p->fds[1]);
+	p->input = p->fds[0];
+	if (p->input != STDIN_FILENO)
+		 dup2(p->input, STDIN_FILENO);
+	if (p->fds[0] > 6)
+        close(p->fds[0]);
+	ft_memdel((void **)&p->heredoc_line);
+}
+
 void 	set_pipe_fd(int *input, int *output)
 {
 	if (*input != STDIN_FILENO)
@@ -7,6 +26,7 @@ void 	set_pipe_fd(int *input, int *output)
 		dup2(*input, STDIN_FILENO);
 		close(*input);
 	}
+	// ft_putstr_fds(“I am here\0”, STDERR_FILENO);
 	if (*output != STDOUT_FILENO)
 	{
 		dup2(*output, STDOUT_FILENO);

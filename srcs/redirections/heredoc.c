@@ -28,27 +28,15 @@ char	*get_heredoc(char *marker, t_hist **hist)
 	return (line);
 }
 
-size_t	ft_putstr_fds(char const *const str, const int fd)
-{
-	return (write(fd, str, ft_strlen(str) * sizeof(char)));
-}
+
 
 int		manage_heredoc(char **args, int *i, t_hist **hist, t_pipe *p)
 {
-	char	*line;
-
 	ft_memdel((void **)&args[*i]);
 	(*i)++;
 	if (!args[*i])
 		return (error_return(sh, too_few_args, "heredoc"));
-	line = get_heredoc(args[*i], hist);
-	pipe(p->fds);
-	// fcntl(p->fds[STDIN_FILENO], F_SETFD, FD_CLOEXEC);
-	ft_putstr_fds(line, p->fds[STDOUT_FILENO]);
-	close(p->fds[1]);
-	p->input = p->fds[0];
-	if (p->input != STDIN_FILENO)
-		 dup2(p->input, STDIN_FILENO);
-	ft_memdel((void **)&line);
+	p->heredoc_line = get_heredoc(args[*i], hist);
+	p->heredoc_found = true;
 	return (0);
 }

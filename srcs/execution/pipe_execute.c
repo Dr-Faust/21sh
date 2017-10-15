@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int		pipe_launch(char **args, t_env *env_info, t_pipe *p, char *path, t_hist **hist)
+int		pipe_launch(char **args, t_env *env_info, t_pipe *p, char *path)
 {
 	pid_t	pid;
 	char	**env;
@@ -11,7 +11,8 @@ int		pipe_launch(char **args, t_env *env_info, t_pipe *p, char *path, t_hist **h
 	if ((pid = fork()) == 0)
 	{
 		set_pipe_fd(&(p->input), &(p->fds[1]));
-		check_redirections(args, hist, p);
+		if (p->heredoc_found)
+			set_heredoc_fd(p);
 		if ((execve(path, args, env)) == -1)
 			kill(getpid(), SIGTERM);
 	}
@@ -63,6 +64,7 @@ int 	pipe_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 
 	i = 0;
 	p->input = STDIN_FILENO;
+	p->heredoc_found = false;
 	while (i < p->i)
 	{
 		pipe(p->fds);
@@ -73,7 +75,8 @@ int 	pipe_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 			path = treat_path(args, *env_info);
 			if (path)
 			{
-				pipe_launch(args, *env_info, p, path, hist);
+				check_redirections(args, hist, p);
+				pipe_launch(args, *env_info, p, path);
 			}
 		}
 		close(p->fds[1]);

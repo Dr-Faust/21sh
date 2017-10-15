@@ -68,7 +68,6 @@ int		main_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 		if (!ft_strcmp(args[0], "cat") && !args[1] && p->pipe_found == false)
 			ft_putchar('\n');
 	}
-	if (p->fds[0] > 6)
-        close(p->fds[0]);
+	clean_up(args);
 	return (1);
 }

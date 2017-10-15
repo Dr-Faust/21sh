@@ -52,7 +52,7 @@ int		main_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 		if (!ft_strcmp(args[0], "exit"))
 		{
 			tcsetattr(STDIN_FILENO, TCSADRAIN, &g_info->default_term);
-			tgetent(0, getenv("TERM"));
+			// tgetent(0, getenv("TERM"));
 			clean_up(args);
 			return (0);
 		}
@@ -68,6 +68,7 @@ int		main_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 		if (!ft_strcmp(args[0], "cat") && !args[1] && p->pipe_found == false)
 			ft_putchar('\n');
 	}
-	clean_up(args);
+	if (p->fds[0] > 6)
+        close(p->fds[0]);
 	return (1);
 }

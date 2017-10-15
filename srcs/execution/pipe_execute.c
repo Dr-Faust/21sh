@@ -10,7 +10,7 @@ int		pipe_launch(char **args, t_env *env_info, t_pipe *p, char *path)
 	env = env_to_arr(env_info);
 	if ((pid = fork()) == 0)
 	{
-		set_pipe_fd(&(p->input), &(p->fds[1]));	
+		set_pipe_fd(&(p->input), &(p->fds[1]));
 		if ((execve(path, args, env)) == -1)
 			kill(getpid(), SIGTERM);
 	}
@@ -65,8 +65,6 @@ int 	pipe_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 	while (i < p->i)
 	{
 		pipe(p->fds);
-
-		fcntl(p->fds[STDIN_FILENO], F_SETFD, FD_CLOEXEC);
 		args = split_command(p->pipe_cmds[i]);
 		builtin_found = pipe_builtin(args, env_info, p, *hist);
 		if (builtin_found == false)
@@ -74,20 +72,18 @@ int 	pipe_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 			path = treat_path(args, *env_info);
 			if (path)
 			{
-				if (check_redirections(args, hist, p))
-					main_launch(args, *env_info, path);
-				else
-					pipe_launch(args, *env_info, p, path);
+				check_redirections(args, hist, p);
+				pipe_launch(args, *env_info, p, path);
 			}
 		}
 		close(p->fds[1]);
 		p->input = p->fds[0];
 		clean_up(args);
 		i++;
-		// restore_fds();
 	}
 	 if (p->input != STDIN_FILENO)
 		 dup2(p->input, STDIN_FILENO);
-	// restore_fds();
+	if (p->fds[0] > 6)
+        close(p->fds[0]);
 	return (1);
 }

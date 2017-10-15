@@ -43,7 +43,7 @@ int		manage_heredoc(char **args, int *i, t_hist **hist, t_pipe *p)
 		return (error_return(sh, too_few_args, "heredoc"));
 	line = get_heredoc(args[*i], hist);
 	pipe(p->fds);
-	fcntl(p->fds[STDIN_FILENO], F_SETFD, FD_CLOEXEC);
+	// fcntl(p->fds[STDIN_FILENO], F_SETFD, FD_CLOEXEC);
 	ft_putstr_fds(line, p->fds[STDOUT_FILENO]);
 	close(p->fds[1]);
 	p->input = p->fds[0];

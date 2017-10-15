@@ -74,21 +74,20 @@ int 	pipe_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 			path = treat_path(args, *env_info);
 			if (path)
 			{
-				check_redirections(args, hist, p);
-				// else
+				if (check_redirections(args, hist, p))
+					main_launch(args, *env_info, path);
+				else
 					pipe_launch(args, *env_info, p, path);
 			}
 		}
-		// dup2(g_info->stdin_fd_copy, STDIN_FILENO);
-		// dup2(g_info->stdout_fd_copy, STDOUT_FILENO);
 		close(p->fds[1]);
 		p->input = p->fds[0];
 		clean_up(args);
-		// dup2(g_info->stdout_fd_copy, STDOUT_FILENO);
 		i++;
+		// restore_fds();
 	}
 	 if (p->input != STDIN_FILENO)
 		 dup2(p->input, STDIN_FILENO);
-	// dup2(g_info->stdout_fd_copy, STDOUT_FILENO);
+	// restore_fds();
 	return (1);
 }

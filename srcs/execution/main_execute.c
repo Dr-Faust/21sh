@@ -26,8 +26,8 @@ int		main_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 			clean_up(args);
 			return (0);
 		}
-		// if (p->fds[0] > 5)
-			// close (p->fds[0]);
+		if (p->fds[0] > 5)
+			close (p->fds[0]);
 		path = treat_path(args, *env_info);
 		if (path)
 		{
@@ -35,7 +35,6 @@ int		main_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 			tcsetattr(STDIN_FILENO, TCSADRAIN, &g_info->default_term);
 			launch(args, *env_info, p, path);
 		}
-		// close(p->fds[1]);
 		if (!ft_strcmp(args[0], "cat") && !args[1] && p->pipe_found == false)
 			ft_putchar('\n');
 	}

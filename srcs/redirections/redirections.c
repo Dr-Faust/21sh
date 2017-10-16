@@ -4,22 +4,22 @@ int		check_IO(char **args, t_hist **hist, int index, t_pipe *p)
 {
 	if (!ft_strcmp(args[index], ">"))
 	{
-		p->r->index = index;
-		p->r->single_output_found = true;
+		p->r->write_index = index;
+		p->r->write_found = true;
 	}
 	else if (!ft_strcmp(args[index], ">>"))
 	{
-		p->r->index = index;
-		p->r->double_output_found = true;
+		p->r->append_index = index;
+		p->r->append_found = true;
 	}
 	else if (!ft_strcmp(args[index], "<"))
 	{
-		p->r->index = index;
-		p->r->input_found = true;
+		p->r->read_index = index;
+		p->r->read_found = true;
 	}
 	else if (!ft_strcmp(args[index], "<<"))
 	{
-		p->r->index = index;
+		p->r->heredoc_index = index;
 		p->r->heredoc_found = true;
 		return (manage_heredoc(args, hist, p));
 	}

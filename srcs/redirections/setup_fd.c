@@ -5,28 +5,29 @@ void	set_heredoc_fd(t_pipe *p)
 	pipe (p->fds);
 	ft_putstr_fd(p->r->heredoc_line, p->fds[STDOUT_FILENO]);
 	close (p->fds[1]);
-	// p->input = p->fds[0];
-	if (p->fds[0] != STDIN_FILENO)
-		 dup2(p->fds[0], STDIN_FILENO);
+	p->input = p->fds[0];
+	if (p->input != STDIN_FILENO)
+		 dup2(p->input, STDIN_FILENO);
 	close(p->fds[0]);
 	ft_memdel((void **)&p->r->heredoc_line);
 }
 
 void 	set_pipe_fd(t_pipe *p)
 {
-	if (p->fds[0] != STDIN_FILENO)
+	close (p->fds[0]);
+	if (p->input != STDIN_FILENO)
 	{
-		dup2(p->fds[0], STDIN_FILENO);
-		close(p->fds[0]);
+		dup2(p->input, STDIN_FILENO);
+		close(p->input);
 	}
 	if (p->fds[1] != STDOUT_FILENO)
 	{
 		dup2(p->fds[1], STDOUT_FILENO);
 		close(p->fds[1]);
-	}
+	}	
 }
 
-int 	set_single_otuput_fd(char **args, int index)
+int 	set_write_fd(char **args, int index)
 {
 	int		fd;
 
@@ -41,7 +42,7 @@ int 	set_single_otuput_fd(char **args, int index)
 	return (0);
 }
 
-int 	set_double_otuput_fd(char **args, int index)
+int 	set_append_fd(char **args, int index)
 {
 	int		fd;
 
@@ -56,7 +57,7 @@ int 	set_double_otuput_fd(char **args, int index)
 	return (0);
 }
 
-int 	set_input_fd(char **args, int index)
+int 	set_read_fd(char **args, int index)
 {
 	int		fd;
 
@@ -64,7 +65,7 @@ int 	set_input_fd(char **args, int index)
 	index++;
 	if (!args[index])
 		return (error_return(sh, too_few_args, "input"));
-	fd = open(args[index], O_RDONLY, 0600);  
+	fd = open(args[index], O_RDONLY, 0664);  
 	dup2(fd, STDIN_FILENO);
 	close(fd);
 	ft_memdel((void **)&args[index]);

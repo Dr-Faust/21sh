@@ -30,10 +30,10 @@ char	*get_heredoc(char *marker, t_hist **hist)
 
 int		manage_heredoc(char **args, t_hist **hist, t_pipe *p)
 {
-	ft_memdel((void **)&args[p->r->index]);
-	p->r->index++;
-	if (!args[p->r->index])
+	ft_memdel((void **)&args[p->r->heredoc_index]);
+	p->r->heredoc_index++;
+	if (!args[p->r->heredoc_index])
 		return (error_return(sh, too_few_args, "heredoc"));
-	p->r->heredoc_line = get_heredoc(args[p->r->index], hist);
+	p->r->heredoc_line = get_heredoc(args[p->r->heredoc_index], hist);
 	return (0);
 }

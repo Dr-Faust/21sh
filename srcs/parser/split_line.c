@@ -77,9 +77,9 @@ void	separate_pipes(t_pipe *p, char *cmd)
 
 void	reset_flags(t_pipe *p)
 {
-	p->r->single_output_found = false;
-	p->r->double_output_found = false;
-	p->r->input_found = false;
+	p->r->write_found = false;
+	p->r->append_found = false;
+	p->r->read_found = false;
 	p->r->heredoc_found = false;
 }
 
@@ -108,7 +108,7 @@ int		split_line(char *line, t_env **env_info, t_hist **hist, t_pipe *p)
 		reset_flags(p);
 		status = main_execute(p, env_info, hist);
 		clean_up(p->pipe_cmds);
-		// restore_fds();
+		restore_fds();
 	}
 	return (status);
 }

@@ -14,12 +14,12 @@ int		launch(char **args, t_env *env_info, t_pipe *p, char *path)
 	{
 		if (p->pipe_found)
 			set_pipe_fd(p);
-		if (p->r->single_output_found)
-			set_single_otuput_fd(args, p->r->index);
-		else if (p->r->double_output_found)
-			set_double_otuput_fd(args, p->r->index);
-		else if (p->r->input_found)
-			set_input_fd(args, p->r->index);
+		if (p->r->write_found)
+			set_write_fd(args, p->r->write_index);
+		if (p->r->append_found)
+			set_append_fd(args, p->r->append_index);
+		if (p->r->read_found)
+			set_read_fd(args, p->r->read_index);
 		if (p->r->heredoc_found)
 			set_heredoc_fd(p);
 		if ((execve(path, args, env)) == -1)
@@ -29,6 +29,10 @@ int		launch(char **args, t_env *env_info, t_pipe *p, char *path)
 		error_return(sh, err_cal_fork, NULL);
 	else
 	{
+		close (p->fds[1]);
+		close(0);   /* prepare to redirect stdin      */
+      	dup(p->fds[0]);      //stdin now reads from the pipe  
+      	close(p->fds[0]);   /* extra file descriptor          */
 		waitpid(pid, &status, WUNTRACED);
 		while (!WIFEXITED(status) && !WIFSIGNALED(status))
 			waitpid(pid, &status, WUNTRACED);
@@ -72,7 +76,7 @@ int 	pipe_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 	char	*path;
 
 	i = 0;
-	// p->input = STDIN_FILENO;
+	p->input = STDIN_FILENO;
 	while (i < p->index)
 	{
 		pipe(p->fds);
@@ -88,12 +92,16 @@ int 	pipe_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 			}
 		}
 		close(p->fds[1]);
+		p->input = p->fds[0];
 		clean_up(args);
 		i++;
+		// restore_fds();
 	}
-	// if (p->fds[0] != STDIN_FILENO)
-	// 	 dup2(p->fds[0], STDIN_FILENO);
+	if (p->input != STDIN_FILENO)
+		dup2(p->input, STDIN_FILENO);
+	// close(p->input);
 	// if (p->fds[0] > 6)
  //        close(p->fds[0]);
+
 	return (1);
 }

@@ -50,12 +50,15 @@
 
 typedef struct		s_redirect
 {
-	bool			single_output_found;
-	bool			double_output_found;
-	bool			input_found;
+	bool			write_found;
+	bool			append_found;
+	bool			read_found;
 	bool			heredoc_found;
+	int 			write_index;
+	int 			append_index;
+	int 			read_index;
+	int 			heredoc_index;
 	char 			*heredoc_line;
-	int 			index;
 }					t_redirect;
 
 /*
@@ -68,7 +71,7 @@ typedef struct		s_pipe
 	bool			pipe_found;
 	int 			index;
 	int 			fds[2];
-	// int 			input;
+	int 			input;
 	t_redirect		*r;
 }					t_pipe;
 
@@ -244,9 +247,9 @@ void				clean_up(char **args);
 
 int					check_redirections(char **args, t_hist **hist, t_pipe *p);
 int					manage_heredoc(char **args, t_hist **hist, t_pipe *p);
-int 				set_single_otuput_fd(char **args, int index);
-int					set_double_otuput_fd(char **args, int index);
-int					set_input_fd(char **args, int index);
+int 				set_write_fd(char **args, int index);
+int					set_append_fd(char **args, int index);
+int					set_read_fd(char **args, int index);
 void				set_pipe_fd(t_pipe *p);
 void				set_heredoc_fd(t_pipe *p);
 

@@ -215,11 +215,10 @@ void				parse_keys(char *buf, bool *flag, t_hist **hist,
 **								   ==[ Parser ]==
 */
 
-size_t				ft_putstr_fds(char const *const str, const int fd);
-
 int					parse_line(char *line, t_env **env_info, t_hist **hist);
 int					split_line(char *line, t_env **env_info, t_hist **hist,
 					t_pipe *p);
+void				reset_flags(t_pipe *p);
 char 				*separate_line(char *line, unsigned int *i, char sign);
 char				**split_command(char *line);
 char				*parse_quotes(char *line, t_hist **hist);
@@ -232,7 +231,8 @@ int					count_commands(char *str, char sign);
 **								 ==[ Execution ]==
 */
 
-int					builtins_handler(char **args, t_env **env_info, t_hist *hist);
+int					builtins_handler(char **args, t_env **env_info,
+					t_hist *hist);
 char				*treat_path(char **args, t_env *env_info);
 char				*verif_access(char *command, t_env *env_info);
 int					main_execute(t_pipe *p, t_env **env_info, t_hist **hist);

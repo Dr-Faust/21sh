@@ -4,12 +4,12 @@ void	set_heredoc_fd(t_pipe *p)
 {
 	pipe (p->fds);
 	ft_putstr_fd(p->r->heredoc_line, p->fds[STDOUT_FILENO]);
+	ft_memdel((void **)&p->r->heredoc_line);
 	close (p->fds[1]);
 	p->input = p->fds[0];
 	if (p->input != STDIN_FILENO)
 		 dup2(p->input, STDIN_FILENO);
 	close(p->fds[0]);
-	ft_memdel((void **)&p->r->heredoc_line);
 }
 
 void 	set_pipe_fd(t_pipe *p)

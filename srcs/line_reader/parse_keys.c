@@ -56,7 +56,10 @@ void		parse_keys(char *buf, bool *flag, t_hist **hist, unsigned int *hist_counte
 	else if (buf[0] == CTRL_D && !g_info->line[0])
 	{
 		*flag = true;
-		g_info->line = ft_strjoin_free_first(g_info->line, "exit");
+		// if (g_info->marker[0])
+		// 	g_info->line = ft_strjoin_free(g_info->line, g_info->marker);
+		// else
+			g_info->line = ft_strjoin_free_first(g_info->line, "exit");
 		ft_putchar('\n');
 	}
 	else if (buf[0] != BACKSPACE && buf[3] != DELETE &&

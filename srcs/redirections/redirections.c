@@ -19,9 +19,8 @@ int		check_IO(char **args, t_hist **hist, int index, t_pipe *p)
 	}
 	else if (!ft_strcmp(args[index], "<<"))
 	{
-		p->r->heredoc_index = index;
 		p->r->heredoc_found = true;
-		return (manage_heredoc(args, hist, p));
+		return (manage_heredoc(args, hist, p, index));
 	}
 	return (0);
 }
@@ -47,10 +46,13 @@ int		check_redirections(char **args, t_hist **hist, t_pipe *p)
 
 	if (find_redirection(args))
 	{
-		index = -1;
-		while (args[++(index)])
+		index = 0;
+		while (args[index])
+		{
 			if (check_IO(args, hist, index, p))
 				return (1);
+			index++;
+		}
 	}
 	return (0);
 }

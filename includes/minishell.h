@@ -57,7 +57,6 @@ typedef struct		s_redirect
 	int 			write_index;
 	int 			append_index;
 	int 			read_index;
-	int 			heredoc_index;
 	char 			*heredoc_line;
 }					t_redirect;
 
@@ -121,6 +120,7 @@ typedef struct		s_glob_info
 	int				stdin_fd_copy;
 	int				stdout_fd_copy;
 	int 			stderr_fd_copy;
+	char 			*marker;
 }					t_glob_info;
 
 extern t_glob_info	*g_info;
@@ -246,7 +246,7 @@ void				clean_up(char **args);
 */
 
 int					check_redirections(char **args, t_hist **hist, t_pipe *p);
-int					manage_heredoc(char **args, t_hist **hist, t_pipe *p);
+int					manage_heredoc(char **args, t_hist **hist, t_pipe *p, int index);
 int 				set_write_fd(char **args, int index);
 int					set_append_fd(char **args, int index);
 int					set_read_fd(char **args, int index);

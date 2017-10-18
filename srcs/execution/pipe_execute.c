@@ -112,6 +112,7 @@ int 	execute(t_pipe *p, t_env **env_info, t_hist **hist)
 	// if (p->fds[0] > 6)
  //        close(p->fds[0]);
 	reset_flags(p);
+	p->pipe_found = false;
 	// close (p->fds[0]);
 	return (main_execute(p, env_info, hist));
 	

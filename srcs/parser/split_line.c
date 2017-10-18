@@ -96,10 +96,9 @@ int		split_line(char *line, t_env **env_info, t_hist **hist, t_pipe *p)
 				cmd = parse_dollar(cmd, j, *env_info);
 		separate_pipes(p, cmd);
 		reset_flags(p);
-		status = pipe_execute(p, env_info, hist);
-		reset_flags(p);
-		status = main_execute(p, env_info, hist);
+		status = execute(p, env_info, hist);
 		clean_up(p->pipe_cmds);
+		restore_fds();
 	}
 	return (status);
 }

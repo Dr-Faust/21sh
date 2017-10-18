@@ -17,6 +17,6 @@ char	*ft_strjoin_free_first(char *s1, char *s2)
 	char	*str;
 
 	str = ft_strjoin(s1, s2);
-	ft_memdel((void **)&s1);
+	ft_strdel(&s1);
 	return (str);
 }

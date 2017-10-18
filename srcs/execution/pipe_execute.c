@@ -1,13 +1,13 @@
 #include "minishell.h"
 
-void	manage_child(pid_t pid)
+void	manage_child(t_pipe *p, pid_t pid)
 {
 	int 	status;
 
-	// close (p->fds[1]);
-	// close(0);   /* prepare to redirect stdin      */
-    // dup(p->fds[0]);      //stdin now reads from the pipe  
-    // close(p->fds[0]);   /* extra file descriptor          */
+	close (p->fds[1]);
+	close(0);   /* prepare to redirect stdin      */
+    dup(p->fds[0]);      //stdin now reads from the pipe  
+    close(p->fds[0]);   /* extra file descriptor          */
     waitpid(pid, &status, WUNTRACED);
 		while (!WIFEXITED(status) && !WIFSIGNALED(status))
 			waitpid(pid, &status, WUNTRACED);
@@ -36,7 +36,7 @@ int		launch(char **args, t_env *env_info, t_pipe *p, char *path)
 	env = env_to_arr(env_info);
 	if ((pid = fork()) == 0)
 	{
-		// close (p->fds[0]);
+		close (p->fds[0]);
 		check_pipes_redirections(args, p);
 		execve(path, args, env);
 	}
@@ -44,7 +44,7 @@ int		launch(char **args, t_env *env_info, t_pipe *p, char *path)
 		error_return(sh, err_cal_fork, NULL);
 	else
 	{
-		manage_child(pid);
+		manage_child(p, pid);
 		i = -1;
 		while (env[++i])
 			ft_memdel((void **)&(env[i]));
@@ -79,7 +79,7 @@ bool	pipe_builtin(char **args, t_env **env_info, t_pipe *p, t_hist *hist)
 	return (builtin_found);
 }
 
-int 	pipe_execute(t_pipe *p, t_env **env_info, t_hist **hist)
+int 	execute(t_pipe *p, t_env **env_info, t_hist **hist)
 {
 	int 	i;
 	char 	**args;
@@ -101,11 +101,20 @@ int 	pipe_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 			}
 		close(p->fds[1]);
 		p->input = p->fds[0];
+		// close (p->fds[0]);
+		// if (p->fds[0] > 6)
+  //       	close(p->fds[0]);
 		clean_up(args);
+		
 	}
-	if (p->input != STDIN_FILENO)
-		dup2(p->input, STDIN_FILENO);
-	if (p->fds[0] > 6)
-        close(p->fds[0]);
-	return (1);
+	// if (p->input != STDIN_FILENO)
+	// 	dup2(p->input, STDIN_FILENO);
+	// if (p->fds[0] > 6)
+ //        close(p->fds[0]);
+	reset_flags(p);
+	// close (p->fds[0]);
+	return (main_execute(p, env_info, hist));
+	
+	
+	// return (1);
 }

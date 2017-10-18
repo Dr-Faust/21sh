@@ -55,10 +55,12 @@ void		parse_keys(char *buf, bool *flag, t_hist **hist, unsigned int *hist_counte
 		g_info->line = del_char(buf);
 	else if (buf[0] == CTRL_D && !g_info->line[0])
 	{
-		*flag = true;
-		// if (g_info->marker[0])
-		// 	g_info->line = ft_strjoin_free(g_info->line, g_info->marker);
-		// else
+		if ((*flag = true) && g_info->marker)
+		{
+			g_info->line = ft_strjoin_free_first(g_info->line, g_info->marker);
+			ft_strdel(&g_info->marker);
+		}
+		else
 			g_info->line = ft_strjoin_free_first(g_info->line, "exit");
 		ft_putchar('\n');
 	}

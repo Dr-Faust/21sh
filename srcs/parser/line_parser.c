@@ -29,7 +29,7 @@ int		parse_line(char *line, t_env **env_info, t_hist **hist)
 	if (!(p->r = (t_redirect *)ft_memalloc(sizeof(t_redirect))))
 		error_exit(sh, mem_alloc_err);
 	status = split_line(line, env_info, hist, p);
-	restore_fds();
+	// restore_fds();
 	ft_memdel((void **)&p->r);
 	ft_memdel((void **)&p);
 	return (status);

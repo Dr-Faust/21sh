@@ -236,7 +236,7 @@ int					builtins_handler(char **args, t_env **env_info,
 char				*treat_path(char **args, t_env *env_info);
 char				*verif_access(char *command, t_env *env_info);
 int					main_execute(t_pipe *p, t_env **env_info, t_hist **hist);
-int 				pipe_execute(t_pipe *p, t_env **env_info, t_hist **hist);
+int 				execute(t_pipe *p, t_env **env_info, t_hist **hist);
 int					launch(char **args, t_env *env_info, t_pipe *p, char *path);
 int					heredoc_launch(char **args, t_env *env_info, t_pipe *p);
 void				clean_up(char **args);
@@ -246,7 +246,7 @@ void				clean_up(char **args);
 */
 
 int					check_redirections(char **args, t_hist **hist, t_pipe *p);
-int					manage_heredoc(char **args, t_hist **hist, t_pipe *p, int index);
+int					manage_heredoc(char **args, t_hist **hist, t_pipe *p, int *index);
 int 				set_write_fd(char **args, int index);
 int					set_append_fd(char **args, int index);
 int					set_read_fd(char **args, int index);
@@ -264,7 +264,6 @@ int					ft_setenv(t_env **env_info, char *var, char *value,
 					char **args);
 int					ft_unsetenv(t_env *env_info, char *var);
 int					ft_help(void);
-
 
 /*
 **							  ==[ Cursor movement ]==

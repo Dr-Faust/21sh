@@ -14,7 +14,7 @@ void	set_heredoc_fd(t_pipe *p)
 
 void 	set_pipe_fd(t_pipe *p)
 {
-	close (p->fds[0]);
+	// close (p->fds[0]);
 	if (p->input != STDIN_FILENO)
 	{
 		dup2(p->input, STDIN_FILENO);
@@ -24,7 +24,7 @@ void 	set_pipe_fd(t_pipe *p)
 	{
 		dup2(p->fds[1], STDOUT_FILENO);
 		close(p->fds[1]);
-	}	
+	}
 }
 
 int 	set_write_fd(char **args, int index)

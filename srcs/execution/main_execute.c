@@ -30,7 +30,8 @@ int		main_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 			close (p->fds[0]);
 		if ((path = treat_path(args, *env_info)))
 		{
-			check_redirections(args, hist, p);
+			if (check_redirections(args, hist, p))
+				return (1);
 			tcsetattr(STDIN_FILENO, TCSADRAIN, &g_info->default_term);
 			launch(args, *env_info, p, path);
 		}

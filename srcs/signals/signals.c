@@ -64,6 +64,9 @@ void		manage_signals(void)
 
 	ft_bzero((void*)&signal, sizeof(struct sigaction));
 	sigemptyset(&signal.sa_mask);
+	signal.sa_handler = SIG_DFL;	
+	if (sigaction(SIGPIPE, &signal, 0) < 0)
+		signal_error(sh, err_sys, "SIGQUIT");
 	signal.sa_handler = SIG_IGN;
 	if (sigaction(SIGQUIT, &signal, 0) < 0)
 		signal_error(sh, err_sys, "SIGQUIT");

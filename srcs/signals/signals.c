@@ -21,6 +21,14 @@ int			prompt_flag(short data)
 	return (prompt);
 }
 
+static void	handle_sigchld(int *signal)
+{
+	int				status;
+
+	*signal = 0;
+	while (waitpid(-1, &status, WNOHANG | WUNTRACED) > 0);
+}
+
 static void	handle_sigint(int *signal)
 {
 	int		prompt;
@@ -55,6 +63,8 @@ static void	signal_handler(int signal)
 		g_info->win_width = g_info->win.ws_col;
 		g_info->win_height = g_info->win.ws_row;
 	}
+	else if (signal == SIGCHLD)
+		handle_sigchld(&signal);
 	return ;
 }
 
@@ -78,4 +88,6 @@ void		manage_signals(void)
 		signal_error(sh, err_sys, "SIGINT");
 	else if (sigaction(SIGWINCH, &signal, 0) < 0)
 		signal_error(sh, err_sys, "SIGWINCH");
+	if (sigaction(SIGCHLD, &signal, 0) < 0)
+		signal_error(sh, err_sys, "SIGCHLD");
 }

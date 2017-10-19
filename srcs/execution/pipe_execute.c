@@ -5,13 +5,15 @@ void	manage_child(t_pipe *p, pid_t pid)
 	int 	status;
 
 	close (p->fds[1]);
-	close(0);   /* prepare to redirect stdin      */
-    dup(p->fds[0]);      //stdin now reads from the pipe  
-    close(p->fds[0]);   /* extra file descriptor          */
+	close(0);
+    dup(p->fds[0]);
+    close(p->fds[0]);
     if (!p->pipe_found)
-   		waitpid(pid, &status, /*WUNTRACED*/0);
+    {
+   		waitpid(pid, &status, 0);
 		while (!WIFEXITED(status) && !WIFSIGNALED(status))
 			waitpid(pid, &status, WUNTRACED);
+	}
 }
 
 void	check_pipes_redirections(char **args, t_pipe *p)
@@ -37,7 +39,8 @@ int		launch(char **args, t_env *env_info, t_pipe *p, char *path)
 	env = env_to_arr(env_info);
 	if ((pid = fork()) == 0)
 	{
-		close (p->fds[0]);
+		if (p->pipe_found)
+			close (p->fds[0]);
 		check_pipes_redirections(args, p);
 		execve(path, args, env);
 	}
@@ -102,8 +105,7 @@ int 	execute(t_pipe *p, t_env **env_info, t_hist **hist)
 			}
 		close(p->fds[1]);
 		p->input = p->fds[0];
-		clean_up(args);
-		
+		clean_up(args);	
 	}
 	reset_flags(p);
 	p->pipe_found = false;

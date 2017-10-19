@@ -20,8 +20,15 @@ void	error_exit(t_command command_type, t_err_exit error_type)
 	command[0] = "21sh: ";
 	error[0] = "allocation error";
 	error[1] = "error setting up terminal";
-	ft_printf("%s%s%s%s%s\n", CYAN, command[command_type],
-		RED, error[error_type], DEF);
+	ft_printf("%s", CYAN);
+	ft_putstr_fd(command[command_type], 2);
+	ft_printf("%s", RED);
+	ft_putstr_fd(error[error_type], 2);
+	ft_printf("%s", DEF);
+	// ft_putstr_fd(command[command_type], 2);
+	// ft_putstr_fd(error[error_type], 2);
+	// ft_printf("%s%s%s%s%s\n", CYAN, command[command_type],
+	// 	RED, error[error_type], DEF);
 	exit(EXIT_FAILURE);
 }
 
@@ -80,8 +87,13 @@ int		error_return(t_command command_type, t_err_ret error_type, char *arg)
 	
 	arg = correct_errors(command_type, error_type, arg);
 	set_commands_and_errors_arr(command, error);
-	ft_printf("%s%s%s%s%s", CYAN, command[command_type],
-		RED, error[error_type], DEF);
+	ft_printf("%s", CYAN);
+	ft_putstr_fd(command[command_type], 2);
+	ft_printf("%s", RED);
+	ft_putstr_fd(error[error_type], 2);
+	ft_printf("%s", DEF);
+	// ft_printf("%s%s%s%s%s", CYAN, command[command_type],
+	// 	RED, error[error_type], DEF);
 	if (arg)
 		ft_printf("%s\n", arg);
 	return (1);
@@ -95,8 +107,15 @@ int		signal_error(t_command command_type, t_sig_err error_type, char *arg)
 	command[0] = "21sh: ";
 	error[0] = "signal interception impossible: ";
 	error[1] = "received signal: ";
-	ft_printf("%s%s%s%s%s", CYAN, command[command_type],
-		RED, error[error_type], DEF);
+	ft_printf("%s", CYAN);
+	ft_putstr_fd(command[command_type], 2);
+	ft_printf("%s", RED);
+	ft_putstr_fd(error[error_type], 2);
+	ft_printf("%s", DEF);
+	// ft_putstr_fd(command[command_type], 2);
+	// ft_putstr_fd(error[error_type], 2);
+	// ft_printf("%s%s%s%s%s", CYAN, command[command_type],
+	// 	RED, error[error_type], DEF);
 	if (arg)
 		ft_printf("%s\n", arg);
 	return (1);

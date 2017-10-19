@@ -43,6 +43,14 @@ char		*parse_dollar(char *line, unsigned int i, t_env *env_info)
 	char			*new_line;
 	unsigned int	tmp;
 
+	tmp = i;
+	while (--tmp > 0)
+	{
+		if (line[tmp] == 39)
+			check_quote(line, &tmp);
+		if (line[tmp - 1] == 39 && tmp - 1 > i)
+			return (line);
+	}
 	tmp = i + 1;
 	while (ft_isalnum(line[tmp]) || line[tmp] == '_')
 		tmp++;

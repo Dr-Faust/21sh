@@ -186,7 +186,6 @@ void				set_terminal();
 unsigned short		get_curr_row_position(void);
 void				restore_fds(void);
 
-
 /*
 **								 ==[ Environment ]==
 */
@@ -221,6 +220,7 @@ int					split_line(char *line, t_env **env_info, t_hist **hist,
 void				reset_flags(t_pipe *p);
 char 				*separate_line(char *line, unsigned int *i, char sign);
 char				**split_command(char *line);
+void				check_quote(char *str, unsigned int *i);
 char				*parse_quotes(char *line, t_hist **hist);
 int					valid_quote(char *s, unsigned int i, char quote);
 char				*parse_dollar(char *line, unsigned int i, t_env *env_info);

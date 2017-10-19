@@ -26,8 +26,8 @@ int		main_execute(t_pipe *p, t_env **env_info, t_hist **hist)
 			clean_up(args);
 			return (0);
 		}
-		if (p->fds[0] > 5)
-			close (p->fds[0]);
+		// if (p->fds[0] > 5)
+		// 	close (p->fds[0]);
 		if ((path = treat_path(args, *env_info)))
 		{
 			if (check_redirections(args, hist, p))

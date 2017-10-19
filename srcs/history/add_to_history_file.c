@@ -1,4 +1,16 @@
-# include "minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   add_to_history_file.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/19 20:31:37 by opodolia          #+#    #+#             */
+/*   Updated: 2017/10/19 20:31:39 by opodolia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
 
 static char	*get_home_dir(t_env *env_info)
 {
@@ -17,12 +29,12 @@ static char	*get_home_dir(t_env *env_info)
 	return (home);
 }
 
-void	add_line_to_history_file(char *line, t_env *env_info)
+void		add_line_to_history_file(char *line, t_env *env_info)
 {
 	int		fd;
 	char	*home_dir;
 	char	*path;
-	
+
 	if (!(home_dir = get_home_dir(env_info)))
 		return ;
 	path = ft_strjoin(home_dir, "/.21sh_history");
@@ -33,6 +45,6 @@ void	add_line_to_history_file(char *line, t_env *env_info)
 		write(fd, "\n", 1);
 		close(fd);
 	}
-	ft_memdel((void **)&home_dir);	
-	ft_memdel((void **)&path);	
+	ft_memdel((void **)&home_dir);
+	ft_memdel((void **)&path);
 }

@@ -22,7 +22,7 @@ static int	check_print_position(char *buf)
 		g_info->line = ft_strjoin_free_first(g_info->line, "\n\0");
 		return (1);
 	}
-	else if (g_info->index < (unsigned int)ft_strlen(g_info->line))
+	else if (g_info->index < (int)ft_strlen(g_info->line))
 		g_info->line = add_char(buf);
 	else
 	{
@@ -40,7 +40,8 @@ static int	check_print_position(char *buf)
 	return (0);
 }
 
-void		parse_keys(char *buf, bool *flag, t_hist **hist, unsigned int *hist_counter)
+void		parse_keys(char *buf, bool *flag, t_hist **hist,
+			unsigned int *hist_counter)
 {
 	if (buf[2] == LEFT || buf[3] == LEFT || buf[2] == START)
 		left_arrow(buf);

@@ -32,36 +32,12 @@ static char	*current_dir(void)
 
 int			write_prompt(void)
 {
-//	char			*host_name;
-//	char			*comp;
-//	char			*user;
 	char			*curr_dir;
 	int				prompt_len;
-//	int				prompt;
 
-//	prompt = prompt_flag(21);
-//	if (prompt == 42)
-//		ft_putchar('\n');
-//	ft_printf("flag_0 = %d\n", prompt);
-//	prompt_flag(21);
-//	ft_printf("flag_1 = %d\n", prompt);
-//	ioctl(0, TIOCGWINSZ, &win_size);
 	prompt_len = -1;
-//	g_win_size = win_size.ws_col;
-//	while (++w->prompt_len < g_win_size)
-//		write(1, "_", 1);
-/*	user = getpwuid(getuid())->pw_name;
-	ft_printf("%s%s%s%s", B_YELLOW, user, B_BLUE, "][");
-	if (!(host_name = ft_memalloc(sizeof(char *) * 256)))
-		error_exit(sh, mem_alloc_err);
-	gethostname(host_name, 256);
-	comp = ft_strndup(host_name, '.');
-	ft_printf("%s%s%s%s%s", B_GREEN, comp, B_RED, " ✗ ", B_CYAN);*/
-//	ft_printf("%s%s%s", B_GREEN, "✗ ", B_BLUE);
 	curr_dir = current_dir();
-	prompt_len = /*ft_strlen(user) + ft_strlen(comp) + */ft_strlen(curr_dir) + 4;
+	prompt_len = ft_strlen(curr_dir) + 4;
 	ft_memdel((void **)&curr_dir);
-//	ft_memdel((void **)&host_name);
-//	ft_memdel((void **)&comp);
 	return (prompt_len);
 }

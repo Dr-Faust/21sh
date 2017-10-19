@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirections.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/19 19:22:09 by opodolia          #+#    #+#             */
+/*   Updated: 2017/10/19 19:24:25 by opodolia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int		check_IO(char **args, t_hist **hist, int *index, t_pipe *p)
+int		check_io(char **args, t_hist **hist, int *index, t_pipe *p)
 {
 	if (!ft_strcmp(args[*index], ">"))
 	{
@@ -42,14 +54,14 @@ bool	find_redirection(char **args)
 
 int		check_redirections(char **args, t_hist **hist, t_pipe *p)
 {
-	int 	index;
+	int		index;
 
 	if (find_redirection(args))
 	{
 		index = 0;
 		while (args[index])
 		{
-			if (check_IO(args, hist, &index, p))
+			if (check_io(args, hist, &index, p))
 				return (1);
 			index++;
 		}

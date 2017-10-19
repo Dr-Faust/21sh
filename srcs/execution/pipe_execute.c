@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe_execute.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/19 20:44:45 by opodolia          #+#    #+#             */
+/*   Updated: 2017/10/19 20:44:46 by opodolia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	manage_child(t_pipe *p, pid_t pid)
 {
-	int 	status;
+	int		status;
 
-	close (p->fds[1]);
+	close(p->fds[1]);
 	close(0);
-    dup(p->fds[0]);
-    close(p->fds[0]);
-    if (!p->pipe_found)
-    {
-   		waitpid(pid, &status, 0);
+	dup(p->fds[0]);
+	close(p->fds[0]);
+	if (!p->pipe_found)
+	{
+		waitpid(pid, &status, 0);
 		while (!WIFEXITED(status) && !WIFSIGNALED(status))
 			waitpid(pid, &status, WUNTRACED);
 	}
@@ -18,6 +30,8 @@ void	manage_child(t_pipe *p, pid_t pid)
 
 void	check_pipes_redirections(char **args, t_pipe *p)
 {
+	if (p->pipe_found)
+		close(p->fds[0]);
 	if (p->pipe_found)
 		set_pipe_fd(p);
 	if (p->r->write_found)
@@ -39,8 +53,6 @@ int		launch(char **args, t_env *env_info, t_pipe *p, char *path)
 	env = env_to_arr(env_info);
 	if ((pid = fork()) == 0)
 	{
-		if (p->pipe_found)
-			close (p->fds[0]);
 		check_pipes_redirections(args, p);
 		execve(path, args, env);
 	}
@@ -62,9 +74,9 @@ int		launch(char **args, t_env *env_info, t_pipe *p, char *path)
 
 bool	pipe_builtin(char **args, t_env **env_info, t_pipe *p, t_hist *hist)
 {
-	int 	i;
-	bool	builtin_found;
-	char 	*builtins_str[] = {"cd", "env", "setenv", "unsetenv", "help",
+	int			i;
+	bool		builtin_found;
+	const char	*builtins_str[] = {"cd", "env", "setenv", "unsetenv", "help",
 								"history"};
 
 	i = -1;
@@ -83,10 +95,10 @@ bool	pipe_builtin(char **args, t_env **env_info, t_pipe *p, t_hist *hist)
 	return (builtin_found);
 }
 
-int 	execute(t_pipe *p, t_env **env_info, t_hist **hist)
+int		execute(t_pipe *p, t_env **env_info, t_hist **hist)
 {
-	int 	i;
-	char 	**args;
+	int		i;
+	char	**args;
 	bool	builtin_found;
 	char	*path;
 
@@ -105,7 +117,7 @@ int 	execute(t_pipe *p, t_env **env_info, t_hist **hist)
 			}
 		close(p->fds[1]);
 		p->input = p->fds[0];
-		clean_up(args);	
+		clean_up(args);
 	}
 	reset_flags(p);
 	p->pipe_found = false;

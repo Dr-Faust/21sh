@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:10:03 by opodolia          #+#    #+#             */
-/*   Updated: 2017/09/14 15:28:26 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/10/19 19:26:32 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_glob_info	*g_info;
 
-void		restore_fds(void)
+void			restore_fds(void)
 {
 	dup2(g_info->stdin_fd_copy, STDIN_FILENO);
 	dup2(g_info->stdout_fd_copy, STDOUT_FILENO);
@@ -36,13 +36,13 @@ unsigned short	get_curr_row_position(void)
 	char			*buf;
 	char			*tmp;
 	unsigned short	position;
-	
+
 	position = 0;
 	if (isatty(fileno(stdin)))
 	{
 		buf = ft_strnew(20);
 		ft_putstr("\033[6n");
-		read (0, buf, 20);
+		read(0, buf, 20);
 		tmp = ft_strsub(buf, 2, 2);
 		position = ft_atoi(tmp);
 		ft_memdel((void *)&buf);
@@ -62,7 +62,7 @@ static void		minishell(t_env **env_info, bool status)
 	{
 		set_terminal();
 		g_info->prompt_len = write_prompt();
-		// sg_info->row_position = get_curr_row_position();
+		//g_info->row_position = get_curr_row_position();
 		line = read_line(&hist);
 		line = parse_quotes(line, &hist);
 		status = parse_line(line, env_info, &hist);

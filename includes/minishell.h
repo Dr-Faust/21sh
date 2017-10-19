@@ -54,10 +54,10 @@ typedef struct		s_redirect
 	bool			append_found;
 	bool			read_found;
 	bool			heredoc_found;
-	int 			write_index;
-	int 			append_index;
-	int 			read_index;
-	char 			*heredoc_line;
+	int				write_index;
+	int				append_index;
+	int				read_index;
+	char			*heredoc_line;
 }					t_redirect;
 
 /*
@@ -68,9 +68,9 @@ typedef struct		s_pipe
 {
 	char			**pipe_cmds;
 	bool			pipe_found;
-	int 			index;
-	int 			fds[2];
-	int 			input;
+	int				index;
+	int				fds[2];
+	int				input;
 	t_redirect		*r;
 }					t_pipe;
 
@@ -112,15 +112,15 @@ typedef struct		s_glob_info
 	char			*quote_line;
 	unsigned short	bytes;
 	unsigned short	row_position;
-	unsigned int	position;
-	unsigned int	index;
+	int				position;
+	int				index;
 	unsigned int	hist_counter;
 	short			hist_search_flag;
 	char			*hist_start_line;
 	int				stdin_fd_copy;
 	int				stdout_fd_copy;
-	int 			stderr_fd_copy;
-	char 			*marker;
+	int				stderr_fd_copy;
+	char			*marker;
 }					t_glob_info;
 
 extern t_glob_info	*g_info;
@@ -218,7 +218,7 @@ int					parse_line(char *line, t_env **env_info, t_hist **hist);
 int					split_line(char *line, t_env **env_info, t_hist **hist,
 					t_pipe *p);
 void				reset_flags(t_pipe *p);
-char 				*separate_line(char *line, unsigned int *i, char sign);
+char				*separate_line(char *line, unsigned int *i, char sign);
 char				**split_command(char *line);
 void				check_quote(char *str, unsigned int *i);
 char				*parse_quotes(char *line, t_hist **hist);
@@ -236,7 +236,7 @@ int					builtins_handler(char **args, t_env **env_info,
 char				*treat_path(char **args, t_env *env_info);
 char				*verif_access(char *command, t_env *env_info);
 int					main_execute(t_pipe *p, t_env **env_info, t_hist **hist);
-int 				execute(t_pipe *p, t_env **env_info, t_hist **hist);
+int					execute(t_pipe *p, t_env **env_info, t_hist **hist);
 int					launch(char **args, t_env *env_info, t_pipe *p, char *path);
 int					heredoc_launch(char **args, t_env *env_info, t_pipe *p);
 void				clean_up(char **args);
@@ -246,8 +246,9 @@ void				clean_up(char **args);
 */
 
 int					check_redirections(char **args, t_hist **hist, t_pipe *p);
-int					manage_heredoc(char **args, t_hist **hist, t_pipe *p, int *index);
-int 				set_write_fd(char **args, int index);
+int					manage_heredoc(char **args, t_hist **hist, t_pipe *p,
+					int *index);
+int					set_write_fd(char **args, int index);
 int					set_append_fd(char **args, int index);
 int					set_read_fd(char **args, int index);
 void				set_pipe_fd(t_pipe *p);

@@ -86,10 +86,10 @@ void		right_arrow(char *buf)
 	else if (buf[3] == RIGHT && g_info->line[g_info->index])
 	{
 		while (g_info->line[g_info->index] != ' ' &&
-			g_info->index < (unsigned int)ft_strlen(g_info->line))
+			g_info->index < (int)ft_strlen(g_info->line))
 			move_right();
 		while (g_info->line[g_info->index] == ' ' &&
-			g_info->index < (unsigned int)ft_strlen(g_info->line))
+			g_info->index < (int)ft_strlen(g_info->line))
 			move_right();
 	}
 	else if (buf[2] == END && g_info->line[g_info->index])

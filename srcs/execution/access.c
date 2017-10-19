@@ -40,7 +40,6 @@ char		*add_slash(char *path, char *command)
 	if (path[ft_strlen(path) - 1] && path[ft_strlen(path) - 1] != '/')
 		path = ft_strjoin_free_first(path, "/");
 	path = ft_strjoin_free_first(path, command);
-//	ft_printf("\npath = %s\n", path);
 	return (path);
 }
 

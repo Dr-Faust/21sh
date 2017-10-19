@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/19 20:40:13 by opodolia          #+#    #+#             */
+/*   Updated: 2017/10/19 20:40:14 by opodolia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	double_output(char **args, t_env *env_info, int i)
 {
 	int		fd;
-	
-	fd = open(args[i + 1], O_APPEND | O_RDWR | O_CREAT, 0664); 
-	dup2(fd, STDOUT_FILENO); 
+
+	fd = open(args[i + 1], O_APPEND | O_RDWR | O_CREAT, 0664);
+	dup2(fd, STDOUT_FILENO);
 	close(fd);
 	while (env_info != 0)
 	{
@@ -18,9 +30,9 @@ void	double_output(char **args, t_env *env_info, int i)
 void	single_output(char **args, t_env *env_info, int i)
 {
 	int		fd;
-	
+
 	fd = open(args[i + 1], O_CREAT | O_TRUNC | O_WRONLY, 0664);
-	dup2(fd, STDOUT_FILENO); 
+	dup2(fd, STDOUT_FILENO);
 	close(fd);
 	while (env_info != 0)
 	{
@@ -33,7 +45,7 @@ void	single_output(char **args, t_env *env_info, int i)
 int		ft_env(char **args, t_env *env_info)
 {
 	int		i;
-	
+
 	i = 1;
 	if (args[i])
 	{

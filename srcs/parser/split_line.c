@@ -39,7 +39,7 @@ int		count_commands(char *str, char sign)
 	return (count);
 }
 
-char 	*separate_line(char *line, unsigned int *i, char sign)
+char	*separate_line(char *line, unsigned int *i, char sign)
 {
 	unsigned int	start;
 
@@ -62,11 +62,11 @@ void	separate_pipes(t_pipe *p, char *cmd)
 	p->index = -1;
 	if (!(p->pipe_cmds = (char **)ft_memalloc(sizeof(char *) *
 		(count_commands(cmd, '|') + 1))))
-			error_exit(sh, mem_alloc_err);
+		error_exit(sh, mem_alloc_err);
 	while (++i < count_commands(cmd, '|'))
 	{
 		sub_cmd = separate_line(cmd, &j, '|');
-		if(sub_cmd != NULL && ft_strlen(sub_cmd) > 0)
+		if (sub_cmd != NULL && ft_strlen(sub_cmd) > 0)
 			p->pipe_cmds[++(p->index)] = ft_strdup(sub_cmd);
 		ft_memdel((void **)&sub_cmd);
 	}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/19 19:22:02 by opodolia          #+#    #+#             */
+/*   Updated: 2017/10/19 19:23:14 by opodolia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*get_heredoc(char *marker, t_hist **hist)
@@ -10,7 +22,7 @@ char	*get_heredoc(char *marker, t_hist **hist)
 	marker = ft_strjoin(marker, "\n\0");
 	g_info->marker = ft_strdup(marker);
 	if (!(line = (char *)ft_memalloc(sizeof(char) * 1)))
-			error_exit(sh, mem_alloc_err);
+		error_exit(sh, mem_alloc_err);
 	while (!marker_found)
 	{
 		g_info->prompt_len = 9;

@@ -18,7 +18,7 @@ static unsigned short	rows_till_lower_bound(unsigned int *indx)
 	unsigned int	full_len;
 	unsigned int	len;
 	unsigned short	rows;
-	
+
 	len = 0;
 	while (g_info->line[*indx])
 	{

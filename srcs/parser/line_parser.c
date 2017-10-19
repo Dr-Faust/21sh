@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   line_parser.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/19 20:52:58 by opodolia          #+#    #+#             */
+/*   Updated: 2017/10/19 20:53:06 by opodolia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	reset_flags(t_pipe *p)
@@ -29,7 +41,6 @@ int		parse_line(char *line, t_env **env_info, t_hist **hist)
 	if (!(p->r = (t_redirect *)ft_memalloc(sizeof(t_redirect))))
 		error_exit(sh, mem_alloc_err);
 	status = split_line(line, env_info, hist, p);
-	// restore_fds();
 	ft_memdel((void **)&p->r);
 	ft_memdel((void **)&p);
 	return (status);

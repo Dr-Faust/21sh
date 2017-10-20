@@ -62,7 +62,7 @@ static void		minishell(t_env **env_info, bool status)
 	{
 		set_terminal();
 		g_info->prompt_len = write_prompt();
-		//g_info->row_position = get_curr_row_position();
+		// g_info->row_position = get_curr_row_position();
 		line = read_line(&hist);
 		line = parse_quotes(line, &hist);
 		status = parse_line(line, env_info, &hist);

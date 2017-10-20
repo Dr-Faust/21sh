@@ -58,6 +58,12 @@ typedef struct		s_redirect
 	int				append_index;
 	int				read_index;
 	char			*heredoc_line;
+	bool			output_fd_found;
+	bool			input_fd_found;
+	bool			close_fd_found;
+	bool			input_file_found;
+	int				aggr_arg_index;
+	int				aggr_index;
 }					t_redirect;
 
 /*
@@ -248,11 +254,12 @@ void				clean_up(char **args);
 int					check_redirections(char **args, t_hist **hist, t_pipe *p);
 int					manage_heredoc(char **args, t_hist **hist, t_pipe *p,
 					int *index);
-int					set_write_fd(char **args, int index);
+int					set_write_fd(char **args, int index, int io_fd);
 int					set_append_fd(char **args, int index);
 int					set_read_fd(char **args, int index);
 void				set_pipe_fd(t_pipe *p);
 void				set_heredoc_fd(t_pipe *p);
+void				fd_aggregator(t_pipe *p, char **args);
 
 /*
 **							 ==[ Built in functions ]==

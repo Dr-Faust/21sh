@@ -18,6 +18,10 @@ void	reset_flags(t_pipe *p)
 	p->r->append_found = false;
 	p->r->read_found = false;
 	p->r->heredoc_found = false;
+	p->r->output_fd_found = false;
+	p->r->input_fd_found = false;
+	p->r->close_fd_found = false;
+	p->r->input_file_found = false;
 }
 
 void	clean_up(char **args)

@@ -35,13 +35,15 @@ void	check_pipes_redirections(char **args, t_pipe *p)
 	if (p->pipe_found)
 		set_pipe_fd(p);
 	if (p->r->write_found)
-		set_write_fd(args, p->r->write_index);
+		set_write_fd(args, p->r->write_index, 1);
 	if (p->r->append_found)
 		set_append_fd(args, p->r->append_index);
 	if (p->r->read_found)
 		set_read_fd(args, p->r->read_index);
 	if (p->r->heredoc_found)
 		set_heredoc_fd(p);
+	if (p->r->output_fd_found)
+		fd_aggregator(p, args);
 }
 
 int		launch(char **args, t_env *env_info, t_pipe *p, char *path)

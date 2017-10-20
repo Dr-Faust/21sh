@@ -38,7 +38,7 @@ void	set_pipe_fd(t_pipe *p)
 	}
 }
 
-int		set_write_fd(char **args, int index)
+int		set_write_fd(char **args, int index, int io_fd)
 {
 	int		fd;
 
@@ -47,7 +47,10 @@ int		set_write_fd(char **args, int index)
 	if (!args[index])
 		return (error_return(sh, too_few_args, "single_output"));
 	fd = open(args[index], O_WRONLY | O_TRUNC | O_CREAT, 0664);
-	dup2(fd, STDOUT_FILENO);
+	if (io_fd == 1)
+		dup2(fd, STDOUT_FILENO);
+	else if (io_fd == 2)
+		dup2(fd, STDERR_FILENO);
 	close(fd);
 	ft_memdel((void **)&args[index]);
 	return (0);

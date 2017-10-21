@@ -54,6 +54,7 @@ typedef struct		s_redirect
 	bool			append_found;
 	bool			read_found;
 	bool			heredoc_found;
+	bool			marker_found;
 	int				write_index;
 	int				append_index;
 	int				read_index;

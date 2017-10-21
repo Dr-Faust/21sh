@@ -51,11 +51,19 @@ int		launch(char **args, t_env *env_info, t_pipe *p, char *path)
 	pid_t	pid;
 	char	**env;
 	int		i;
+	char	*tmp;
 
 	env = env_to_arr(env_info);
 	if ((pid = fork()) == 0)
 	{
+		tmp = ft_strdup(args[0]);
 		check_pipes_redirections(args, p);
+		if (!ft_strcmp(args[0], tmp))
+		{
+			ft_strdel(&path);
+			path = treat_path(args, env_info);
+		}
+		ft_strdel(&tmp);
 		execve(path, args, env);
 	}
 	else if (pid < 0)

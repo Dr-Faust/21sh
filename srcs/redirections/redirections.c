@@ -38,8 +38,7 @@ void	check_fd_aggregators(char **args, int *index, t_pipe *p)
 	{
 		aggr = args[*index];
 		p->r->aggr_index = i;
-		if (aggr[i - 1] && (aggr[i - 1] >= '0' && aggr[i - 1] <= '2')
-			&& !aggr[i - 2] && aggr[i + 3] == '\0')
+		if (aggr[i - 1] && (aggr[i - 1] >= '0' && aggr[i - 1] <= '2'))
 		{
 			p->r->output_fd_found = true;
 			p->r->aggr_arg_index = *index;

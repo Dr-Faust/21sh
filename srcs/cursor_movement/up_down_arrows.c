@@ -26,10 +26,6 @@ void		up_arrow(char *buf, t_hist *hist, unsigned int *hist_counter)
 		g_info->prompt_len + 1))
 		while (i++ < g_info->win_width)
 			move_left();
-//	if (buf[5] == UP &&
-//		full_len > ft_strlen(g_info->line) + g_info->prompt_len + 1)
-//		while (i++ < g_info->win_width)
-//			move_left();
 	else if (buf[2] == UP && hist && *hist_counter >= 1)
 		print_prev_hist(hist, hist_counter);
 }

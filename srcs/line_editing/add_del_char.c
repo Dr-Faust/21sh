@@ -12,29 +12,6 @@
 
 #include "minishell.h"
 
-static unsigned short	rows_till_lower_bound(unsigned int *indx)
-{
-	unsigned int	position;
-	unsigned int	full_len;
-	unsigned int	len;
-	unsigned short	rows;
-
-	len = 0;
-	while (g_info->line[*indx])
-	{
-		if (g_info->line[*indx] == '\n')
-			break ;
-		(*indx)++;
-	}
-	*indx -= g_info->index;
-	position = g_info->position;
-	full_len = get_position(*indx);
-	while (position++ < full_len)
-		len++;
-	rows = (len / g_info->win_width);
-	return (rows);
-}
-
 static char				*reprint_str_add(char *buf)
 {
 	char	*print;
@@ -56,22 +33,21 @@ char					*add_char(char *buf)
 {
 	char			*ret;
 	unsigned int	indx;
-	unsigned short	rows_till_bound;
 
 	indx = g_info->index;
 	ret = ft_strsub(g_info->line, 0, g_info->index);
 	ret = ft_strjoin_free(ret, reprint_str_add(buf));
-	rows_till_bound = rows_till_lower_bound(&indx);
-	if (g_info->row_position >= (g_info->win_height - rows_till_bound) &&
-		g_info->row_position <= g_info->win_height)
-		if ((g_info->position + indx - 1) % g_info->win_width == 0)
-			tputs(tgetstr("up", 0), 1, &ft_put_my_char);
-	if ((g_info->position) % g_info->win_width == 0)
+	while (g_info->line[indx])
 	{
-		if (g_info->row_position < g_info->win_height)
-			g_info->row_position++;
-		ft_putchar('\n');
+		if (g_info->line[indx] == '\n')
+			break ;
+		indx++;
 	}
+	indx -= g_info->index;
+	if ((g_info->position + indx - 1) % g_info->win_width == 0)
+		tputs(tgetstr("up", 0), 1, &ft_put_my_char);
+	if ((g_info->position) % g_info->win_width == 0)
+		ft_putchar('\n');
 	ft_memdel((void **)&g_info->line);
 	return (ret);
 }

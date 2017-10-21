@@ -120,8 +120,8 @@ int		execute(t_pipe *p, t_env **env_info, t_hist **hist)
 		close(p->fds[1]);
 		p->input = p->fds[0];
 		clean_up(args);
+		reset_flags(p);
 	}
-	reset_flags(p);
 	p->pipe_found = false;
 	return (main_execute(p, env_info, hist));
 }

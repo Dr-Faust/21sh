@@ -31,26 +31,6 @@ static void		clean_history(t_hist **hist)
 	ft_memdel((void **)&(*hist));
 }
 
-unsigned short	get_curr_row_position(void)
-{
-	char			*buf;
-	char			*tmp;
-	unsigned short	position;
-
-	position = 0;
-	if (isatty(fileno(stdin)))
-	{
-		buf = ft_strnew(20);
-		ft_putstr("\033[6n");
-		read(0, buf, 20);
-		tmp = ft_strsub(buf, 2, 2);
-		position = ft_atoi(tmp);
-		ft_memdel((void *)&buf);
-		ft_memdel((void *)&tmp);
-	}
-	return (position);
-}
-
 static void		minishell(t_env **env_info, bool status)
 {
 	char	*line;
@@ -62,7 +42,6 @@ static void		minishell(t_env **env_info, bool status)
 	{
 		set_terminal();
 		g_info->prompt_len = write_prompt();
-		// g_info->row_position = get_curr_row_position();
 		line = read_line(&hist);
 		line = parse_quotes(line, &hist);
 		status = parse_line(line, env_info, &hist);

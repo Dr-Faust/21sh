@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:01:30 by opodolia          #+#    #+#             */
-/*   Updated: 2017/09/14 15:29:20 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/10/21 20:43:20 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void		move_right(void)
 	if ((g_info->position) % g_info->win_width == 0 ||
 		g_info->line[g_info->index] == '\n')
 	{
-		if (g_info->row_position < g_info->win_height)
-			g_info->row_position++;
 		ft_putchar('\n');
 		if (g_info->line[g_info->index] == '\n')
 		{
@@ -43,8 +41,6 @@ void		move_left(void)
 	if ((g_info->position - 1) % g_info->win_width == 0 ||
 		g_info->line[g_info->index - 1] == '\n')
 	{
-		if (g_info->row_position > 1)
-			g_info->row_position--;
 		ft_putstr("\033M");
 		if (g_info->line[g_info->index - 1] == '\n')
 			extended_move_left(g_info->index - 1);

@@ -117,7 +117,6 @@ typedef struct		s_glob_info
 	char			*line;
 	char			*quote_line;
 	unsigned short	bytes;
-	unsigned short	row_position;
 	int				position;
 	int				index;
 	unsigned int	hist_counter;
